@@ -273,7 +273,8 @@ const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric'
 const short = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return h ? `${h}h ${m}m` : `${m}:${String(x).padStart(2, '0')}` };
 const slug = s => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const art = cat => `img/types/${slug(cat)}.svg`;
+const ART_V = 2;
+const art = cat => `img/types/${slug(cat)}.svg?v=${ART_V}`;
 const SITE = 'jimmy-grafton.github.io/quiz-night-console';
 const RATINGS = [[0, 'Mild'], [26, 'Medium'], [46, 'Hot'], [61, 'Extra hot'], [71, 'Ghost pepper']];
 
