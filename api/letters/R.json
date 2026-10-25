@@ -14,14 +14,21 @@
    "answer": "Roman Empire, 2nd century AD",
    "explanation": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
    "answer_full": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
-   "clues": {
-    "shape": "_____ ______, ___ _______ __",
-    "initials": "R____ E_____, 2__ c______ A_"
-   },
+   "options": [
+    "Byzantine Empire, 2nd century AD",
+    "Roman Empire, 1st century AD",
+    "Roman Empire, 3rd century AD",
+    "Roman Empire, 2nd century AD"
+   ],
+   "wrong_options": [
+    "Roman Empire, 1st century AD",
+    "Roman Empire, 3rd century AD",
+    "Byzantine Empire, 2nd century AD"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "R",
    "released_at": "2026-10-22T23:00:00.000Z"

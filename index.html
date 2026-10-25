@@ -110,7 +110,17 @@ button:focus-visible, a:focus-visible, tr:focus-visible { outline: 3px solid var
 .reveal .label { color: var(--paper); opacity: .7; display: block; margin-bottom: 4px }
 .reveal b { font: 800 1.25rem/1.25 var(--display); font-stretch: 88%; display: block }
 .reveal p { margin: 6px 0 0; font-size: .92rem; opacity: .85 }
-.helpers { display: flex; gap: 26px; flex-wrap: wrap; margin: 0 0 26px }
+.helpers { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin: 4px 0 22px }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0 0 22px }
+.opt { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 12px; align-items: center; text-align: left; font: 700 1.05rem/1.3 var(--text); padding: 16px 16px; border: 3px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; box-shadow: var(--hard); border-radius: 0; transition: transform .08s, box-shadow .08s, opacity .2s }
+.opt:hover:not([disabled]) { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink) }
+.opt:active:not([disabled]) { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink) }
+.opt .k { font: 600 .8rem var(--mono); border: 2px solid currentColor; width: 1.9rem; height: 1.9rem; display: grid; place-items: center }
+.opt.gone { opacity: .25; text-decoration: line-through; box-shadow: none; cursor: default }
+.opt.right { background: var(--chilli); color: var(--chilli-ink); border-color: var(--rule) }
+.opt.picked-wrong { background: var(--ink); color: var(--paper); text-decoration: line-through }
+.opt[disabled] { cursor: default }
+@media (max-width: 560px) { .opts { grid-template-columns: 1fr } }
 .answerbar { border-top: 3px solid var(--rule); padding-top: 20px; display: grid; gap: 14px }
 .answerbar p { margin: 0; font-size: .92rem; color: var(--grey) }
 .answerbar .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px }
@@ -234,7 +244,7 @@ footer a { color: var(--ink) }
       <div class="body">
         <div class="sticker" aria-hidden="true"><div><small>Quiz</small><b id="h-num">Nº1</b><small>this week</small></div></div>
         <h1 id="h-title">This week's<br><span>quiz</span></h1>
-        <p class="lede">Twenty-five questions, fresh off the grill every Friday. Pub quiz energy, no pub required. Nail one to collect chillies. Stuck? Turn down the heat.</p>
+        <p class="lede">Twenty-five questions, fresh off the grill every Friday. Pub quiz energy, no pub required. Pick the right answer to collect chillies. Stuck? Turn down the heat and we'll knock out a wrong one.</p>
         <div class="cta">
           <button class="btn primary" type="button" id="start">Start quiz</button>
           <button class="btn" type="button" id="see-archive">See archive</button>
@@ -242,9 +252,9 @@ footer a { color: var(--ink) }
         <span class="steps" id="h-status"></span>
       </div>
       <div class="scale">
-        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg></span><b>Full heat</b><span>Get it with no help: 3 chillies</span></div>
-        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>One hint</b><span>Turn the heat down once: 2 chillies</span></div>
-        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>Two hints</b><span>Turn it down twice: 1 chilli</span></div>
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg></span><b>Full heat</b><span>All four options: 3 chillies</span></div>
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>One hint</b><span>One wrong answer knocked out: 2 chillies</span></div>
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>Two hints</b><span>Two knocked out: 1 chilli</span></div>
       </div>
     </section>
     <p class="steps homefoot" id="h-next">A new quiz goes up every Friday.</p>
@@ -258,23 +268,14 @@ footer a { color: var(--ink) }
         <div class="qtop"><span class="pill" id="cat">Geography</span><span class="heat" id="heat"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><em id="heat-label">3 chillies up for grabs</em></span><span class="steps" id="steps">Question 1 of 25</span></div>
         <div class="bar" aria-hidden="true"><span id="bar"></span></div>
         <h1 class="question" id="q"></h1>
-        <div class="hint" id="hint" hidden><span class="label" id="hint-label">Hint</span><code id="hint-text"></code></div>
+        <div class="opts" id="opts" role="group" aria-label="Choose an answer"></div>
         <div class="feedback" id="feedback" hidden></div>
         <div class="reveal" id="reveal" hidden><span class="label">Answer</span><b id="ans"></b><p id="why"></p></div>
-        <div class="helpers">
+        <div class="helpers" id="helpers">
           <button class="link heat-btn" type="button" id="hint-btn">Turn down the heat</button>
-          <button class="link" type="button" id="reveal-btn">Reveal the answer</button>
+          <span class="steps" id="hint-note">Knocks out a wrong answer. Costs a chilli.</span>
         </div>
-        <div class="answerbar">
-          <p id="ask">Type your answer and lock it in.</p>
-          <form class="row" id="markrow" autocomplete="off">
-            <label class="sr" for="guess">Your answer</label>
-            <input id="guess" name="guess" type="text" placeholder="Type your answer" autocomplete="off" spellcheck="false">
-            <button class="btn primary" type="submit" id="right">Lock it in</button>
-          </form>
-          <div class="after" id="markextra"><button class="link" type="button" id="wrong">Pass, I don't know</button><button class="link" type="button" id="override" hidden>Actually, I had it</button></div>
-          <button class="btn hot" type="button" id="next" hidden>Next question →</button>
-        </div>
+        <button class="btn hot" type="button" id="next" hidden>Next question →</button>
       </section>
 
       <aside class="summary" aria-label="Your receipt">
@@ -388,6 +389,14 @@ function isRight(guess, q) {
   if (/^any /i.test(raw) || /\bor\b/i.test(raw)) { const need = /^any (\w+)/i.exec(raw); const n = need ? ({ one: 1, two: 2, three: 3 }[need[1].toLowerCase()] || 1) : 1; return parts.filter(p => close(p, g)).length >= n }
   return parts.every(p => close(p, g));
 }
+function seedOf(str) { let h = 2166136261; for (const c of str) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619) } return h >>> 0 }
+function optionsFor(q) {
+  const all = [shortAns(q), ...(q.wrong || [])];
+  let r = seedOf(q.id);
+  for (let k = all.length - 1; k > 0; k--) { r = (Math.imul(r, 1103515245) + 12345) >>> 0; const j = r % (k + 1); [all[k], all[j]] = [all[j], all[k]] }
+  return all;
+}
+const goneFor = (q, h) => (q.wrong || []).slice(0, h);
 const released = () => quizzes.filter(d => new Date(d.releaseAt) <= new Date());
 const latest = () => released()[0];
 const quiz = () => released().find(d => d.n === quizN) || latest();
@@ -440,33 +449,34 @@ function renderPlay(L) {
     if (m) { const b = document.createElement('b'); b.className = 'big'; b.textContent = `+${heatOf(q)}`; fb.append(b); fb.append(document.createTextNode(` ${heatOf(q) === 1 ? 'chilli' : 'chillies'} in the bag.`)) }
     else fb.append(document.createTextNode('No chillies this time.'));
     const yours = (guesses[q.id] || '').trim();
-    if (yours) { const y = document.createElement('p'); y.className = 'yours'; y.textContent = `You said: ${yours}`; fb.append(y) }
+    if (yours && !m) { const y = document.createElement('p'); y.className = 'yours'; y.textContent = `You picked: ${yours}`; fb.append(y) }
   } else fb.hidden = true;
   $('q').textContent = q.q;
-  $('hint').hidden = !h || revealed || judged;
-  $('hint-label').textContent = h === 1 ? 'Hint: how the answer is shaped' : 'Hint: the first letters';
   [...$('heat').querySelectorAll('.chilli')].forEach((c, k) => c.classList.toggle('off', k >= 3 - h));
   $('heat-label').textContent = `${3 - h} ${3 - h === 1 ? 'chilli' : 'chillies'} up for grabs`;
-  $('hint-text').textContent = h ? hintText(q, h) : '';
-  const showAns = revealed || judged;
-  $('reveal').hidden = !showAns;
+  const box = $('opts'); box.innerHTML = '';
+  const opts = optionsFor(q), gone = goneFor(q, h);
+  opts.forEach((o, k) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
+    b.innerHTML = '<span class="k"></span><span class="t"></span>';
+    b.querySelector('.k').textContent = 'ABCD'[k]; b.querySelector('.t').textContent = o;
+    const isAns = o === shortAns(q);
+    if (judged) { b.disabled = true; if (isAns) b.classList.add('right'); else if (guesses[q.id] === o) b.classList.add('picked-wrong'); else b.classList.add('gone') }
+    else if (gone.includes(o)) { b.disabled = true; b.classList.add('gone') }
+    else b.onclick = () => { guesses[q.id] = o; mark(isAns) };
+    box.appendChild(b);
+  });
+  $('reveal').hidden = !judged;
   $('ans').textContent = shortAns(q);
   $('why').textContent = q.a; $('why').hidden = q.a.trim() === shortAns(q);
-  $('hint-btn').hidden = revealed || judged || h >= 2;
-  $('reveal-btn').hidden = judged;
-  $('markrow').hidden = judged;
+  $('helpers').hidden = judged;
+  $('hint-btn').hidden = h >= 2;
+  $('hint-btn').textContent = h === 0 ? 'Turn down the heat' : 'Turn it down again';
+  $('hint-note').textContent = h >= 2 ? 'Heat all the way down. Two left, worth 1 chilli.' : 'Knocks out a wrong answer. Costs a chilli.';
   $('next').hidden = !judged;
   const remaining = L.filter(x => marks[x.id] === undefined).length;
   $('next').textContent = remaining ? 'Next question →' : (topic ? 'Back to the archive →' : 'See my receipt →');
-  $('hint-btn').textContent = h === 0 ? 'Turn down the heat' : 'Turn it down again';
-  $('reveal-btn').textContent = revealed ? 'Hide the answer' : 'Reveal the answer';
-  const prev = marks[q.id];
-  $('ask').textContent = judged ? '' : prev === undefined ? 'Type your answer and lock it in.' : `Already answered: ${prev ? 'right' : 'missed'}. Answer again to change it.`;
-  $('ask').hidden = judged;
-  $('markextra').hidden = false;
-  $('wrong').hidden = judged;
-  $('override').hidden = !(judged && marks[q.id] === false && (guesses[q.id] || '').trim());
-  if (!judged) { $('guess').value = ''; if (document.activeElement === document.body || document.activeElement?.id === 'next') setTimeout(() => $('guess').focus({ preventScroll: true }), 30) } else setTimeout(() => $('next').focus({ preventScroll: true }), 30);
+  if (judged) setTimeout(() => $('next').focus({ preventScroll: true }), 30);
 
   // summary panel
   const S = topic ? L : d.questions;
@@ -579,11 +589,9 @@ function next() {
 function hint() { const q = list()[i]; if (!q || revealed) return; const h = hints[q.id] || 0; if (h >= 2) return; startRun(quiz()); hints[q.id] = h + 1; save(); renderPlay(list()) }
 function toggleReveal() { revealed = !revealed; startRun(quiz()); renderPlay(list()) }
 
-$('markrow').onsubmit = e => { e.preventDefault(); const g = $('guess').value.trim(); if (!g) { $('guess').focus(); return } guesses[list()[i].id] = g; mark(isRight(g, list()[i])) };
-$('wrong').onclick = () => { guesses[list()[i].id] = ''; mark(false) };
-$('override').onclick = () => mark(true);
+/* answers are picked from the options */
 $('next').onclick = next;
-$('hint-btn').onclick = hint; $('reveal-btn').onclick = toggleReveal;
+$('hint-btn').onclick = hint;
 $('start').onclick = () => { view = 'play'; topic = null; quizN = latest()?.n; i = firstOpen(list()); revealed = false; judged = false; startRun(quiz()); render() };
 $('brand').onclick = e => { e.preventDefault(); $('nav-play').click() };
 $('wallet').onclick = () => { exitPractice(); topic = null; view = 'past'; render() };
@@ -602,7 +610,7 @@ $('share').onclick = () => {
 document.addEventListener('keydown', e => {
   if ($('play').hidden || e.metaKey || e.ctrlKey || e.altKey || ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
   const k = e.key.toLowerCase();
-  if (k === 'h') hint(); else if (k === 'enter' && judged) next();
+  if (k === 'h' && !judged) hint(); else if (k === 'enter' && judged) next(); else if (!judged && /^[1-4]$/.test(k)) { const b = $('opts').children[+k - 1]; if (b && !b.disabled) b.click() }
 });
 setInterval(() => { if (!$('play').hidden && !topic) $('s-time').textContent = dur(runTime(quiz())) }, 1000);
 

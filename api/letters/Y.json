@@ -14,14 +14,21 @@
    "answer": "4 years",
    "explanation": "4 years. The modern Games kept the same rhythm.",
    "answer_full": "4 years. The modern Games kept the same rhythm.",
-   "clues": {
-    "shape": "_ _____",
-    "initials": "4 y____"
-   },
+   "options": [
+    "2 years",
+    "4 years",
+    "5 years",
+    "3 years"
+   ],
+   "wrong_options": [
+    "2 years",
+    "5 years",
+    "3 years"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "Y",
    "released_at": "2026-10-22T23:00:00.000Z"

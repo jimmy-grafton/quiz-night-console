@@ -14,14 +14,21 @@
    "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
    "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
    "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
-   "clues": {
-    "shape": "__________, __________, __________, ____________, __________",
-    "initials": "K_________, K_________, T_________, T___________, U_________"
-   },
+   "options": [
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan"
+   ],
+   "wrong_options": [
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "K",
    "released_at": "2026-10-22T23:00:00.000Z"

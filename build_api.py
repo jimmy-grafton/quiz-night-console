@@ -60,8 +60,9 @@ def main():
             why = q["a"].strip()
         return {"id": q["id"], "object": "question", "batch": d["n"], "type": q["cat"], "type_slug": slug(q["cat"]),
                 "question": q["q"], "answer": ans, "explanation": why, "answer_full": q["a"],
-                "clues": {"shape": clue(ans, 1), "initials": clue(ans, 2)},
-                "heat": {"max": 3, "with_shape_clue": 2, "with_initials_clue": 1},
+                "options": sorted([ans] + list(q.get("wrong", [])), key=lambda o: hash((q["id"], o)) & 0xffff),
+                "wrong_options": list(q.get("wrong", [])),
+                "heat": {"max": 3, "one_knocked_out": 2, "two_knocked_out": 1},
                 "letter": first_letter(ans), "released_at": d["releaseAt"]}
 
     def drop_obj(d, full=True):

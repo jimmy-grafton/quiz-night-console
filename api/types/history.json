@@ -14,14 +14,21 @@
    "answer": "Byzantine Empire",
    "explanation": "The Byzantine Empire, from Byzantium.",
    "answer_full": "The Byzantine Empire, from Byzantium.",
-   "clues": {
-    "shape": "_________ ______",
-    "initials": "B________ E_____"
-   },
+   "options": [
+    "Holy Roman Empire",
+    "Byzantine Empire",
+    "Seljuk Empire",
+    "Ottoman Empire"
+   ],
+   "wrong_options": [
+    "Ottoman Empire",
+    "Holy Roman Empire",
+    "Seljuk Empire"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "B",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "1980s",
    "explanation": "The 1980s (November 1989). Reunification came in October 1990.",
    "answer_full": "The 1980s (November 1989). Reunification came in October 1990.",
-   "clues": {
-    "shape": "_____",
-    "initials": "1____"
-   },
+   "options": [
+    "1990s",
+    "1980s",
+    "1960s",
+    "1970s"
+   ],
+   "wrong_options": [
+    "1970s",
+    "1990s",
+    "1960s"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"

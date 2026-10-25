@@ -14,14 +14,21 @@
    "answer": "Maine",
    "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
    "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
-   "clues": {
-    "shape": "_____",
-    "initials": "M____"
-   },
+   "options": [
+    "Iowa",
+    "Ohio",
+    "Utah",
+    "Maine"
+   ],
+   "wrong_options": [
+    "Utah",
+    "Iowa",
+    "Ohio"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "M",
    "released_at": "2026-10-22T23:00:00.000Z"

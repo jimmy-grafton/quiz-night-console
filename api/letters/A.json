@@ -14,14 +14,21 @@
    "answer": "Ancient Greek",
    "explanation": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
    "answer_full": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
-   "clues": {
-    "shape": "_______ _____",
-    "initials": "A______ G____"
-   },
+   "options": [
+    "Persian",
+    "Ancient Greek",
+    "Latin",
+    "Aramaic"
+   ],
+   "wrong_options": [
+    "Latin",
+    "Aramaic",
+    "Persian"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "A",
    "released_at": "2026-10-22T23:00:00.000Z"

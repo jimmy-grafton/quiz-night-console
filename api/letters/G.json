@@ -14,14 +14,21 @@
    "answer": "Great Pyramid of Giza",
    "explanation": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
    "answer_full": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
-   "clues": {
-    "shape": "_____ _______ __ ____",
-    "initials": "G____ P______ o_ G___"
-   },
+   "options": [
+    "Colossus of Rhodes",
+    "Hanging Gardens of Babylon",
+    "Lighthouse of Alexandria",
+    "Great Pyramid of Giza"
+   ],
+   "wrong_options": [
+    "Colossus of Rhodes",
+    "Lighthouse of Alexandria",
+    "Hanging Gardens of Babylon"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Gold",
    "explanation": "Gold, from the Latin aurum.",
    "answer_full": "Gold, from the Latin aurum.",
-   "clues": {
-    "shape": "____",
-    "initials": "G___"
-   },
+   "options": [
+    "Copper",
+    "Gold",
+    "Aluminium",
+    "Silver"
+   ],
+   "wrong_options": [
+    "Silver",
+    "Copper",
+    "Aluminium"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -58,14 +72,21 @@
    "answer": "German",
    "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
    "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
-   "clues": {
-    "shape": "______",
-    "initials": "G_____"
-   },
+   "options": [
+    "Swedish",
+    "German",
+    "Danish",
+    "Dutch"
+   ],
+   "wrong_options": [
+    "Dutch",
+    "Danish",
+    "Swedish"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"

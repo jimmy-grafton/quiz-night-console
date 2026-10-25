@@ -14,14 +14,21 @@
    "answer": "Earth",
    "explanation": "Earth. Its name comes from Old English words for ground and soil.",
    "answer_full": "Earth. Its name comes from Old English words for ground and soil.",
-   "clues": {
-    "shape": "_____",
-    "initials": "E____"
-   },
+   "options": [
+    "Mars",
+    "Earth",
+    "Neptune",
+    "Uranus"
+   ],
+   "wrong_options": [
+    "Mars",
+    "Neptune",
+    "Uranus"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "E",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Gold",
    "explanation": "Gold, from the Latin aurum.",
    "answer_full": "Gold, from the Latin aurum.",
-   "clues": {
-    "shape": "____",
-    "initials": "G___"
-   },
+   "options": [
+    "Copper",
+    "Gold",
+    "Aluminium",
+    "Silver"
+   ],
+   "wrong_options": [
+    "Silver",
+    "Copper",
+    "Aluminium"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"

@@ -14,14 +14,21 @@
    "answer": "Qatar",
    "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
    "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
-   "clues": {
-    "shape": "_____",
-    "initials": "Q____"
-   },
+   "options": [
+    "Kuwait",
+    "Qatar",
+    "Oman",
+    "Bahrain"
+   ],
+   "wrong_options": [
+    "Kuwait",
+    "Oman",
+    "Bahrain"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "Q",
    "released_at": "2026-10-22T23:00:00.000Z"

@@ -14,14 +14,21 @@
    "answer": "Jane Austen",
    "explanation": "Jane Austen.",
    "answer_full": "Jane Austen.",
-   "clues": {
-    "shape": "____ ______",
-    "initials": "J___ A_____"
-   },
+   "options": [
+    "Jane Austen",
+    "George Eliot",
+    "Charlotte Brontë",
+    "Mary Shelley"
+   ],
+   "wrong_options": [
+    "Charlotte Brontë",
+    "George Eliot",
+    "Mary Shelley"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"

@@ -30,14 +30,21 @@
    "answer": "Japan, Jamaica, Jordan",
    "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
    "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
-   "clues": {
-    "shape": "_____, _______, ______",
-    "initials": "J____, J______, J_____"
-   },
+   "options": [
+    "Japan, Jersey, Jordan",
+    "Japan, Jamaica, Jakarta",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jordan"
+   ],
+   "wrong_options": [
+    "Japan, Jersey, Jordan",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jakarta"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -52,14 +59,21 @@
    "answer": "Oman, Romania",
    "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
    "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
-   "clues": {
-    "shape": "____, _______",
-    "initials": "O___, R______"
-   },
+   "options": [
+    "Qatar, Croatia",
+    "Oman, Romania",
+    "Yemen, Slovenia",
+    "Iraq, Bulgaria"
+   ],
+   "wrong_options": [
+    "Qatar, Croatia",
+    "Iraq, Bulgaria",
+    "Yemen, Slovenia"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "O",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -74,14 +88,21 @@
    "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
    "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
    "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
-   "clues": {
-    "shape": "__________, __________, __________, ____________, __________",
-    "initials": "K_________, K_________, T_________, T___________, U_________"
-   },
+   "options": [
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan"
+   ],
+   "wrong_options": [
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "K",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -96,14 +117,21 @@
    "answer": "Maine",
    "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
    "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
-   "clues": {
-    "shape": "_____",
-    "initials": "M____"
-   },
+   "options": [
+    "Iowa",
+    "Ohio",
+    "Utah",
+    "Maine"
+   ],
+   "wrong_options": [
+    "Utah",
+    "Iowa",
+    "Ohio"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "M",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -118,14 +146,21 @@
    "answer": "White Nile and Blue Nile",
    "explanation": "The White Nile and the Blue Nile, which become the Nile.",
    "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
-   "clues": {
-    "shape": "_____ ____ ___ ____ ____",
-    "initials": "W____ N___ a__ B___ N___"
-   },
+   "options": [
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile",
+    "Red Nile and Blue Nile",
+    "White Nile and Blue Nile"
+   ],
+   "wrong_options": [
+    "Red Nile and Blue Nile",
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "W",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -140,14 +175,21 @@
    "answer": "Nepal",
    "explanation": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
    "answer_full": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
-   "clues": {
-    "shape": "_____",
-    "initials": "N____"
-   },
+   "options": [
+    "Bhutan",
+    "Switzerland",
+    "Nepal",
+    "Tibet"
+   ],
+   "wrong_options": [
+    "Bhutan",
+    "Tibet",
+    "Switzerland"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "N",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -162,14 +204,21 @@
    "answer": "Singapore, Monaco, Vatican City",
    "explanation": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
    "answer_full": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
-   "clues": {
-    "shape": "_________, ______, _______ ____",
-    "initials": "S________, M_____, V______ C___"
-   },
+   "options": [
+    "Vatican City, Cyprus, Bahrain",
+    "Singapore, Monaco, Vatican City",
+    "Singapore, Malta, Andorra",
+    "Monaco, Liechtenstein, Belize"
+   ],
+   "wrong_options": [
+    "Singapore, Malta, Andorra",
+    "Monaco, Liechtenstein, Belize",
+    "Vatican City, Cyprus, Bahrain"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -184,14 +233,21 @@
    "answer": "Qatar",
    "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
    "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
-   "clues": {
-    "shape": "_____",
-    "initials": "Q____"
-   },
+   "options": [
+    "Kuwait",
+    "Qatar",
+    "Oman",
+    "Bahrain"
+   ],
+   "wrong_options": [
+    "Kuwait",
+    "Oman",
+    "Bahrain"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "Q",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -206,14 +262,21 @@
    "answer": "Great Pyramid of Giza",
    "explanation": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
    "answer_full": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
-   "clues": {
-    "shape": "_____ _______ __ ____",
-    "initials": "G____ P______ o_ G___"
-   },
+   "options": [
+    "Colossus of Rhodes",
+    "Hanging Gardens of Babylon",
+    "Lighthouse of Alexandria",
+    "Great Pyramid of Giza"
+   ],
+   "wrong_options": [
+    "Colossus of Rhodes",
+    "Lighthouse of Alexandria",
+    "Hanging Gardens of Babylon"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -228,14 +291,21 @@
    "answer": "Ancient Greek",
    "explanation": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
    "answer_full": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
-   "clues": {
-    "shape": "_______ _____",
-    "initials": "A______ G____"
-   },
+   "options": [
+    "Persian",
+    "Ancient Greek",
+    "Latin",
+    "Aramaic"
+   ],
+   "wrong_options": [
+    "Latin",
+    "Aramaic",
+    "Persian"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "A",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -250,14 +320,21 @@
    "answer": "1st century BC",
    "explanation": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
    "answer_full": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
-   "clues": {
-    "shape": "___ _______ __",
-    "initials": "1__ c______ B_"
-   },
+   "options": [
+    "1st century BC",
+    "2nd century BC",
+    "1st century AD",
+    "3rd century BC"
+   ],
+   "wrong_options": [
+    "3rd century BC",
+    "2nd century BC",
+    "1st century AD"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -272,14 +349,21 @@
    "answer": "Roman Empire, 2nd century AD",
    "explanation": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
    "answer_full": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
-   "clues": {
-    "shape": "_____ ______, ___ _______ __",
-    "initials": "R____ E_____, 2__ c______ A_"
-   },
+   "options": [
+    "Byzantine Empire, 2nd century AD",
+    "Roman Empire, 1st century AD",
+    "Roman Empire, 3rd century AD",
+    "Roman Empire, 2nd century AD"
+   ],
+   "wrong_options": [
+    "Roman Empire, 1st century AD",
+    "Roman Empire, 3rd century AD",
+    "Byzantine Empire, 2nd century AD"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "R",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -294,14 +378,21 @@
    "answer": "4 years",
    "explanation": "4 years. The modern Games kept the same rhythm.",
    "answer_full": "4 years. The modern Games kept the same rhythm.",
-   "clues": {
-    "shape": "_ _____",
-    "initials": "4 y____"
-   },
+   "options": [
+    "2 years",
+    "4 years",
+    "5 years",
+    "3 years"
+   ],
+   "wrong_options": [
+    "2 years",
+    "5 years",
+    "3 years"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "Y",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -316,14 +407,21 @@
    "answer": "Byzantine Empire",
    "explanation": "The Byzantine Empire, from Byzantium.",
    "answer_full": "The Byzantine Empire, from Byzantium.",
-   "clues": {
-    "shape": "_________ ______",
-    "initials": "B________ E_____"
-   },
+   "options": [
+    "Holy Roman Empire",
+    "Byzantine Empire",
+    "Seljuk Empire",
+    "Ottoman Empire"
+   ],
+   "wrong_options": [
+    "Ottoman Empire",
+    "Holy Roman Empire",
+    "Seljuk Empire"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "B",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -338,14 +436,21 @@
    "answer": "1980s",
    "explanation": "The 1980s (November 1989). Reunification came in October 1990.",
    "answer_full": "The 1980s (November 1989). Reunification came in October 1990.",
-   "clues": {
-    "shape": "_____",
-    "initials": "1____"
-   },
+   "options": [
+    "1990s",
+    "1980s",
+    "1960s",
+    "1970s"
+   ],
+   "wrong_options": [
+    "1970s",
+    "1990s",
+    "1960s"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -360,14 +465,21 @@
    "answer": "Earth",
    "explanation": "Earth. Its name comes from Old English words for ground and soil.",
    "answer_full": "Earth. Its name comes from Old English words for ground and soil.",
-   "clues": {
-    "shape": "_____",
-    "initials": "E____"
-   },
+   "options": [
+    "Mars",
+    "Earth",
+    "Neptune",
+    "Uranus"
+   ],
+   "wrong_options": [
+    "Mars",
+    "Neptune",
+    "Uranus"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "E",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -382,14 +494,21 @@
    "answer": "Gold",
    "explanation": "Gold, from the Latin aurum.",
    "answer_full": "Gold, from the Latin aurum.",
-   "clues": {
-    "shape": "____",
-    "initials": "G___"
-   },
+   "options": [
+    "Copper",
+    "Gold",
+    "Aluminium",
+    "Silver"
+   ],
+   "wrong_options": [
+    "Silver",
+    "Copper",
+    "Aluminium"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -404,14 +523,21 @@
    "answer": "German",
    "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
    "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
-   "clues": {
-    "shape": "______",
-    "initials": "G_____"
-   },
+   "options": [
+    "Swedish",
+    "German",
+    "Danish",
+    "Dutch"
+   ],
+   "wrong_options": [
+    "Dutch",
+    "Danish",
+    "Swedish"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -426,14 +552,21 @@
    "answer": "Self-Contained Underwater Breathing Apparatus",
    "explanation": "Self-Contained Underwater Breathing Apparatus.",
    "answer_full": "Self-Contained Underwater Breathing Apparatus.",
-   "clues": {
-    "shape": "____-_________ __________ _________ _________",
-    "initials": "S___-C________ U_________ B________ A________"
-   },
+   "options": [
+    "Sub-Coastal Underwater Breathing Apparatus",
+    "Self-Contained Underwater Breathing Apparatus",
+    "Self-Contained Underwater Buoyancy Assembly",
+    "Submerged Compressed Underwater Breathing Air"
+   ],
+   "wrong_options": [
+    "Sub-Coastal Underwater Breathing Apparatus",
+    "Self-Contained Underwater Buoyancy Assembly",
+    "Submerged Compressed Underwater Breathing Air"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -448,14 +581,21 @@
    "answer": "Liverpool",
    "explanation": "Liverpool, which begins with LIVER.",
    "answer_full": "Liverpool, which begins with LIVER.",
-   "clues": {
-    "shape": "_________",
-    "initials": "L________"
-   },
+   "options": [
+    "Manchester",
+    "Hull",
+    "Liverpool",
+    "Leeds"
+   ],
+   "wrong_options": [
+    "Manchester",
+    "Leeds",
+    "Hull"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "L",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -470,14 +610,21 @@
    "answer": "1970s",
    "explanation": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
    "answer_full": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
-   "clues": {
-    "shape": "_____",
-    "initials": "1____"
-   },
+   "options": [
+    "1970s",
+    "1960s",
+    "1990s",
+    "1980s"
+   ],
+   "wrong_options": [
+    "1960s",
+    "1980s",
+    "1990s"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -492,14 +639,21 @@
    "answer": "Love",
    "explanation": "Love, said to come from l'oeuf. The story is popular but disputed.",
    "answer_full": "Love, said to come from l'oeuf. The story is popular but disputed.",
-   "clues": {
-    "shape": "____",
-    "initials": "L___"
-   },
+   "options": [
+    "Duck",
+    "Zip",
+    "Nil",
+    "Love"
+   ],
+   "wrong_options": [
+    "Nil",
+    "Zip",
+    "Duck"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "L",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -514,14 +668,21 @@
    "answer": "Emilia-Romagna",
    "explanation": "Emilia-Romagna, home to Parma and Modena.",
    "answer_full": "Emilia-Romagna, home to Parma and Modena.",
-   "clues": {
-    "shape": "______-_______",
-    "initials": "E_____-R______"
-   },
+   "options": [
+    "Lombardy",
+    "Piedmont",
+    "Tuscany",
+    "Emilia-Romagna"
+   ],
+   "wrong_options": [
+    "Piedmont",
+    "Lombardy",
+    "Tuscany"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "E",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -536,14 +697,21 @@
    "answer": "Jane Austen",
    "explanation": "Jane Austen.",
    "answer_full": "Jane Austen.",
-   "clues": {
-    "shape": "____ ______",
-    "initials": "J___ A_____"
-   },
+   "options": [
+    "Jane Austen",
+    "George Eliot",
+    "Charlotte Brontë",
+    "Mary Shelley"
+   ],
+   "wrong_options": [
+    "Charlotte Brontë",
+    "George Eliot",
+    "Mary Shelley"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -558,14 +726,21 @@
    "answer": "Japan",
    "explanation": "Japan. The other six are in Europe and North America.",
    "answer_full": "Japan. The other six are in Europe and North America.",
-   "clues": {
-    "shape": "_____",
-    "initials": "J____"
-   },
+   "options": [
+    "India",
+    "Japan",
+    "South Korea",
+    "China"
+   ],
+   "wrong_options": [
+    "China",
+    "India",
+    "South Korea"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"

@@ -14,14 +14,21 @@
    "answer": "Japan, Jamaica, Jordan",
    "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
    "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
-   "clues": {
-    "shape": "_____, _______, ______",
-    "initials": "J____, J______, J_____"
-   },
+   "options": [
+    "Japan, Jersey, Jordan",
+    "Japan, Jamaica, Jakarta",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jordan"
+   ],
+   "wrong_options": [
+    "Japan, Jersey, Jordan",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jakarta"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Oman, Romania",
    "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
    "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
-   "clues": {
-    "shape": "____, _______",
-    "initials": "O___, R______"
-   },
+   "options": [
+    "Qatar, Croatia",
+    "Oman, Romania",
+    "Yemen, Slovenia",
+    "Iraq, Bulgaria"
+   ],
+   "wrong_options": [
+    "Qatar, Croatia",
+    "Iraq, Bulgaria",
+    "Yemen, Slovenia"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "O",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -58,14 +72,21 @@
    "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
    "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
    "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
-   "clues": {
-    "shape": "__________, __________, __________, ____________, __________",
-    "initials": "K_________, K_________, T_________, T___________, U_________"
-   },
+   "options": [
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan"
+   ],
+   "wrong_options": [
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "K",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -80,14 +101,21 @@
    "answer": "Maine",
    "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
    "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
-   "clues": {
-    "shape": "_____",
-    "initials": "M____"
-   },
+   "options": [
+    "Iowa",
+    "Ohio",
+    "Utah",
+    "Maine"
+   ],
+   "wrong_options": [
+    "Utah",
+    "Iowa",
+    "Ohio"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "M",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -102,14 +130,21 @@
    "answer": "White Nile and Blue Nile",
    "explanation": "The White Nile and the Blue Nile, which become the Nile.",
    "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
-   "clues": {
-    "shape": "_____ ____ ___ ____ ____",
-    "initials": "W____ N___ a__ B___ N___"
-   },
+   "options": [
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile",
+    "Red Nile and Blue Nile",
+    "White Nile and Blue Nile"
+   ],
+   "wrong_options": [
+    "Red Nile and Blue Nile",
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "W",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -124,14 +159,21 @@
    "answer": "Nepal",
    "explanation": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
    "answer_full": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
-   "clues": {
-    "shape": "_____",
-    "initials": "N____"
-   },
+   "options": [
+    "Bhutan",
+    "Switzerland",
+    "Nepal",
+    "Tibet"
+   ],
+   "wrong_options": [
+    "Bhutan",
+    "Tibet",
+    "Switzerland"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "N",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -146,14 +188,21 @@
    "answer": "Singapore, Monaco, Vatican City",
    "explanation": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
    "answer_full": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
-   "clues": {
-    "shape": "_________, ______, _______ ____",
-    "initials": "S________, M_____, V______ C___"
-   },
+   "options": [
+    "Vatican City, Cyprus, Bahrain",
+    "Singapore, Monaco, Vatican City",
+    "Singapore, Malta, Andorra",
+    "Monaco, Liechtenstein, Belize"
+   ],
+   "wrong_options": [
+    "Singapore, Malta, Andorra",
+    "Monaco, Liechtenstein, Belize",
+    "Vatican City, Cyprus, Bahrain"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -168,14 +217,21 @@
    "answer": "Qatar",
    "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
    "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
-   "clues": {
-    "shape": "_____",
-    "initials": "Q____"
-   },
+   "options": [
+    "Kuwait",
+    "Qatar",
+    "Oman",
+    "Bahrain"
+   ],
+   "wrong_options": [
+    "Kuwait",
+    "Oman",
+    "Bahrain"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "Q",
    "released_at": "2026-10-22T23:00:00.000Z"

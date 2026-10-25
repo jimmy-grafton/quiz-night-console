@@ -14,14 +14,21 @@
    "answer": "Liverpool",
    "explanation": "Liverpool, which begins with LIVER.",
    "answer_full": "Liverpool, which begins with LIVER.",
-   "clues": {
-    "shape": "_________",
-    "initials": "L________"
-   },
+   "options": [
+    "Manchester",
+    "Hull",
+    "Liverpool",
+    "Leeds"
+   ],
+   "wrong_options": [
+    "Manchester",
+    "Leeds",
+    "Hull"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "L",
    "released_at": "2026-10-22T23:00:00.000Z"

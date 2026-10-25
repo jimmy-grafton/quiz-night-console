@@ -14,14 +14,21 @@
    "answer": "Oman, Romania",
    "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
    "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
-   "clues": {
-    "shape": "____, _______",
-    "initials": "O___, R______"
-   },
+   "options": [
+    "Qatar, Croatia",
+    "Oman, Romania",
+    "Yemen, Slovenia",
+    "Iraq, Bulgaria"
+   ],
+   "wrong_options": [
+    "Qatar, Croatia",
+    "Iraq, Bulgaria",
+    "Yemen, Slovenia"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "O",
    "released_at": "2026-10-22T23:00:00.000Z"

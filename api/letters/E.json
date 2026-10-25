@@ -14,14 +14,21 @@
    "answer": "Earth",
    "explanation": "Earth. Its name comes from Old English words for ground and soil.",
    "answer_full": "Earth. Its name comes from Old English words for ground and soil.",
-   "clues": {
-    "shape": "_____",
-    "initials": "E____"
-   },
+   "options": [
+    "Mars",
+    "Earth",
+    "Neptune",
+    "Uranus"
+   ],
+   "wrong_options": [
+    "Mars",
+    "Neptune",
+    "Uranus"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "E",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Emilia-Romagna",
    "explanation": "Emilia-Romagna, home to Parma and Modena.",
    "answer_full": "Emilia-Romagna, home to Parma and Modena.",
-   "clues": {
-    "shape": "______-_______",
-    "initials": "E_____-R______"
-   },
+   "options": [
+    "Lombardy",
+    "Piedmont",
+    "Tuscany",
+    "Emilia-Romagna"
+   ],
+   "wrong_options": [
+    "Piedmont",
+    "Lombardy",
+    "Tuscany"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "E",
    "released_at": "2026-10-22T23:00:00.000Z"

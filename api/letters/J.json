@@ -14,14 +14,21 @@
    "answer": "Japan, Jamaica, Jordan",
    "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
    "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
-   "clues": {
-    "shape": "_____, _______, ______",
-    "initials": "J____, J______, J_____"
-   },
+   "options": [
+    "Japan, Jersey, Jordan",
+    "Japan, Jamaica, Jakarta",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jordan"
+   ],
+   "wrong_options": [
+    "Japan, Jersey, Jordan",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jakarta"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Jane Austen",
    "explanation": "Jane Austen.",
    "answer_full": "Jane Austen.",
-   "clues": {
-    "shape": "____ ______",
-    "initials": "J___ A_____"
-   },
+   "options": [
+    "Jane Austen",
+    "George Eliot",
+    "Charlotte Brontë",
+    "Mary Shelley"
+   ],
+   "wrong_options": [
+    "Charlotte Brontë",
+    "George Eliot",
+    "Mary Shelley"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -58,14 +72,21 @@
    "answer": "Japan",
    "explanation": "Japan. The other six are in Europe and North America.",
    "answer_full": "Japan. The other six are in Europe and North America.",
-   "clues": {
-    "shape": "_____",
-    "initials": "J____"
-   },
+   "options": [
+    "India",
+    "Japan",
+    "South Korea",
+    "China"
+   ],
+   "wrong_options": [
+    "China",
+    "India",
+    "South Korea"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "J",
    "released_at": "2026-10-22T23:00:00.000Z"

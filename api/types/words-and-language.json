@@ -14,14 +14,21 @@
    "answer": "German",
    "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
    "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
-   "clues": {
-    "shape": "______",
-    "initials": "G_____"
-   },
+   "options": [
+    "Swedish",
+    "German",
+    "Danish",
+    "Dutch"
+   ],
+   "wrong_options": [
+    "Dutch",
+    "Danish",
+    "Swedish"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "G",
    "released_at": "2026-10-22T23:00:00.000Z"
@@ -36,14 +43,21 @@
    "answer": "Self-Contained Underwater Breathing Apparatus",
    "explanation": "Self-Contained Underwater Breathing Apparatus.",
    "answer_full": "Self-Contained Underwater Breathing Apparatus.",
-   "clues": {
-    "shape": "____-_________ __________ _________ _________",
-    "initials": "S___-C________ U_________ B________ A________"
-   },
+   "options": [
+    "Sub-Coastal Underwater Breathing Apparatus",
+    "Self-Contained Underwater Breathing Apparatus",
+    "Self-Contained Underwater Buoyancy Assembly",
+    "Submerged Compressed Underwater Breathing Air"
+   ],
+   "wrong_options": [
+    "Sub-Coastal Underwater Breathing Apparatus",
+    "Self-Contained Underwater Buoyancy Assembly",
+    "Submerged Compressed Underwater Breathing Air"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "S",
    "released_at": "2026-10-22T23:00:00.000Z"

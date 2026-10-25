@@ -9,42 +9,72 @@
    "cat": "Geography",
    "q": "Only three UN member countries have English names beginning with J. One is an island nation in East Asia, one is in the Caribbean, and one borders the Dead Sea. Name all three.",
    "a": "Japan, Jamaica, Jordan. Each clue rules in one region.",
-   "ans": "Japan, Jamaica, Jordan"
+   "ans": "Japan, Jamaica, Jordan",
+   "wrong": [
+    "Japan, Jersey, Jordan",
+    "Jamaica, Jordan, Java",
+    "Japan, Jamaica, Jakarta"
+   ]
   },
   {
    "id": "d0001-2",
    "cat": "Geography",
    "q": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
    "a": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
-   "ans": "Oman, Romania"
+   "ans": "Oman, Romania",
+   "wrong": [
+    "Qatar, Croatia",
+    "Iraq, Bulgaria",
+    "Yemen, Slovenia"
+   ]
   },
   {
    "id": "d0001-3",
    "cat": "Geography",
    "q": "Five former Soviet republics share the same ending, meaning 'land of'. Name all five.",
    "a": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
-   "ans": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan"
+   "ans": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+   "wrong": [
+    "Kazakhstan, Kyrgyzstan, Afghanistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
+    "Kazakhstan, Kyrgyzstan, Tajikistan, Kurdistan, Uzbekistan"
+   ]
   },
   {
    "id": "d0001-4",
    "cat": "Geography",
    "q": "Of the fifty US states, only one has a name of a single syllable. It sits in the far north-east corner. Which?",
    "a": "Maine. Say the north-eastern states aloud and only one is a single beat.",
-   "ans": "Maine"
+   "ans": "Maine",
+   "wrong": [
+    "Utah",
+    "Iowa",
+    "Ohio"
+   ]
   },
   {
    "id": "d0001-5",
    "cat": "Geography",
    "q": "At Khartoum two great rivers meet, named for two different colours. Name both, and the single river they become.",
    "a": "The White Nile and the Blue Nile, which become the Nile.",
-   "ans": "White Nile and Blue Nile"
+   "ans": "White Nile and Blue Nile",
+   "wrong": [
+    "Red Nile and Blue Nile",
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile"
+   ]
   },
   {
    "id": "d0001-6",
    "cat": "Geography",
    "q": "Every national flag is a rectangle or square except one, made of two stacked pennants, from a Himalayan country. Which?",
    "a": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
-   "ans": "Nepal"
+   "ans": "Nepal",
+   "wrong": [
+    "Bhutan",
+    "Tibet",
+    "Switzerland"
+   ]
   },
   {
    "id": "d0001-7",
@@ -52,147 +82,227 @@
    "q": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
    "a": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
    "ans": "Singapore, Monaco, Vatican City",
-   "any": {
-    "n": 3,
-    "of": [
-     "Singapore",
-     "Monaco",
-     "Vatican City",
-     "San Marino",
-     "Luxembourg",
-     "Kuwait",
-     "Djibouti",
-     "Mexico",
-     "Guatemala",
-     "Panama"
-    ]
-   }
+   "wrong": [
+    "Singapore, Malta, Andorra",
+    "Monaco, Liechtenstein, Belize",
+    "Vatican City, Cyprus, Bahrain"
+   ]
   },
   {
    "id": "d0001-8",
    "cat": "Geography",
    "q": "Only one UN member has an English name starting with Q. It hosted a football World Cup held in winter. Name it.",
    "a": "Qatar, which hosted the 2022 World Cup in November and December.",
-   "ans": "Qatar"
+   "ans": "Qatar",
+   "wrong": [
+    "Kuwait",
+    "Oman",
+    "Bahrain"
+   ]
   },
   {
    "id": "d0001-9",
    "cat": "Ancient History",
    "q": "Of the Seven Wonders of the Ancient World, just one still stands, and it was also the oldest of them. Which?",
    "a": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
-   "ans": "Great Pyramid of Giza"
+   "ans": "Great Pyramid of Giza",
+   "wrong": [
+    "Colossus of Rhodes",
+    "Lighthouse of Alexandria",
+    "Hanging Gardens of Babylon"
+   ]
   },
   {
    "id": "d0001-10",
    "cat": "Ancient History",
    "q": "The Rosetta Stone repeats one decree in three scripts. Two are Egyptian, hieroglyphic and Demotic. Given who ruled Egypt after Alexander, what is the third?",
    "a": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
-   "ans": "Ancient Greek"
+   "ans": "Ancient Greek",
+   "wrong": [
+    "Latin",
+    "Aramaic",
+    "Persian"
+   ]
   },
   {
    "id": "d0001-11",
    "cat": "Ancient History",
    "q": "Julius Caesar crossed the Rubicon and was assassinated within five years. Was it the 3rd, 2nd or 1st century BC?",
    "a": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
-   "ans": "1st century BC"
+   "ans": "1st century BC",
+   "wrong": [
+    "3rd century BC",
+    "2nd century BC",
+    "1st century AD"
+   ]
   },
   {
    "id": "d0001-12",
    "cat": "Ancient History",
    "q": "Hadrian's Wall marked the northern frontier of which empire, and was it begun in the 1st, 2nd or 3rd century AD?",
    "a": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
-   "ans": "Roman Empire, 2nd century AD"
+   "ans": "Roman Empire, 2nd century AD",
+   "wrong": [
+    "Roman Empire, 1st century AD",
+    "Roman Empire, 3rd century AD",
+    "Byzantine Empire, 2nd century AD"
+   ]
   },
   {
    "id": "d0001-13",
    "cat": "Ancient History",
    "q": "The ancient Olympic Games were held at Olympia, with a gap between Games that gave Greeks a unit of time called an Olympiad. Was the gap 2, 4 or 5 years?",
    "a": "4 years. The modern Games kept the same rhythm.",
-   "ans": "4 years"
+   "ans": "4 years",
+   "wrong": [
+    "2 years",
+    "5 years",
+    "3 years"
+   ]
   },
   {
    "id": "d0001-14",
    "cat": "History",
    "q": "An empire ruled from Constantinople until 1453 is named after the city's original Greek name. What do historians call it?",
    "a": "The Byzantine Empire, from Byzantium.",
-   "ans": "Byzantine Empire"
+   "ans": "Byzantine Empire",
+   "wrong": [
+    "Ottoman Empire",
+    "Holy Roman Empire",
+    "Seljuk Empire"
+   ]
   },
   {
    "id": "d0001-15",
    "cat": "History",
    "q": "In which decade did the Berlin Wall fall: the 1970s, 1980s or 1990s? Hint: Germany reunified the following year.",
    "a": "The 1980s (November 1989). Reunification came in October 1990.",
-   "ans": "1980s"
+   "ans": "1980s",
+   "wrong": [
+    "1970s",
+    "1990s",
+    "1960s"
+   ]
   },
   {
    "id": "d0001-16",
    "cat": "Science & Nature",
    "q": "Seven planets are named after Roman or Greek gods. Which planet is the odd one out?",
    "a": "Earth. Its name comes from Old English words for ground and soil.",
-   "ans": "Earth"
+   "ans": "Earth",
+   "wrong": [
+    "Mars",
+    "Neptune",
+    "Uranus"
+   ]
   },
   {
    "id": "d0001-17",
    "cat": "Science & Nature",
    "q": "The chemical symbol Au comes from a Latin word that also gives us 'aurora' and 'aureate', meaning golden. Which element is it?",
    "a": "Gold, from the Latin aurum.",
-   "ans": "Gold"
+   "ans": "Gold",
+   "wrong": [
+    "Silver",
+    "Copper",
+    "Aluminium"
+   ]
   },
   {
    "id": "d0001-18",
    "cat": "Words & Language",
    "q": "Kindergarten, angst, wanderlust and doppelgänger were all borrowed into English from the same language. Which one?",
    "a": "German. Doppelgänger keeps its umlaut, which is the tell.",
-   "ans": "German"
+   "ans": "German",
+   "wrong": [
+    "Dutch",
+    "Danish",
+    "Swedish"
+   ]
   },
   {
    "id": "d0001-19",
    "cat": "Words & Language",
    "q": "SCUBA is an acronym. Its letters describe kit that lets a diver breathe underwater without a surface hose. What does it stand for?",
    "a": "Self-Contained Underwater Breathing Apparatus.",
-   "ans": "Self-Contained Underwater Breathing Apparatus"
+   "ans": "Self-Contained Underwater Breathing Apparatus",
+   "wrong": [
+    "Sub-Coastal Underwater Breathing Apparatus",
+    "Self-Contained Underwater Buoyancy Assembly",
+    "Submerged Compressed Underwater Breathing Air"
+   ]
   },
   {
    "id": "d0001-20",
    "cat": "Music",
    "q": "The Beatles formed in an English port city whose first five letters spell a body organ. Name the city.",
    "a": "Liverpool, which begins with LIVER.",
-   "ans": "Liverpool"
+   "ans": "Liverpool",
+   "wrong": [
+    "Manchester",
+    "Leeds",
+    "Hull"
+   ]
   },
   {
    "id": "d0001-21",
    "cat": "Film & TV",
    "q": "The first Star Wars film was released the same year Elvis Presley died. Was it the 1960s, 1970s or 1980s?",
    "a": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
-   "ans": "1970s"
+   "ans": "1970s",
+   "wrong": [
+    "1960s",
+    "1980s",
+    "1990s"
+   ]
   },
   {
    "id": "d0001-22",
    "cat": "Sport",
    "q": "In tennis a score of zero has a name popularly said to come from the French word for egg, since an egg looks like a zero. What is it?",
    "a": "Love, said to come from l'oeuf. The story is popular but disputed.",
-   "ans": "Love"
+   "ans": "Love",
+   "wrong": [
+    "Nil",
+    "Zip",
+    "Duck"
+   ]
   },
   {
    "id": "d0001-23",
    "cat": "Food & Drink",
    "q": "Parmesan cheese, Parma ham and balsamic vinegar of Modena all come from one double-barrelled Italian region beginning with E. Name it.",
    "a": "Emilia-Romagna, home to Parma and Modena.",
-   "ans": "Emilia-Romagna"
+   "ans": "Emilia-Romagna",
+   "wrong": [
+    "Piedmont",
+    "Lombardy",
+    "Tuscany"
+   ]
   },
   {
    "id": "d0001-24",
    "cat": "Art & Books",
    "q": "Pride and Prejudice and Sense and Sensibility share a 'Something and Something' title pattern. Which Regency-era novelist wrote both?",
    "a": "Jane Austen.",
-   "ans": "Jane Austen"
+   "ans": "Jane Austen",
+   "wrong": [
+    "Charlotte Brontë",
+    "George Eliot",
+    "Mary Shelley"
+   ]
   },
   {
    "id": "d0001-25",
    "cat": "People & Politics",
    "q": "The G7 group of major economies has only one member in Asia. Which country is it?",
    "a": "Japan. The other six are in Europe and North America.",
-   "ans": "Japan"
+   "ans": "Japan",
+   "wrong": [
+    "China",
+    "India",
+    "South Korea"
+   ]
   }
  ]
 }

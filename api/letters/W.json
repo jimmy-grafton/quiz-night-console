@@ -14,14 +14,21 @@
    "answer": "White Nile and Blue Nile",
    "explanation": "The White Nile and the Blue Nile, which become the Nile.",
    "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
-   "clues": {
-    "shape": "_____ ____ ___ ____ ____",
-    "initials": "W____ N___ a__ B___ N___"
-   },
+   "options": [
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile",
+    "Red Nile and Blue Nile",
+    "White Nile and Blue Nile"
+   ],
+   "wrong_options": [
+    "Red Nile and Blue Nile",
+    "White Nile and Black Nile",
+    "Blue Nile and Green Nile"
+   ],
    "heat": {
     "max": 3,
-    "with_shape_clue": 2,
-    "with_initials_clue": 1
+    "one_knocked_out": 2,
+    "two_knocked_out": 1
    },
    "letter": "W",
    "released_at": "2026-10-22T23:00:00.000Z"
