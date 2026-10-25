@@ -80,6 +80,9 @@ button.primary:hover:not([disabled]) { background: var(--bg); color: var(--ink) 
 button.good, button.bad { color: var(--ink) }
 button[disabled] { opacity: .3; cursor: default }
 .controls .spacer { flex: 1 }
+.controls .mark { flex: 1 1 0; max-width: 240px; padding-block: 16px; font-size: .95rem; letter-spacing: .02em }
+.reveal-link { justify-self: start; border: 0; padding: 0 0 2px; background: none; color: var(--muted); font: 500 .74rem var(--sans); text-transform: uppercase; letter-spacing: .16em; border-bottom: 1px solid var(--line); transition: color .15s, border-color .15s }
+.reveal-link:hover:not([disabled]) { background: none; color: var(--ink); border-bottom-color: var(--ink) }
 kbd { font-family: var(--mono); font-size: .7rem; border: 1px solid var(--line); padding: 0 5px; color: var(--muted) }
 
 .sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); gap: 6px }
@@ -160,15 +163,15 @@ footer { color: var(--muted); font-size: .8rem; display: flex; gap: 16px; flex-w
     <section class="card" aria-live="polite">
       <div class="qnum"><span id="pos"></span><span class="cat" id="cat"></span></div>
       <p class="question" id="q"></p>
+      <button id="reveal" class="reveal-link" type="button">Show answer</button>
       <div class="answer" id="ans" hidden><span class="label">Answer</span><p id="a"></p></div>
     </section>
     <div class="controls">
-      <button id="reveal" class="primary" type="button">Reveal answer</button>
-      <button id="right" class="good" type="button">Got it</button>
-      <button id="wrong" class="bad" type="button">Missed it</button>
+      <button id="right" class="primary mark" type="button">Got it</button>
+      <button id="wrong" class="mark" type="button">Missed it</button>
     </div>
     <div class="sheet" id="sheet" aria-label="Scoresheet"></div>
-    <p class="hint"><kbd>Space</kbd> reveal · <kbd>Y</kbd>/<kbd>N</kbd> mark · <kbd>←</kbd><kbd>→</kbd> move. Marking moves you on; click a tile to jump back. The clock starts on your first reveal or mark and stops when every question in the drop is marked.</p>
+    <p class="hint"><kbd>Y</kbd> got it · <kbd>N</kbd> missed it · <kbd>Space</kbd> show answer · <kbd>←</kbd><kbd>→</kbd> move. Marking moves you on; click a tile to jump back. The clock starts on your first reveal or mark and stops when every question in the drop is marked.</p>
   </section>
 
   <section id="archive" hidden><div class="ledger" id="ledger"></div></section>
@@ -240,7 +243,7 @@ function renderPlay() {
   $('cat').textContent = item.cat;
   $('q').textContent = item.q; $('a').textContent = item.a;
   $('ans').hidden = !shown;
-  $('reveal').textContent = shown ? 'Hide answer' : 'Reveal answer';
+  $('reveal').textContent = shown ? 'Hide answer' : 'Show answer';
 }
 
 function renderArchive() {
