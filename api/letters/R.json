@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "R",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/R.json",
+ "data": [
+  {
+   "id": "d0001-12",
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Hadrian's Wall marked the northern frontier of which empire, and was it begun in the 1st, 2nd or 3rd century AD?",
+   "answer": "Roman Empire, 2nd century AD",
+   "explanation": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
+   "answer_full": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
+   "clues": {
+    "shape": "_____ ______, ___ _______ __",
+    "initials": "R____ E_____, 2__ c______ A_"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "R",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

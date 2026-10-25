@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Sport">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<rect class="g" x="70" y="70" width="460" height="260"/><line class="g" x1="300" y1="70" x2="300" y2="330"/><circle class="g" cx="300" cy="200" r="52"/>
+<rect class="g" x="70" y="140" width="70" height="120"/><rect class="g" x="460" y="140" width="70" height="120"/><circle class="h" cx="300" cy="200" r="7"/>
+</svg>

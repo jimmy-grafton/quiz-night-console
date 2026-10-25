@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "Q",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/Q.json",
+ "data": [
+  {
+   "id": "d0001-8",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only one UN member has an English name starting with Q. It hosted a football World Cup held in winter. Name it.",
+   "answer": "Qatar",
+   "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "clues": {
+    "shape": "_____",
+    "initials": "Q____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "Q",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

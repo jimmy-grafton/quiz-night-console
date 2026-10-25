@@ -4,219 +4,267 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Hot Quesadillas</title>
-<meta name="description" content="A new drop of 25 deducible trivia questions every Friday.">
+<meta name="description" content="Twenty-five questions you can work out. A fresh batch every Friday.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Hot Quesadillas">
+<meta property="og:description" content="Twenty-five questions you can work out. A fresh batch every Friday.">
+<meta property="og:image" content="https://jimmy-grafton.github.io/quiz-night-console/img/social.png">
+<meta property="og:url" content="https://jimmy-grafton.github.io/quiz-night-console/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="alternate" type="application/rss+xml" title="Hot Quesadillas" href="api/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-/* Layout: a printed quiz sheet — one serif question at a time on white, hairline rules, a thin progress line; black ink only */
+/* Layout: a printed quiz sheet — one serif question at a time, hairline rules, black ink with one hot-sauce accent for heat */
 :root {
-  --bg: #ffffff; --ink: #0b0b0b; --muted: #6f6f6f; --line: #e3e3e3; --soft: #f5f5f5;
+  --bg: #ffffff; --ink: #0b0b0b; --muted: #6f6f6f; --line: #e3e3e3; --soft: #f5f5f5; --hot: #e8461e;
   --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark } }
-:root[data-theme="dark"] { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; --hot: #ff5a2e; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; --hot: #ff5a2e; color-scheme: dark }
 [hidden] { display: none !important }
 * { box-sizing: border-box }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
-  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px }
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px }
 a { color: inherit; text-underline-offset: 3px }
 .wrap { max-width: 720px; margin: 0 auto; display: grid; gap: 32px }
 
-/* masthead */
 .mast { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 16px; padding-bottom: 16px; border-bottom: 1px solid var(--ink) }
-.brand { font-family: var(--serif); font-size: 1.7rem; line-height: 1; text-decoration: none }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 1.7rem; line-height: 1; text-decoration: none }
 .brand em { font-style: italic }
+.brand svg { width: 30px; height: 30px }
 .nav { display: flex; gap: 22px }
-.nav button, .nav a { border: 0; background: none; padding: 4px 0; font: 500 .76rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; cursor: pointer }
+.nav button { border: 0; background: none; padding: 4px 0; font: 500 .76rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); border-bottom: 1px solid transparent; cursor: pointer }
 .nav [aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink) }
-.nav button:hover, .nav a:hover { color: var(--ink) }
+.nav button:hover { color: var(--ink) }
 
-/* shared */
 .eyebrow { font: 400 .7rem var(--mono); text-transform: uppercase; letter-spacing: .16em; color: var(--muted) }
 h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance }
 .muted { color: var(--muted) }
-button { font: 500 .92rem var(--sans); border-radius: 0; padding: 14px 22px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; transition: background .15s, color .15s }
+button { font: 500 .92rem var(--sans); border-radius: 0; padding: 14px 22px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; transition: background .15s, color .15s, border-color .15s }
 button:hover:not([disabled]) { background: var(--ink); color: var(--bg) }
 button.solid { background: var(--ink); color: var(--bg) }
 button.solid:hover:not([disabled]) { background: var(--bg); color: var(--ink) }
-button.quiet { border: 0; padding: 0 0 2px; background: none; color: var(--muted); font: 500 .74rem var(--sans); text-transform: uppercase; letter-spacing: .16em; border-bottom: 1px solid var(--line) }
+button.quiet { border: 0; padding: 0 0 2px; background: none; color: var(--muted); font: 500 .74rem var(--sans); text-transform: uppercase; letter-spacing: .14em; border-bottom: 1px solid var(--line) }
 button.quiet:hover:not([disabled]) { background: none; color: var(--ink); border-bottom-color: var(--ink) }
 button[disabled] { opacity: .3; cursor: default }
-button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
 .notice { padding-block: 48px; display: grid; gap: 8px }
 .notice h2 { font-size: 2rem }
 
+/* heat meter: three chillies */
+.heat { display: inline-flex; gap: 4px; vertical-align: middle }
+.heat i { width: 9px; height: 18px; border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%; background: var(--hot); transform: rotate(14deg); display: block; transition: background .2s, box-shadow .2s }
+.heat i.off { background: none; box-shadow: inset 0 0 0 1px var(--line) }
+
 /* intro */
-.intro { display: grid; gap: 28px; padding-block: 24px 8px }
-.intro h1 { font-size: clamp(3rem, 10vw, 5.2rem); line-height: .95; letter-spacing: -.02em }
+.intro { display: grid; gap: 28px; padding-block: 16px 8px }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 24px; align-items: end }
+.intro h1 { font-size: clamp(2.9rem, 9vw, 5rem); line-height: .95; letter-spacing: -.02em }
+.intro h1 em { color: var(--hot) }
+.hero img { width: 100%; max-width: 100%; aspect-ratio: 3 / 2; border: 1px solid var(--line); display: block }
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
 .facts div { padding: 16px 0; display: grid; gap: 2px }
 .facts div + div { padding-left: 18px; border-left: 1px solid var(--line) }
 .facts b { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; line-height: 1 }
 .facts span { font-size: .8rem; color: var(--muted) }
-.how { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 54ch }
-.how li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 8px }
-.how li::before { content: counter(step); counter-increment: step; font-family: var(--serif); font-size: 1.2rem; line-height: 1.3 }
-.how { counter-reset: step }
-.intro .go { display: flex; flex-wrap: wrap; align-items: center; gap: 20px }
+.rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px }
+.rules div { display: grid; gap: 8px; align-content: start }
+.rules b { font-weight: 600; font-size: .95rem }
+.rules p { margin: 0; font-size: .9rem; color: var(--muted) }
+.go { display: flex; flex-wrap: wrap; align-items: center; gap: 18px }
 
 /* play */
-.play { display: grid; gap: 28px }
+.play { display: grid; gap: 24px }
 .progress { display: grid; gap: 10px }
 .prow { display: flex; justify-content: space-between; align-items: baseline; gap: 12px }
 .count { font-family: var(--serif); font-size: 1.4rem; line-height: 1 }
 .count small { font-family: var(--sans); font-size: .82rem; color: var(--muted) }
-.stats { font-family: var(--mono); font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums }
+.total { display: inline-flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums }
+.total b { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--hot); line-height: 1 }
 .track { height: 2px; background: var(--line); position: relative; overflow: hidden }
 .fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink); transition: width .35s ease }
-.qcard { display: grid; gap: 22px; padding-block: 12px 4px; min-height: 260px; align-content: start }
-.question { font-family: var(--serif); font-size: clamp(1.7rem, 4.6vw, 2.4rem); line-height: 1.2; margin: 0; text-wrap: pretty; max-width: 30ch }
+.last { margin: 0; font-size: .88rem; color: var(--muted); border-left: 2px solid var(--line); padding-left: 12px; min-height: 1.4em }
+.last b { color: var(--ink); font-weight: 500 }
+.qcard { display: grid; grid-template-columns: minmax(0, 1fr) 132px; gap: 10px 24px; align-content: start }
+.qhead { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 12px }
+.qbody { display: grid; gap: 20px; align-content: start; min-height: 220px }
+.qart { width: 132px; height: 88px; border: 1px solid var(--line); align-self: start }
+.question { font-family: var(--serif); font-size: clamp(1.7rem, 4.6vw, 2.35rem); line-height: 1.2; margin: 0; text-wrap: pretty; max-width: 30ch }
+.clue { font: 400 1.1rem/1.6 var(--mono); letter-spacing: .1em; margin: 0; overflow-wrap: anywhere }
 .answer { display: grid; gap: 6px; padding-left: 18px; border-left: 2px solid var(--ink) }
 .answer p { margin: 0; font-size: 1.05rem; max-width: 56ch }
+.answer .why { color: var(--muted); font-size: .95rem }
+.tools { display: flex; flex-wrap: wrap; gap: 22px; align-items: center }
 .marks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
 .marks button { padding-block: 18px; font-size: 1rem }
 .marks .ask { grid-column: 1 / -1; font-size: .85rem; color: var(--muted); margin: 0 0 2px }
-.sheet { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); gap: 3px }
-.tile { height: 22px; border: 1px solid var(--line); background: var(--bg); padding: 0; font: 0/0 a; color: transparent }
-.tile:hover:not([disabled]) { border-color: var(--ink); background: var(--bg) }
-.tile.ok { background: var(--ink); border-color: var(--ink) }
-.tile.no { background: linear-gradient(to top right, transparent calc(50% - .5px), var(--muted) 50%, transparent calc(50% + .5px)) }
-.tile.current { outline: 1px solid var(--ink); outline-offset: 2px }
-.sheetnote { font-size: .78rem; color: var(--muted); margin: 0 }
 .keys { font-size: .78rem; color: var(--muted); margin: 0 }
 kbd { font-family: var(--mono); font-size: .7rem; border: 1px solid var(--line); padding: 0 5px }
+.jump { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: .74rem; align-items: baseline }
+.jump span { color: var(--muted) }
+.jump button { border: 0; background: none; padding: 2px 0; font: inherit; color: var(--muted); border-bottom: 1px solid transparent }
+.jump button:hover:not([disabled]) { background: none; color: var(--ink) }
+.jump button.cur { color: var(--ink); border-bottom-color: var(--ink) }
 
 /* done */
-.done { display: grid; gap: 28px; padding-block: 16px }
-.done h1 { font-size: clamp(3rem, 11vw, 5.6rem); line-height: .9 }
-.done h1 small { font-size: .4em; color: var(--muted) }
-.grid { font-family: var(--mono); font-size: 1.15rem; line-height: 1.2; letter-spacing: .12em; margin: 0; white-space: pre }
-.done .go { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.done { display: grid; gap: 26px; padding-block: 12px }
+.done h1 { font-size: clamp(3.4rem, 12vw, 6rem); line-height: .9 }
+.done h1 small { font-size: .34em; color: var(--muted) }
+.rating { font-family: var(--serif); font-style: italic; font-size: 1.9rem; color: var(--hot); line-height: 1 }
+.scale { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line) }
+.scale span { padding-top: 8px; font: 400 .64rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border-top: 2px solid transparent; margin-top: -1px }
+.scale span.on { color: var(--ink); border-top-color: var(--hot) }
+.hcard { font-family: var(--mono); font-size: 1.25rem; line-height: 1.3; letter-spacing: .2em; margin: 0; white-space: pre; color: var(--ink) }
+.legend { font-size: .82rem; color: var(--muted); margin: 0 }
 .next { border-top: 1px solid var(--line); padding-top: 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px }
+.next .t { font-family: var(--mono); font-size: .76rem; color: var(--muted) }
 .review { display: grid; border-top: 1px solid var(--ink) }
 .review details { border-bottom: 1px solid var(--line); padding: 14px 0 }
-.review summary { cursor: pointer; display: grid; grid-template-columns: 1.4rem 2rem 1fr; gap: 10px; align-items: baseline; list-style: none }
+.review summary { cursor: pointer; display: grid; grid-template-columns: 1.6rem 1.8rem 1fr; gap: 10px; align-items: baseline; list-style: none }
 .review summary::-webkit-details-marker { display: none }
 .review .n { font-family: var(--mono); font-size: .74rem; color: var(--muted) }
 .review .r { font-family: var(--mono) }
 .review p { margin: 10px 0 0 3.4rem; color: var(--muted); max-width: 58ch }
 
 /* archive */
-.archive { display: grid; gap: 36px }
+.archive { display: grid; gap: 40px }
 .archive h2 { font-size: 2.2rem }
 .ledger { border-top: 1px solid var(--ink) }
-.row { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 16px; align-items: center; width: 100%; padding: 16px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; font-weight: 400; color: var(--ink) }
+.row { display: grid; grid-template-columns: 72px 3rem minmax(0, 1fr) auto; gap: 16px; align-items: center; width: 100%; padding: 14px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; font-weight: 400; color: var(--ink) }
 .row:hover:not([disabled]) { background: none; color: var(--ink) }
 .row:hover .rno { text-decoration: underline; text-underline-offset: 4px }
+.row img { width: 72px; height: 48px; border: 1px solid var(--line); display: block }
 .rno { font-family: var(--serif); font-size: 1.5rem }
 .rmeta { display: grid; min-width: 0 }
 .rmeta small { color: var(--muted) }
-.state { font: 400 .7rem var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
+.state { font: 400 .7rem var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
 .state.on { color: var(--ink) }
-.practice { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px }
-.practice .pick { display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
-select { font: 400 1rem var(--sans); color: var(--ink); background-color: var(--bg); border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; padding: 8px 28px 8px 0; max-width: 100%;
-  appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);
-  background-position: right 8px center, right 3px center; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer }
+.practice { display: grid; gap: 14px }
+.types { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 18px 14px }
+.types button { display: grid; gap: 6px; padding: 0; border: 0; background: none; text-align: left; color: var(--ink); font: 500 .88rem var(--sans) }
+.types button:hover:not([disabled]) { background: none; color: var(--ink) }
+.types button:hover img { border-color: var(--ink) }
+.types img { width: 100%; max-width: 100%; aspect-ratio: 3 / 2; border: 1px solid var(--line); display: block }
+.types small { color: var(--muted); font-weight: 400 }
 .ctx { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap }
 footer { color: var(--muted); font-size: .8rem; display: flex; gap: 18px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px }
 
-@media (max-width: 560px) {
-  .nav { gap: 16px } .nav button, .nav a { font-size: .7rem; letter-spacing: .1em }
+@media (max-width: 600px) {
+  .hero { grid-template-columns: 1fr } .hero img { max-width: 240px }
+  .rules { grid-template-columns: 1fr; gap: 16px }
   .facts { grid-template-columns: 1fr } .facts div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line) }
-  .sheet { grid-template-columns: repeat(13, minmax(0, 1fr)) }
+  .qcard { grid-template-columns: 1fr } .qart { display: none }
+  .row { grid-template-columns: 3rem minmax(0, 1fr) auto } .row img { display: none }
+  .nav { gap: 16px } .nav button { font-size: .7rem; letter-spacing: .1em }
 }
-@media (prefers-reduced-motion: no-preference) { .answer, .qcard { animation: rise .3s ease-out } @keyframes rise { from { transform: translateY(4px); opacity: 0 } } }
+@media (prefers-reduced-motion: no-preference) { .answer, .qbody, .clue { animation: rise .3s ease-out } @keyframes rise { from { transform: translateY(4px); opacity: 0 } } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="mast">
-    <a class="brand" href="./">Hot <em>Quesadillas</em></a>
+    <a class="brand" href="./"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 40a28 28 0 0 1 56 0z" fill="currentColor"/><circle cx="22" cy="30" r="3.2" fill="var(--hot)"/><circle cx="34" cy="24" r="2.6" fill="var(--hot)"/><circle cx="44" cy="32" r="3" fill="var(--hot)"/><circle cx="30" cy="35" r="2" fill="var(--hot)"/><rect x="4" y="44" width="56" height="4" fill="currentColor"/></svg>Hot <em>Quesadillas</em></a>
     <nav class="nav" aria-label="Main">
       <button type="button" id="nav-play" aria-current="page">This week</button>
-      <button type="button" id="nav-archive">Past drops</button>
-      <a href="docs/">API</a>
+      <button type="button" id="nav-archive">Past batches</button>
     </nav>
   </header>
 
-  <section id="loading" class="notice"><span class="eyebrow">Loading</span><h2>Fetching this week's drop</h2></section>
-  <section id="error" class="notice" hidden><span class="eyebrow">Offline</span><h2>Couldn't load the drops</h2><p class="muted">Check your connection and reload the page.</p></section>
+  <section id="loading" class="notice"><span class="eyebrow">Warming up</span><h2>Heating this week's batch</h2></section>
+  <section id="error" class="notice" hidden><span class="eyebrow">Cold kitchen</span><h2>Couldn't load the questions</h2><p class="muted">Check your connection and reload the page.</p></section>
 
-  <!-- first visit to a drop -->
   <section id="intro" class="intro" hidden>
-    <span class="eyebrow" id="i-eyebrow">Drop 1 · Friday 23 October</span>
-    <h1>Twenty-five questions you can work out.</h1>
+    <span class="eyebrow" id="i-eyebrow">This week · Friday 23 October</span>
+    <div class="hero">
+      <h1>Twenty-five questions you can <em>work out</em>.</h1>
+      <img id="i-art" src="img/types/geography.svg" alt="">
+    </div>
     <div class="facts">
       <div><b id="i-count">25</b><span>questions</span></div>
       <div><b>~10</b><span>minutes</span></div>
-      <div><b id="i-types">9</b><span>types</span></div>
+      <div><b id="i-max">75</b><span>heat up for grabs</span></div>
     </div>
-    <ol class="how">
-      <li>Every question has a clue in it. Reason your way there; you don't need to know the answer.</li>
-      <li>Say your answer out loud, then mark yourself honestly. You can check the answer first.</li>
-      <li>Your score and time come at the end, ready to share. A new drop lands every Friday.</li>
-    </ol>
-    <div class="go"><button class="solid" type="button" id="start">Start drop</button><span class="muted" id="i-note"></span></div>
+    <div class="rules">
+      <div><span class="heat"><i></i><i></i><i></i></span><b>Every question starts hot</b><p>Worth three. Each one hides a clue, so you can reason your way there.</p></div>
+      <div><span class="heat"><i></i><i></i><i class="off"></i></span><b>Turn down the heat</b><p>Stuck? See the shape of the answer, then its first letters. Each step costs one.</p></div>
+      <div><span class="heat"><i></i><i class="off"></i><i class="off"></i></span><b>Mark yourself honestly</b><p>Say it out loud, then tap Got it or Missed it. Your heat score lands at the end.</p></div>
+    </div>
+    <div class="go"><button class="solid" type="button" id="start">Start this week's batch</button><span class="muted">The clock starts when you do.</span></div>
   </section>
 
-  <!-- playing -->
   <section id="play" class="play" hidden>
     <div class="ctx" id="ctx" hidden><span class="eyebrow" id="ctx-label"></span><button class="quiet" type="button" id="ctx-exit">Back to this week</button></div>
     <div class="progress" aria-live="polite">
-      <div class="prow"><span class="count" id="count">1 <small>of 25</small></span><span class="stats" id="stats">0 right · 0:00</span></div>
+      <div class="prow">
+        <span class="count" id="count">1 <small>of 25</small></span>
+        <span class="total"><span id="clock">0:00</span> · heat <b id="total">0</b></span>
+      </div>
       <div class="track"><div class="fill" id="fill"></div></div>
     </div>
-    <article class="qcard" id="qcard" aria-live="polite">
-      <span class="eyebrow" id="cat">Geography</span>
-      <p class="question" id="q"></p>
-      <div class="answer" id="ans" hidden><span class="eyebrow">Answer</span><p id="a"></p></div>
-      <div><button class="quiet" type="button" id="reveal">Check the answer</button></div>
+    <p class="last" id="last" aria-live="polite"></p>
+    <article class="qcard" id="qcard">
+      <div class="qhead"><span class="eyebrow" id="cat">Geography</span><span class="heat" id="heat"><i></i><i></i><i></i></span></div>
+      <div class="qbody">
+        <p class="question" id="q"></p>
+        <p class="clue" id="clue" hidden></p>
+        <div class="answer" id="ans" hidden><span class="eyebrow">Answer</span><p id="a"></p><p class="why" id="why"></p></div>
+        <div class="tools">
+          <button class="quiet" type="button" id="cool">Turn down the heat</button>
+          <button class="quiet" type="button" id="reveal">Check the answer</button>
+        </div>
+      </div>
+      <img class="qart" id="qart" src="img/types/geography.svg" alt="">
     </article>
     <div class="marks">
       <p class="ask" id="ask">Did you get it?</p>
       <button class="solid" type="button" id="right">Got it</button>
       <button type="button" id="wrong">Missed it</button>
     </div>
-    <div style="display:grid;gap:8px">
-      <div class="sheet" id="sheet" aria-label="Your answers so far"></div>
-      <p class="sheetnote">Filled squares are right, struck squares are missed. Tap one to go back to it.</p>
-    </div>
-    <p class="keys"><kbd>Y</kbd> got it · <kbd>N</kbd> missed it · <kbd>Space</kbd> check the answer</p>
+    <div class="jump" id="jump"></div>
+    <p class="keys"><kbd>Y</kbd> got it · <kbd>N</kbd> missed it · <kbd>H</kbd> turn down the heat · <kbd>Space</kbd> check the answer</p>
   </section>
 
-  <!-- finished -->
   <section id="done" class="done" hidden>
-    <span class="eyebrow" id="d-eyebrow">Drop 1 complete</span>
-    <h1 id="d-score">18<small>/25</small></h1>
+    <span class="eyebrow" id="d-eyebrow">Batch 1 · finished</span>
+    <h1 id="d-score">58<small> / 75 heat</small></h1>
+    <div style="display:grid;gap:12px">
+      <span class="rating" id="d-rating">Extra hot</span>
+      <div class="scale" id="d-scale"><span>Mild</span><span>Medium</span><span>Hot</span><span>Extra hot</span><span>Ghost pepper</span></div>
+    </div>
     <p class="muted" id="d-line"></p>
-    <pre class="grid" id="d-grid" aria-label="Your results grid"></pre>
+    <div style="display:grid;gap:8px">
+      <pre class="hcard" id="d-card" aria-label="Your heat card"></pre>
+      <p class="legend">● full heat · ◐ one clue · ○ two clues · × missed</p>
+    </div>
     <div class="go">
-      <button class="solid" type="button" id="share">Copy result</button>
+      <button class="solid" type="button" id="share">Copy my heat card</button>
       <button type="button" id="review-toggle">Review answers</button>
       <span class="muted" id="share-msg" aria-live="polite"></span>
     </div>
     <div class="review" id="review" hidden></div>
-    <div class="next"><span class="muted">Next drop</span><span class="stats" id="d-next"></span></div>
+    <div class="next"><span>Next batch</span><span class="t" id="d-next"></span></div>
   </section>
 
-  <!-- archive -->
   <section id="archive" class="archive" hidden>
     <div style="display:grid;gap:14px">
-      <h2>Past drops</h2>
+      <h2>Past batches</h2>
       <div class="ledger" id="ledger"></div>
     </div>
     <div class="practice">
-      <span class="eyebrow">Practice by type</span>
-      <p class="muted" style="margin:0">Play every released question of one type, across all drops. Practice doesn't change your drop scores.</p>
-      <div class="pick"><select id="typesel" aria-label="Question type"></select><button type="button" id="practice-go">Practise</button></div>
+      <h2>Practice by type</h2>
+      <p class="muted" style="margin:0">Every question of one type from every batch so far. Practice doesn't touch your weekly heat.</p>
+      <div class="types" id="types"></div>
     </div>
   </section>
 
-  <footer><span>A new drop every Friday at 00:00 London.</span><a href="docs/">API documentation</a></footer>
+  <footer><span>A fresh batch every Friday at 00:00 London.</span><a href="docs/">Developers</a><a href="api/feed.xml">RSS</a><a href="api/batches.ics">Add to calendar</a></footer>
 </div>
 
 <script>
@@ -224,178 +272,223 @@ const $ = id => document.getElementById(id);
 const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 const short = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return h ? `${h}h ${m}m` : `${m}:${String(x).padStart(2, '0')}` };
+const slug = s => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const art = cat => `img/types/${slug(cat)}.svg`;
 const SITE = 'jimmy-grafton.github.io/quiz-night-console';
+const RATINGS = [[0, 'Mild'], [26, 'Medium'], [46, 'Hot'], [61, 'Extra hot'], [71, 'Ghost pepper']];
 
-let drops = [], marks = {}, runs = {};
-let view = 'play';            // play | archive
-let dropN = null;             // drop being played
-let practice = null;          // type name when practising
-let i = 0, shown = false, reviewOpen = false, busy = false;
+let batches = [], marks = {}, heat = {}, runs = {};
+let view = 'play', batchN = null, practice = null, i = 0, shown = false, reviewOpen = false, busy = false, lastMarked = null;
 
-try { const s = JSON.parse(localStorage.getItem('hq') || localStorage.getItem('qnc-static') || 'null'); if (s) { marks = s.marks || {}; runs = s.runs || {} } } catch (e) {}
-const save = () => { try { localStorage.setItem('hq', JSON.stringify({ marks, runs })) } catch (e) {} };
+try {
+  const s = JSON.parse(localStorage.getItem('hq2') || 'null');
+  if (s) { marks = s.marks || {}; heat = s.heat || {}; runs = s.runs || {} }
+  else { const o = JSON.parse(localStorage.getItem('hq') || 'null'); if (o) { marks = o.marks || {}; runs = o.runs || {} } }
+} catch (e) {}
+const save = () => { try { localStorage.setItem('hq2', JSON.stringify({ marks, heat, runs })) } catch (e) {} };
 
-const released = () => drops.filter(d => new Date(d.releaseAt) <= new Date());
+// The short answer drives the clues; older questions without one fall back to the first sentence.
+const shortAns = q => (q.ans || q.a.split(/\.(?:\s|$)/)[0]).trim();
+function clue(ans, level) {
+  const s = ans.slice(0, 60).replace(/[A-Za-z0-9À-ɏ]+/g, w => level === 2 ? w[0] + '_'.repeat(w.length - 1) : '_'.repeat(w.length));
+  return s.split('').join(' ') + (ans.length > 60 ? ' …' : '');
+}
+const heatOf = q => heat[q.id] ?? 3;
+const points = q => marks[q.id] === true ? heatOf(q) : 0;
+const sym = q => marks[q.id] === undefined ? '·' : marks[q.id] === false ? '×' : ['', '○', '◐', '●'][heatOf(q)];
+
+const released = () => batches.filter(d => new Date(d.releaseAt) <= new Date());
 const latest = () => released()[0];
-const drop = () => released().find(d => d.n === dropN) || latest();
-const list = () => practice ? released().flatMap(d => d.questions.filter(q => q.cat === practice)) : drop().questions;
+const batch = () => released().find(d => d.n === batchN) || latest();
+const list = () => practice ? released().flatMap(d => d.questions.filter(q => q.cat === practice)) : batch().questions;
 const marked = L => L.filter(q => marks[q.id] !== undefined);
-const right = L => L.filter(q => marks[q.id] === true);
+const total = L => L.reduce((s, q) => s + points(q), 0);
 const firstOpen = L => { const k = L.findIndex(q => marks[q.id] === undefined); return k < 0 ? 0 : k };
+const rating = n => RATINGS.reduce((r, [min, name]) => n >= min ? name : r, 'Mild');
 
 function nextFriday() { const x = new Date(); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() + ((5 - x.getDay() + 7) % 7 || 7)); return x }
 function untilNext() { const ms = nextFriday() - new Date(); const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60; return `${fmt(nextFriday())} · in ${d}d ${h}h ${m}m` }
+function runTime(d) { const r = runs[d?.id]; return r?.start ? (r.end || Date.now()) - r.start : null }
+function startRun(d) { if (!practice && d && !runs[d.id]?.start) { runs[d.id] = { start: Date.now() }; save() } }
 
 function show(id) { ['loading', 'error', 'intro', 'play', 'done', 'archive'].forEach(s => $(s).hidden = s !== id) }
-function setNav() { $('nav-play').setAttribute('aria-current', view === 'play' && !practice && dropN === latest()?.n ? 'page' : 'false'); $('nav-archive').setAttribute('aria-current', view === 'archive' ? 'page' : 'false') }
+function setNav() { $('nav-play').setAttribute('aria-current', view === 'play' && !practice && batchN === latest()?.n ? 'page' : 'false'); $('nav-archive').setAttribute('aria-current', view === 'archive' ? 'page' : 'false') }
+function paintHeat(el, h) { [...el.children].forEach((c, k) => c.classList.toggle('off', k >= h)); el.setAttribute('aria-label', `Heat ${h} of 3`) }
 
 function render() {
   setNav();
-  if (!released().length) { show('error'); $('error').querySelector('h2').textContent = 'The first drop lands on Friday'; return }
+  if (!released().length) { show('error'); $('error').querySelector('h2').textContent = 'The first batch lands on Friday'; return }
   if (view === 'archive') return renderArchive();
-  const d = drop(), L = list();
+  const d = batch(), L = list();
   if (!practice && !runs[d.id]?.start && !marked(L).length) return renderIntro(d);
-  if (!practice && marked(L).length === L.length && !reviewOpen) return renderDone(d);
+  if (!practice && marked(L).length === L.length) return renderDone(d);
   renderPlay(L);
 }
 
 function renderIntro(d) {
   show('intro');
   const isLatest = d.n === latest().n;
-  $('i-eyebrow').textContent = `${isLatest ? 'This week' : 'Past drop'} · Drop ${d.n} · ${fmt(new Date(d.releaseAt))}`;
+  $('i-eyebrow').textContent = `${isLatest ? 'This week' : 'Batch ' + d.n} · ${fmt(new Date(d.releaseAt))}`;
   $('i-count').textContent = d.questions.length;
-  $('i-types').textContent = new Set(d.questions.map(q => q.cat)).size;
-  $('i-note').textContent = 'The clock starts when you do.';
+  $('i-max').textContent = d.questions.length * 3;
+  $('i-art').src = art(d.questions[0].cat);
+  $('start').textContent = isLatest ? "Start this week's batch" : `Start batch ${d.n}`;
 }
 
 function renderPlay(L) {
   show('play');
   if (i >= L.length) i = L.length - 1;
-  const item = L[i], m = marked(L).length, r = right(L).length;
-  const d = drop(), isLatest = !practice && d.n === latest().n;
+  const q = L[i], d = batch(), h = heatOf(q), isLatest = !practice && d.n === latest().n;
   $('ctx').hidden = isLatest;
-  $('ctx-label').textContent = practice ? `Practice · ${practice} · ${L.length} questions` : `Drop ${d.n} · ${short(new Date(d.releaseAt))}`;
+  $('ctx-label').textContent = practice ? `Practice · ${practice}` : `Batch ${d.n} · ${short(new Date(d.releaseAt))}`;
   $('count').innerHTML = `${i + 1} <small>of ${L.length}</small>`;
-  $('stats').textContent = practice ? `${r} right of ${m}` : `${r} right · ${dur(runTime(d) || 0)}`;
-  $('fill').style.width = `${(m / L.length) * 100}%`;
-  $('cat').textContent = item.cat;
-  $('q').textContent = item.q; $('a').textContent = item.a;
+  $('total').textContent = total(L);
+  $('clock').textContent = practice ? `${marked(L).length} played` : dur(runTime(d) || 0);
+  $('fill').style.width = `${(marked(L).length / L.length) * 100}%`;
+  const last = $('last'); last.textContent = '';
+  if (lastMarked) {
+    last.append(document.createTextNode(marks[lastMarked.id] ? `+${points(lastMarked)} heat. It was ` : 'It was '));
+    const b = document.createElement('b'); b.textContent = shortAns(lastMarked); last.append(b);
+  } else last.textContent = i === 0 && !marked(L).length ? 'First one. Take your time.' : 'Welcome back.';
+  $('cat').textContent = q.cat;
+  $('qart').src = art(q.cat);
+  paintHeat($('heat'), h);
+  $('q').textContent = q.q;
+  const ans = shortAns(q);
+  $('clue').hidden = h === 3 || shown;
+  $('clue').textContent = h === 2 ? clue(ans, 1) : clue(ans, 2);
   $('ans').hidden = !shown;
+  $('a').textContent = ans;
+  $('why').textContent = q.a; $('why').hidden = q.a.trim() === ans;
+  $('cool').hidden = shown || h <= 1 || marks[q.id] !== undefined;
+  $('cool').textContent = h === 3 ? 'Turn down the heat' : 'Lower the heat again';
   $('reveal').textContent = shown ? 'Hide the answer' : 'Check the answer';
-  const prev = marks[item.id];
-  $('ask').textContent = prev === undefined ? 'Did you get it?' : `You marked this ${prev ? 'right' : 'missed'}. Change it?`;
-  const sheet = $('sheet'); sheet.innerHTML = '';
-  sheet.style.gridTemplateColumns = `repeat(${Math.min(L.length, window.innerWidth < 560 ? 13 : 25)}, minmax(0, 1fr))`;
-  L.forEach((q, k) => {
-    const b = document.createElement('button'); b.type = 'button';
-    b.className = 'tile' + (marks[q.id] === true ? ' ok' : marks[q.id] === false ? ' no' : '') + (k === i ? ' current' : '');
-    b.setAttribute('aria-label', `Question ${k + 1}${marks[q.id] === true ? ', right' : marks[q.id] === false ? ', missed' : ''}`);
-    b.onclick = () => { i = k; shown = false; render() };
-    sheet.appendChild(b);
-  });
+  const prev = marks[q.id];
+  $('ask').textContent = prev === undefined ? `Did you get it? Worth ${h} heat.` : `You marked this ${prev ? 'got it' : 'missed'}. Change it?`;
+  const jump = $('jump'); jump.innerHTML = '';
+  const back = L.map((x, k) => k).filter(k => marks[L[k].id] !== undefined || k === i);
+  if (back.length > 1) {
+    const lab = document.createElement('span'); lab.textContent = 'Revisit'; jump.appendChild(lab);
+    back.forEach(k => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = String(k + 1).padStart(2, '0');
+      b.className = k === i ? 'cur' : ''; b.setAttribute('aria-label', 'Go to question ' + (k + 1));
+      b.onclick = () => { i = k; shown = false; lastMarked = null; render() };
+      jump.appendChild(b);
+    });
+  }
 }
 
-function gridText(L) { const rows = []; for (let k = 0; k < L.length; k += 5) rows.push(L.slice(k, k + 5).map(q => marks[q.id] ? '■' : '□').join('')); return rows.join('\n') }
+function cardText(L) { const rows = []; for (let k = 0; k < L.length; k += 5) rows.push(L.slice(k, k + 5).map(sym).join(' ')); return rows.join('\n') }
 function renderDone(d) {
   show('done');
-  const L = d.questions, r = right(L).length, t = runTime(d);
-  $('d-eyebrow').textContent = `Drop ${d.n} complete`;
-  $('d-score').innerHTML = `${r}<small>/${L.length}</small>`;
-  const verdict = r >= 22 ? 'Outstanding.' : r >= 18 ? 'Very good.' : r >= 13 ? 'Solid.' : r >= 8 ? 'A start.' : 'Tough week.';
-  $('d-line').textContent = `${verdict} ${t ? `Finished in ${dur(t)}.` : ''}`;
-  $('d-grid').textContent = gridText(L);
+  const L = d.questions, n = total(L), max = L.length * 3, t = runTime(d), name = rating(n);
+  $('d-eyebrow').textContent = `Batch ${d.n} · finished`;
+  $('d-score').innerHTML = `${n}<small> / ${max} heat</small>`;
+  $('d-rating').textContent = name;
+  [...$('d-scale').children].forEach(s => s.classList.toggle('on', s.textContent === name));
+  const full = L.filter(q => marks[q.id] && heatOf(q) === 3).length;
+  $('d-line').textContent = `${full} at full heat${t ? ` · finished in ${dur(t)}` : ''}.`;
+  $('d-card').textContent = cardText(L);
   $('d-next').textContent = untilNext();
   const rv = $('review'); rv.innerHTML = '';
   L.forEach((q, k) => {
     const el = document.createElement('details');
-    el.innerHTML = `<summary><span class="r"></span><span class="n"></span><span class="t"></span></summary><p></p>`;
-    el.querySelector('.r').textContent = marks[q.id] ? '■' : '□';
+    el.innerHTML = '<summary><span class="r"></span><span class="n"></span><span class="t"></span></summary><p></p>';
+    el.querySelector('.r').textContent = sym(q);
     el.querySelector('.n').textContent = String(k + 1).padStart(2, '0');
     el.querySelector('.t').textContent = q.q;
     el.querySelector('p').textContent = q.a;
     rv.appendChild(el);
   });
-  rv.hidden = !reviewOpenDone;
-  $('review-toggle').textContent = reviewOpenDone ? 'Hide answers' : 'Review answers';
+  rv.hidden = !reviewOpen;
+  $('review-toggle').textContent = reviewOpen ? 'Hide answers' : 'Review answers';
 }
-let reviewOpenDone = false;
 
 function renderArchive() {
   show('archive');
   const led = $('ledger'); led.innerHTML = '';
   released().forEach((d, k) => {
-    const L = d.questions, m = marked(L).length, r = right(L).length, done = m === L.length;
+    const L = d.questions, m = marked(L).length, done = m === L.length;
     const b = document.createElement('button'); b.type = 'button'; b.className = 'row';
-    b.innerHTML = `<span class="rno"></span><span class="rmeta"><span></span><small></small></span><span class="state"></span>`;
+    b.innerHTML = '<img alt=""><span class="rno"></span><span class="rmeta"><span></span><small></small></span><span class="state"></span>';
+    b.querySelector('img').src = art(L[0].cat);
     b.querySelector('.rno').textContent = d.n;
     b.querySelector('.rmeta span').textContent = fmt(new Date(d.releaseAt)) + (k === 0 ? ' · this week' : '');
     const cats = [...new Set(L.map(q => q.cat))];
     b.querySelector('.rmeta small').textContent = cats.slice(0, 3).join(', ') + (cats.length > 3 ? ` and ${cats.length - 3} more` : '');
     const st = b.querySelector('.state');
-    st.textContent = done ? `${r}/${L.length}${runs[d.id]?.end ? ' · ' + dur(runs[d.id].end - runs[d.id].start) : ''}` : m ? `${m}/${L.length} played` : 'Not played';
-    st.classList.toggle('on', done || m > 0);
-    b.onclick = () => { practice = null; dropN = d.n; i = firstOpen(L); shown = false; reviewOpen = false; reviewOpenDone = false; view = 'play'; render() };
+    st.textContent = done ? `${total(L)} heat · ${rating(total(L))}` : m ? `${m} of ${L.length} played` : 'Not played';
+    st.classList.toggle('on', m > 0);
+    b.onclick = () => { practice = null; batchN = d.n; i = firstOpen(L); shown = false; reviewOpen = false; lastMarked = null; view = 'play'; render() };
     led.appendChild(b);
   });
   const counts = {}; released().forEach(d => d.questions.forEach(q => counts[q.cat] = (counts[q.cat] || 0) + 1));
-  const sel = $('typesel'), keep = sel.value; sel.innerHTML = '';
-  Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b)).forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = `${c} (${counts[c]})`; sel.appendChild(o) });
-  if (keep && counts[keep]) sel.value = keep;
+  const box = $('types'); box.innerHTML = '';
+  Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b)).forEach(c => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = '<img alt=""><span></span><small></small>';
+    b.querySelector('img').src = art(c); b.querySelector('span').textContent = c;
+    b.querySelector('small').textContent = `${counts[c]} question${counts[c] === 1 ? '' : 's'}`;
+    b.onclick = () => { practice = c; view = 'play'; i = firstOpen(list()); shown = false; lastMarked = null; render() };
+    box.appendChild(b);
+  });
 }
 
-function runTime(d) { const r = runs[d?.id]; return r?.start ? (r.end || Date.now()) - r.start : null }
-function startRun(d) { if (!practice && d && !runs[d.id]?.start) { runs[d.id] = { start: Date.now() }; save() } }
-
 function mark(v) {
-  if (view !== 'play' || $('play').hidden || busy) return;
+  if ($('play').hidden || busy) return;
   busy = true;
-  const L = list(), item = L[i], d = drop();
+  const L = list(), q = L[i], d = batch();
   startRun(d);
-  marks[item.id] = v;
+  marks[q.id] = v;
   if (!practice && marked(d.questions).length === d.questions.length && !runs[d.id].end) runs[d.id] = { ...runs[d.id], end: Date.now() };
   save();
-  const allDone = marked(L).length === L.length;
-  if (allDone && !practice) { reviewOpen = false; }
-  else { const nxt = L.findIndex((q, k) => k > i && marks[q.id] === undefined); i = nxt >= 0 ? nxt : Math.min(i + 1, L.length - 1) }
+  lastMarked = q;
+  const nxt = L.findIndex((x, k) => k > i && marks[x.id] === undefined);
+  const any = L.findIndex(x => marks[x.id] === undefined);
+  i = nxt >= 0 ? nxt : any >= 0 ? any : i;
   shown = false;
   render();
   busy = false;
 }
+function cool() {
+  const q = list()[i]; if (!q || shown || marks[q.id] !== undefined) return;
+  const h = heatOf(q); if (h <= 1) return;
+  startRun(batch()); heat[q.id] = h - 1; save(); renderPlay(list());
+}
 
-$('start').onclick = () => { startRun(drop()); i = 0; shown = false; renderPlay(list()) };
-$('reveal').onclick = () => { shown = !shown; startRun(drop()); render() };
+$('start').onclick = () => { startRun(batch()); i = 0; shown = false; lastMarked = null; render() };
+$('reveal').onclick = () => { shown = !shown; startRun(batch()); render() };
+$('cool').onclick = cool;
 $('right').onclick = () => mark(true); $('wrong').onclick = () => mark(false);
-$('nav-play').onclick = () => { view = 'play'; practice = null; dropN = latest()?.n; i = firstOpen(list()); shown = false; render() };
+$('nav-play').onclick = () => { view = 'play'; practice = null; batchN = latest()?.n; i = firstOpen(list()); shown = false; lastMarked = null; render() };
 $('nav-archive').onclick = () => { view = 'archive'; render() };
 $('ctx-exit').onclick = () => $('nav-play').click();
-$('practice-go').onclick = () => { practice = $('typesel').value; view = 'play'; i = firstOpen(list()); shown = false; render() };
-$('review-toggle').onclick = () => { reviewOpenDone = !reviewOpenDone; renderDone(drop()) };
+$('review-toggle').onclick = () => { reviewOpen = !reviewOpen; renderDone(batch()) };
 $('share').onclick = () => {
-  const d = drop(), L = d.questions, t = runTime(d);
-  const text = `Hot Quesadillas · Drop ${d.n}\n${right(L).length}/${L.length}${t ? ' · ' + dur(t) : ''}\n${gridText(L)}\n${SITE}`;
-  const ok = () => $('share-msg').textContent = 'Copied. Paste it anywhere.';
-  const fail = () => { const r = document.createRange(); r.selectNodeContents($('d-grid')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('share-msg').textContent = 'Grid selected. Press Cmd+C to copy.' };
+  const d = batch(), L = d.questions, n = total(L), t = runTime(d);
+  const text = `Hot Quesadillas · Batch ${d.n}\n${n}/${L.length * 3} heat · ${rating(n)}${t ? ' · ' + dur(t) : ''}\n\n${cardText(L)}\n\n${SITE}`;
+  const ok = () => $('share-msg').textContent = 'Copied. Paste it in the group chat.';
+  const fail = () => { const r = document.createRange(); r.selectNodeContents($('d-card')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('share-msg').textContent = 'Card selected. Press Cmd+C to copy.' };
   navigator.clipboard ? navigator.clipboard.writeText(text).then(ok).catch(fail) : fail();
 };
 document.addEventListener('keydown', e => {
-  if ($('play').hidden || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName) || e.metaKey || e.ctrlKey) return;
+  if ($('play').hidden || e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key.toLowerCase();
-  if (k === 'y') mark(true); else if (k === 'n') mark(false);
-  else if (e.key === ' ') { e.preventDefault(); $('reveal').click() }
+  if (k === 'y') mark(true); else if (k === 'n') mark(false); else if (k === 'h') cool();
+  else if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); $('reveal').click() }
 });
-setInterval(() => { if (!$('play').hidden && !practice) $('stats').textContent = `${right(list()).length} right · ${dur(runTime(drop()) || 0)}`; if (!$('done').hidden) $('d-next').textContent = untilNext() }, 1000);
-window.addEventListener('resize', () => { if (!$('play').hidden) renderPlay(list()) });
+setInterval(() => { if (!$('play').hidden && !practice) $('clock').textContent = dur(runTime(batch()) || 0); if (!$('done').hidden) $('d-next').textContent = untilNext() }, 1000);
 
 (async () => {
   try {
     const idx = await fetch('drops/index.json', { cache: 'no-cache' }).then(r => r.json());
     const docs = await Promise.all(idx.drops.map(f => fetch('drops/' + f, { cache: 'no-cache' }).then(r => r.json())));
-    drops = docs.filter(d => Array.isArray(d.questions)).map(d => ({ id: 'd' + String(d.n).padStart(4, '0'), ...d })).sort((a, b) => b.n - a.n);
+    batches = docs.filter(d => Array.isArray(d.questions)).map(d => ({ id: 'd' + String(d.n).padStart(4, '0'), ...d })).sort((a, b) => b.n - a.n);
   } catch (e) { show('error'); return }
-  dropN = latest()?.n;
+  batchN = latest()?.n;
   if (location.hash === '#archive') view = 'archive';
-  const h = (location.hash || '').match(/^#drop-(\d+)$/); if (h && released().some(d => d.n === +h[1])) dropN = +h[1];
-  if (dropN) i = firstOpen(drop().questions);
+  const h = (location.hash || '').match(/^#batch-(\d+)$/); if (h && released().some(d => d.n === +h[1])) batchN = +h[1];
+  if (batchN) i = firstOpen(batch().questions);
   render();
 })();
 </script>

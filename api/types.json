@@ -1,13 +1,91 @@
 {
- "Geography": 8,
- "Ancient History": 5,
- "History": 2,
- "Science & Nature": 2,
- "Words & Language": 2,
- "Music": 1,
- "Film & TV": 1,
- "Sport": 1,
- "Food & Drink": 1,
- "Art & Books": 1,
- "People & Politics": 1
+ "object": "list",
+ "count": 12,
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types.json",
+ "data": [
+  {
+   "object": "type",
+   "name": "Geography",
+   "slug": "geography",
+   "count": 8,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/geography.json"
+  },
+  {
+   "object": "type",
+   "name": "Ancient History",
+   "slug": "ancient-history",
+   "count": 5,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/ancient-history.json"
+  },
+  {
+   "object": "type",
+   "name": "History",
+   "slug": "history",
+   "count": 2,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/history.json"
+  },
+  {
+   "object": "type",
+   "name": "Science & Nature",
+   "slug": "science-and-nature",
+   "count": 2,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/science-and-nature.json"
+  },
+  {
+   "object": "type",
+   "name": "Words & Language",
+   "slug": "words-and-language",
+   "count": 2,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/words-and-language.json"
+  },
+  {
+   "object": "type",
+   "name": "Film & TV",
+   "slug": "film-and-tv",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/film-and-tv.json"
+  },
+  {
+   "object": "type",
+   "name": "Music",
+   "slug": "music",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/music.json"
+  },
+  {
+   "object": "type",
+   "name": "Sport",
+   "slug": "sport",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/sport.json"
+  },
+  {
+   "object": "type",
+   "name": "Food & Drink",
+   "slug": "food-and-drink",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/food-and-drink.json"
+  },
+  {
+   "object": "type",
+   "name": "Art & Books",
+   "slug": "art-and-books",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/art-and-books.json"
+  },
+  {
+   "object": "type",
+   "name": "People & Politics",
+   "slug": "people-and-politics",
+   "count": 1,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/people-and-politics.json"
+  },
+  {
+   "object": "type",
+   "name": "Business & Money",
+   "slug": "business-and-money",
+   "count": 0,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/business-and-money.json"
+  }
+ ]
 }

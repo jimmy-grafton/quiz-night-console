@@ -1,0 +1,118 @@
+{
+ "object": "list",
+ "count": 5,
+ "letter": "S",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/S.json",
+ "data": [
+  {
+   "id": "d0001-7",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
+   "answer": "Singapore, Monaco, Vatican City",
+   "explanation": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "answer_full": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "clues": {
+    "shape": "_________, ______, _______ ____",
+    "initials": "S________, M_____, V______ C___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-11",
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Julius Caesar crossed the Rubicon and was assassinated within five years. Was it the 3rd, 2nd or 1st century BC?",
+   "answer": "1st century BC",
+   "explanation": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
+   "answer_full": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
+   "clues": {
+    "shape": "___ _______ __",
+    "initials": "1__ c______ B_"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-15",
+   "object": "question",
+   "batch": 1,
+   "type": "History",
+   "type_slug": "history",
+   "question": "In which decade did the Berlin Wall fall: the 1970s, 1980s or 1990s? Hint: Germany reunified the following year.",
+   "answer": "1980s",
+   "explanation": "The 1980s (November 1989). Reunification came in October 1990.",
+   "answer_full": "The 1980s (November 1989). Reunification came in October 1990.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-19",
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "SCUBA is an acronym. Its letters describe kit that lets a diver breathe underwater without a surface hose. What does it stand for?",
+   "answer": "Self-Contained Underwater Breathing Apparatus",
+   "explanation": "Self-Contained Underwater Breathing Apparatus.",
+   "answer_full": "Self-Contained Underwater Breathing Apparatus.",
+   "clues": {
+    "shape": "____-_________ __________ _________ _________",
+    "initials": "S___-C________ U_________ B________ A________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-21",
+   "object": "question",
+   "batch": 1,
+   "type": "Film & TV",
+   "type_slug": "film-and-tv",
+   "question": "The first Star Wars film was released the same year Elvis Presley died. Was it the 1960s, 1970s or 1980s?",
+   "answer": "1970s",
+   "explanation": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "answer_full": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

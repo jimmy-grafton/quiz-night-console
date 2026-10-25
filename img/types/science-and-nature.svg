@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Science & Nature">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<ellipse class="g" cx="300" cy="200" rx="220" ry="70" transform="rotate(0 300 200)"/>
+<ellipse class="g" cx="300" cy="200" rx="220" ry="70" transform="rotate(60 300 200)"/>
+<ellipse class="g" cx="300" cy="200" rx="220" ry="70" transform="rotate(120 300 200)"/>
+<circle class="f" cx="300" cy="200" r="16"/><circle class="h" cx="512" cy="200" r="7"/>
+</svg>

@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "type": "Film & TV",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/film-and-tv.json",
+ "data": [
+  {
+   "id": "d0001-21",
+   "object": "question",
+   "batch": 1,
+   "type": "Film & TV",
+   "type_slug": "film-and-tv",
+   "question": "The first Star Wars film was released the same year Elvis Presley died. Was it the 1960s, 1970s or 1980s?",
+   "answer": "1970s",
+   "explanation": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "answer_full": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

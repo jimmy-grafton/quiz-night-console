@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Food & Drink">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<circle class="g" cx="300" cy="200" r="150"/><circle class="g" cx="300" cy="200" r="132"/>
+<polygon class="f" points="300,200 408.9,215.3 382.0,282.0 315.3,308.9"/>
+<polygon class="f" points="300,200 284.7,308.9 218.0,282.0 191.1,215.3"/>
+<polygon class="f" points="300,200 191.1,184.7 218.0,118.0 284.7,91.1"/>
+<polygon class="f" points="300,200 315.3,91.1 382.0,118.0 408.9,184.7"/>
+<circle class="h" cx="300" cy="200" r="9"/>
+</svg>

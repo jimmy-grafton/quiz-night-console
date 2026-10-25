@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "type": "People & Politics",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/people-and-politics.json",
+ "data": [
+  {
+   "id": "d0001-25",
+   "object": "question",
+   "batch": 1,
+   "type": "People & Politics",
+   "type_slug": "people-and-politics",
+   "question": "The G7 group of major economies has only one member in Asia. Which country is it?",
+   "answer": "Japan",
+   "explanation": "Japan. The other six are in Europe and North America.",
+   "answer_full": "Japan. The other six are in Europe and North America.",
+   "clues": {
+    "shape": "_____",
+    "initials": "J____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

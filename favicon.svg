@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<style>.p{fill:#0b0b0b}.d{fill:#e8461e}@media (prefers-color-scheme:dark){.p{fill:#f4f4f4}}</style>
+<path class="p" d="M4 40a28 28 0 0 1 56 0z"/>
+<circle class="d" cx="22" cy="30" r="3.2"/><circle class="d" cx="34" cy="24" r="2.6"/><circle class="d" cx="44" cy="32" r="3"/><circle class="d" cx="30" cy="35" r="2"/>
+<rect class="p" x="4" y="44" width="56" height="4"/>
+</svg>

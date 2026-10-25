@@ -1,0 +1,52 @@
+{
+ "object": "list",
+ "count": 2,
+ "letter": "L",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/L.json",
+ "data": [
+  {
+   "id": "d0001-20",
+   "object": "question",
+   "batch": 1,
+   "type": "Music",
+   "type_slug": "music",
+   "question": "The Beatles formed in an English port city whose first five letters spell a body organ. Name the city.",
+   "answer": "Liverpool",
+   "explanation": "Liverpool, which begins with LIVER.",
+   "answer_full": "Liverpool, which begins with LIVER.",
+   "clues": {
+    "shape": "_________",
+    "initials": "L________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "L",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-22",
+   "object": "question",
+   "batch": 1,
+   "type": "Sport",
+   "type_slug": "sport",
+   "question": "In tennis a score of zero has a name popularly said to come from the French word for egg, since an egg looks like a zero. What is it?",
+   "answer": "Love",
+   "explanation": "Love, said to come from l'oeuf. The story is popular but disputed.",
+   "answer_full": "Love, said to come from l'oeuf. The story is popular but disputed.",
+   "clues": {
+    "shape": "____",
+    "initials": "L___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "L",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

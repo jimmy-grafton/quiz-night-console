@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "type": "Food & Drink",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/food-and-drink.json",
+ "data": [
+  {
+   "id": "d0001-23",
+   "object": "question",
+   "batch": 1,
+   "type": "Food & Drink",
+   "type_slug": "food-and-drink",
+   "question": "Parmesan cheese, Parma ham and balsamic vinegar of Modena all come from one double-barrelled Italian region beginning with E. Name it.",
+   "answer": "Emilia-Romagna",
+   "explanation": "Emilia-Romagna, home to Parma and Modena.",
+   "answer_full": "Emilia-Romagna, home to Parma and Modena.",
+   "clues": {
+    "shape": "______-_______",
+    "initials": "E_____-R______"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "E",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

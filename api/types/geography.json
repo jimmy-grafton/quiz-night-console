@@ -1,0 +1,184 @@
+{
+ "object": "list",
+ "count": 8,
+ "type": "Geography",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/geography.json",
+ "data": [
+  {
+   "id": "d0001-1",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only three UN member countries have English names beginning with J. One is an island nation in East Asia, one is in the Caribbean, and one borders the Dead Sea. Name all three.",
+   "answer": "Japan, Jamaica, Jordan",
+   "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "clues": {
+    "shape": "_____, _______, ______",
+    "initials": "J____, J______, J_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-2",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
+   "answer": "Oman, inside Romania",
+   "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
+   "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
+   "clues": {
+    "shape": "____, ______ _______",
+    "initials": "O___, i_____ R______"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "O",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-3",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Five former Soviet republics share the same ending, meaning 'land of'. Name all five.",
+   "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+   "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "clues": {
+    "shape": "__________, __________, __________, ____________, __________",
+    "initials": "K_________, K_________, T_________, T___________, U_________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "K",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-4",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Of the fifty US states, only one has a name of a single syllable. It sits in the far north-east corner. Which?",
+   "answer": "Maine",
+   "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "clues": {
+    "shape": "_____",
+    "initials": "M____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "M",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-5",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "At Khartoum two great rivers meet, named for two different colours. Name both, and the single river they become.",
+   "answer": "White Nile and Blue Nile",
+   "explanation": "The White Nile and the Blue Nile, which become the Nile.",
+   "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
+   "clues": {
+    "shape": "_____ ____ ___ ____ ____",
+    "initials": "W____ N___ a__ B___ N___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "W",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-6",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Every national flag is a rectangle or square except one, made of two stacked pennants, from a Himalayan country. Which?",
+   "answer": "Nepal",
+   "explanation": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
+   "answer_full": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
+   "clues": {
+    "shape": "_____",
+    "initials": "N____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "N",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-7",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
+   "answer": "Singapore, Monaco, Vatican City",
+   "explanation": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "answer_full": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "clues": {
+    "shape": "_________, ______, _______ ____",
+    "initials": "S________, M_____, V______ C___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-8",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only one UN member has an English name starting with Q. It hosted a football World Cup held in winter. Name it.",
+   "answer": "Qatar",
+   "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "clues": {
+    "shape": "_____",
+    "initials": "Q____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "Q",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

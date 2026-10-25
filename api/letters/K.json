@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "K",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/K.json",
+ "data": [
+  {
+   "id": "d0001-3",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Five former Soviet republics share the same ending, meaning 'land of'. Name all five.",
+   "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+   "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "clues": {
+    "shape": "__________, __________, __________, ____________, __________",
+    "initials": "K_________, K_________, T_________, T___________, U_________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "K",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

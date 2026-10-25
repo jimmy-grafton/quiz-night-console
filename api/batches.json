@@ -1,0 +1,29 @@
+{
+ "object": "list",
+ "count": 1,
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/batches.json",
+ "data": [
+  {
+   "object": "batch",
+   "number": 1,
+   "id": "batch_0001",
+   "released_at": "2026-10-22T23:00:00.000Z",
+   "question_count": 25,
+   "types": [
+    "Ancient History",
+    "Art & Books",
+    "Film & TV",
+    "Food & Drink",
+    "Geography",
+    "History",
+    "Music",
+    "People & Politics",
+    "Science & Nature",
+    "Sport",
+    "Words & Language"
+   ],
+   "max_heat": 75,
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/api/batches/0001.json"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Art & Books">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<rect class="g" x="110" y="119" width="22" height="201"/>
+<rect class="f" x="138" y="100" width="28" height="220"/>
+<rect class="f" x="172" y="140" width="28" height="180"/>
+<rect class="g" x="206" y="93" width="22" height="227"/>
+<rect class="f" x="234" y="80" width="28" height="240"/>
+<rect class="f" x="268" y="133" width="28" height="187"/>
+<rect class="g" x="302" y="80" width="28" height="240"/>
+<rect class="f" x="336" y="97" width="28" height="223"/>
+<rect class="f" x="370" y="102" width="28" height="218"/>
+<rect class="g" x="404" y="131" width="22" height="189"/>
+<rect class="f" x="432" y="128" width="22" height="192"/>
+<circle class="h" cx="490" cy="300" r="9"/><line class="g" x1="90" y1="320" x2="510" y2="320"/>
+</svg>

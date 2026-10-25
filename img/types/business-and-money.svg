@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Business & Money">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<line class="g" x1="70" y1="330" x2="530" y2="330"/><line class="g" x1="70" y1="70" x2="70" y2="330"/>
+<polyline class="g" stroke-width="3" points="90,301 128,297 166,265 204,261 242,271 280,250 318,223 356,222 394,216 432,208 470,218 508,219"/>
+<circle class="h" cx="508" cy="219" r="8"/>
+</svg>

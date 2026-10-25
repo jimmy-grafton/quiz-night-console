@@ -1,158 +1,574 @@
 {
- "n": 1,
- "releaseAt": "2026-10-22T23:00:00.000Z",
- "generatedAt": "2026-10-25T13:15:00.000Z",
- "source": "seed",
+ "object": "batch",
+ "number": 1,
+ "id": "batch_0001",
+ "released_at": "2026-10-22T23:00:00.000Z",
+ "question_count": 25,
+ "types": [
+  "Ancient History",
+  "Art & Books",
+  "Film & TV",
+  "Food & Drink",
+  "Geography",
+  "History",
+  "Music",
+  "People & Politics",
+  "Science & Nature",
+  "Sport",
+  "Words & Language"
+ ],
+ "max_heat": 75,
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/batches/0001.json",
  "questions": [
   {
    "id": "d0001-1",
-   "cat": "Geography",
-   "q": "Only three UN member countries have English names beginning with J. One is an island nation in East Asia, one is in the Caribbean, and one borders the Dead Sea. Name all three.",
-   "a": "Japan, Jamaica, Jordan. Each clue rules in one region."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only three UN member countries have English names beginning with J. One is an island nation in East Asia, one is in the Caribbean, and one borders the Dead Sea. Name all three.",
+   "answer": "Japan, Jamaica, Jordan",
+   "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "clues": {
+    "shape": "_____, _______, ______",
+    "initials": "J____, J______, J_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-2",
-   "cat": "Geography",
-   "q": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
-   "a": "Oman, inside ROMANIA. Scan European names for a four-letter run."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
+   "answer": "Oman, inside Romania",
+   "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
+   "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
+   "clues": {
+    "shape": "____, ______ _______",
+    "initials": "O___, i_____ R______"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "O",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-3",
-   "cat": "Geography",
-   "q": "Five former Soviet republics share the same ending, meaning 'land of'. Name all five.",
-   "a": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Five former Soviet republics share the same ending, meaning 'land of'. Name all five.",
+   "answer": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan",
+   "explanation": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "answer_full": "Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan. The ending is -stan; Afghanistan and Pakistan were never Soviet.",
+   "clues": {
+    "shape": "__________, __________, __________, ____________, __________",
+    "initials": "K_________, K_________, T_________, T___________, U_________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "K",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-4",
-   "cat": "Geography",
-   "q": "Of the fifty US states, only one has a name of a single syllable. It sits in the far north-east corner. Which?",
-   "a": "Maine. Say the north-eastern states aloud and only one is a single beat."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Of the fifty US states, only one has a name of a single syllable. It sits in the far north-east corner. Which?",
+   "answer": "Maine",
+   "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "clues": {
+    "shape": "_____",
+    "initials": "M____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "M",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-5",
-   "cat": "Geography",
-   "q": "At Khartoum two great rivers meet, named for two different colours. Name both, and the single river they become.",
-   "a": "The White Nile and the Blue Nile, which become the Nile."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "At Khartoum two great rivers meet, named for two different colours. Name both, and the single river they become.",
+   "answer": "White Nile and Blue Nile",
+   "explanation": "The White Nile and the Blue Nile, which become the Nile.",
+   "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
+   "clues": {
+    "shape": "_____ ____ ___ ____ ____",
+    "initials": "W____ N___ a__ B___ N___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "W",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-6",
-   "cat": "Geography",
-   "q": "Every national flag is a rectangle or square except one, made of two stacked pennants, from a Himalayan country. Which?",
-   "a": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Every national flag is a rectangle or square except one, made of two stacked pennants, from a Himalayan country. Which?",
+   "answer": "Nepal",
+   "explanation": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
+   "answer_full": "Nepal. The Himalayan clue narrows it to Nepal or Bhutan, and Bhutan's flag is a rectangle.",
+   "clues": {
+    "shape": "_____",
+    "initials": "N____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "N",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-7",
-   "cat": "Geography",
-   "q": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
-   "a": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
+   "answer": "Singapore, Monaco, Vatican City",
+   "explanation": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "answer_full": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
+   "clues": {
+    "shape": "_________, ______, _______ ____",
+    "initials": "S________, M_____, V______ C___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-8",
-   "cat": "Geography",
-   "q": "Only one UN member has an English name starting with Q. It hosted a football World Cup held in winter. Name it.",
-   "a": "Qatar, which hosted the 2022 World Cup in November and December."
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only one UN member has an English name starting with Q. It hosted a football World Cup held in winter. Name it.",
+   "answer": "Qatar",
+   "explanation": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "answer_full": "Qatar, which hosted the 2022 World Cup in November and December.",
+   "clues": {
+    "shape": "_____",
+    "initials": "Q____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "Q",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-9",
-   "cat": "Ancient History",
-   "q": "Of the Seven Wonders of the Ancient World, just one still stands, and it was also the oldest of them. Which?",
-   "a": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway."
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Of the Seven Wonders of the Ancient World, just one still stands, and it was also the oldest of them. Which?",
+   "answer": "Great Pyramid of Giza",
+   "explanation": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
+   "answer_full": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
+   "clues": {
+    "shape": "_____ _______ __ ____",
+    "initials": "G____ P______ o_ G___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-10",
-   "cat": "Ancient History",
-   "q": "The Rosetta Stone repeats one decree in three scripts. Two are Egyptian, hieroglyphic and Demotic. Given who ruled Egypt after Alexander, what is the third?",
-   "a": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt."
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "The Rosetta Stone repeats one decree in three scripts. Two are Egyptian, hieroglyphic and Demotic. Given who ruled Egypt after Alexander, what is the third?",
+   "answer": "Ancient Greek",
+   "explanation": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
+   "answer_full": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
+   "clues": {
+    "shape": "_______ _____",
+    "initials": "A______ G____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "A",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-11",
-   "cat": "Ancient History",
-   "q": "Julius Caesar crossed the Rubicon and was assassinated within five years. Was it the 3rd, 2nd or 1st century BC?",
-   "a": "1st century BC. He crossed in 49 BC and was killed in 44 BC."
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Julius Caesar crossed the Rubicon and was assassinated within five years. Was it the 3rd, 2nd or 1st century BC?",
+   "answer": "1st century BC",
+   "explanation": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
+   "answer_full": "1st century BC. He crossed in 49 BC and was killed in 44 BC.",
+   "clues": {
+    "shape": "___ _______ __",
+    "initials": "1__ c______ B_"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-12",
-   "cat": "Ancient History",
-   "q": "Hadrian's Wall marked the northern frontier of which empire, and was it begun in the 1st, 2nd or 3rd century AD?",
-   "a": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138."
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Hadrian's Wall marked the northern frontier of which empire, and was it begun in the 1st, 2nd or 3rd century AD?",
+   "answer": "Roman Empire, 2nd century AD",
+   "explanation": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
+   "answer_full": "The Roman Empire, 2nd century AD (begun about AD 122). Emperor Hadrian reigned AD 117 to 138.",
+   "clues": {
+    "shape": "_____ ______, ___ _______ __",
+    "initials": "R____ E_____, 2__ c______ A_"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "R",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-13",
-   "cat": "Ancient History",
-   "q": "The ancient Olympic Games were held at Olympia, with a gap between Games that gave Greeks a unit of time called an Olympiad. Was the gap 2, 4 or 5 years?",
-   "a": "4 years. The modern Games kept the same rhythm."
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "The ancient Olympic Games were held at Olympia, with a gap between Games that gave Greeks a unit of time called an Olympiad. Was the gap 2, 4 or 5 years?",
+   "answer": "4 years",
+   "explanation": "4 years. The modern Games kept the same rhythm.",
+   "answer_full": "4 years. The modern Games kept the same rhythm.",
+   "clues": {
+    "shape": "_ _____",
+    "initials": "4 y____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "Y",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-14",
-   "cat": "History",
-   "q": "An empire ruled from Constantinople until 1453 is named after the city's original Greek name. What do historians call it?",
-   "a": "The Byzantine Empire, from Byzantium."
+   "object": "question",
+   "batch": 1,
+   "type": "History",
+   "type_slug": "history",
+   "question": "An empire ruled from Constantinople until 1453 is named after the city's original Greek name. What do historians call it?",
+   "answer": "Byzantine Empire",
+   "explanation": "The Byzantine Empire, from Byzantium.",
+   "answer_full": "The Byzantine Empire, from Byzantium.",
+   "clues": {
+    "shape": "_________ ______",
+    "initials": "B________ E_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "B",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-15",
-   "cat": "History",
-   "q": "In which decade did the Berlin Wall fall: the 1970s, 1980s or 1990s? Hint: Germany reunified the following year.",
-   "a": "The 1980s (November 1989). Reunification came in October 1990."
+   "object": "question",
+   "batch": 1,
+   "type": "History",
+   "type_slug": "history",
+   "question": "In which decade did the Berlin Wall fall: the 1970s, 1980s or 1990s? Hint: Germany reunified the following year.",
+   "answer": "1980s",
+   "explanation": "The 1980s (November 1989). Reunification came in October 1990.",
+   "answer_full": "The 1980s (November 1989). Reunification came in October 1990.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-16",
-   "cat": "Science & Nature",
-   "q": "Seven planets are named after Roman or Greek gods. Which planet is the odd one out?",
-   "a": "Earth. Its name comes from Old English words for ground and soil."
+   "object": "question",
+   "batch": 1,
+   "type": "Science & Nature",
+   "type_slug": "science-and-nature",
+   "question": "Seven planets are named after Roman or Greek gods. Which planet is the odd one out?",
+   "answer": "Earth",
+   "explanation": "Earth. Its name comes from Old English words for ground and soil.",
+   "answer_full": "Earth. Its name comes from Old English words for ground and soil.",
+   "clues": {
+    "shape": "_____",
+    "initials": "E____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "E",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-17",
-   "cat": "Science & Nature",
-   "q": "The chemical symbol Au comes from a Latin word that also gives us 'aurora' and 'aureate', meaning golden. Which element is it?",
-   "a": "Gold, from the Latin aurum."
+   "object": "question",
+   "batch": 1,
+   "type": "Science & Nature",
+   "type_slug": "science-and-nature",
+   "question": "The chemical symbol Au comes from a Latin word that also gives us 'aurora' and 'aureate', meaning golden. Which element is it?",
+   "answer": "Gold",
+   "explanation": "Gold, from the Latin aurum.",
+   "answer_full": "Gold, from the Latin aurum.",
+   "clues": {
+    "shape": "____",
+    "initials": "G___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-18",
-   "cat": "Words & Language",
-   "q": "Kindergarten, angst, wanderlust and doppelgänger were all borrowed into English from the same language. Which one?",
-   "a": "German. Doppelgänger keeps its umlaut, which is the tell."
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "Kindergarten, angst, wanderlust and doppelgänger were all borrowed into English from the same language. Which one?",
+   "answer": "German",
+   "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "clues": {
+    "shape": "______",
+    "initials": "G_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-19",
-   "cat": "Words & Language",
-   "q": "SCUBA is an acronym. Its letters describe kit that lets a diver breathe underwater without a surface hose. What does it stand for?",
-   "a": "Self-Contained Underwater Breathing Apparatus."
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "SCUBA is an acronym. Its letters describe kit that lets a diver breathe underwater without a surface hose. What does it stand for?",
+   "answer": "Self-Contained Underwater Breathing Apparatus",
+   "explanation": "Self-Contained Underwater Breathing Apparatus.",
+   "answer_full": "Self-Contained Underwater Breathing Apparatus.",
+   "clues": {
+    "shape": "____-_________ __________ _________ _________",
+    "initials": "S___-C________ U_________ B________ A________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-20",
-   "cat": "Music",
-   "q": "The Beatles formed in an English port city whose first five letters spell a body organ. Name the city.",
-   "a": "Liverpool, which begins with LIVER."
+   "object": "question",
+   "batch": 1,
+   "type": "Music",
+   "type_slug": "music",
+   "question": "The Beatles formed in an English port city whose first five letters spell a body organ. Name the city.",
+   "answer": "Liverpool",
+   "explanation": "Liverpool, which begins with LIVER.",
+   "answer_full": "Liverpool, which begins with LIVER.",
+   "clues": {
+    "shape": "_________",
+    "initials": "L________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "L",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-21",
-   "cat": "Film & TV",
-   "q": "The first Star Wars film was released the same year Elvis Presley died. Was it the 1960s, 1970s or 1980s?",
-   "a": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened."
+   "object": "question",
+   "batch": 1,
+   "type": "Film & TV",
+   "type_slug": "film-and-tv",
+   "question": "The first Star Wars film was released the same year Elvis Presley died. Was it the 1960s, 1970s or 1980s?",
+   "answer": "1970s",
+   "explanation": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "answer_full": "The 1970s (1977). Elvis died in August 1977, three months after Star Wars opened.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-22",
-   "cat": "Sport",
-   "q": "In tennis a score of zero has a name popularly said to come from the French word for egg, since an egg looks like a zero. What is it?",
-   "a": "Love, said to come from l'oeuf. The story is popular but disputed."
+   "object": "question",
+   "batch": 1,
+   "type": "Sport",
+   "type_slug": "sport",
+   "question": "In tennis a score of zero has a name popularly said to come from the French word for egg, since an egg looks like a zero. What is it?",
+   "answer": "Love",
+   "explanation": "Love, said to come from l'oeuf. The story is popular but disputed.",
+   "answer_full": "Love, said to come from l'oeuf. The story is popular but disputed.",
+   "clues": {
+    "shape": "____",
+    "initials": "L___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "L",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-23",
-   "cat": "Food & Drink",
-   "q": "Parmesan cheese, Parma ham and balsamic vinegar of Modena all come from one double-barrelled Italian region beginning with E. Name it.",
-   "a": "Emilia-Romagna, home to Parma and Modena."
+   "object": "question",
+   "batch": 1,
+   "type": "Food & Drink",
+   "type_slug": "food-and-drink",
+   "question": "Parmesan cheese, Parma ham and balsamic vinegar of Modena all come from one double-barrelled Italian region beginning with E. Name it.",
+   "answer": "Emilia-Romagna",
+   "explanation": "Emilia-Romagna, home to Parma and Modena.",
+   "answer_full": "Emilia-Romagna, home to Parma and Modena.",
+   "clues": {
+    "shape": "______-_______",
+    "initials": "E_____-R______"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "E",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-24",
-   "cat": "Art & Books",
-   "q": "Pride and Prejudice and Sense and Sensibility share a 'Something and Something' title pattern. Which Regency-era novelist wrote both?",
-   "a": "Jane Austen."
+   "object": "question",
+   "batch": 1,
+   "type": "Art & Books",
+   "type_slug": "art-and-books",
+   "question": "Pride and Prejudice and Sense and Sensibility share a 'Something and Something' title pattern. Which Regency-era novelist wrote both?",
+   "answer": "Jane Austen",
+   "explanation": "Jane Austen.",
+   "answer_full": "Jane Austen.",
+   "clues": {
+    "shape": "____ ______",
+    "initials": "J___ A_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
   },
   {
    "id": "d0001-25",
-   "cat": "People & Politics",
-   "q": "The G7 group of major economies has only one member in Asia. Which country is it?",
-   "a": "Japan. The other six are in Europe and North America."
+   "object": "question",
+   "batch": 1,
+   "type": "People & Politics",
+   "type_slug": "people-and-politics",
+   "question": "The G7 group of major economies has only one member in Asia. Which country is it?",
+   "answer": "Japan",
+   "explanation": "Japan. The other six are in Europe and North America.",
+   "answer_full": "Japan. The other six are in Europe and North America.",
+   "clues": {
+    "shape": "_____",
+    "initials": "J____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
   }
  ]
 }

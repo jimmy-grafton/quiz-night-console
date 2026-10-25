@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "W",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/W.json",
+ "data": [
+  {
+   "id": "d0001-5",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "At Khartoum two great rivers meet, named for two different colours. Name both, and the single river they become.",
+   "answer": "White Nile and Blue Nile",
+   "explanation": "The White Nile and the Blue Nile, which become the Nile.",
+   "answer_full": "The White Nile and the Blue Nile, which become the Nile.",
+   "clues": {
+    "shape": "_____ ____ ___ ____ ____",
+    "initials": "W____ N___ a__ B___ N___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "W",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

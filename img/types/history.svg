@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="History">
+<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>
+<rect class="bg" width="600" height="400"/>
+<line class="g" x1="60" y1="210" x2="540" y2="210"/>
+<line class="g" x1="60" y1="176" x2="60" y2="244"/>
+<line class="g" x1="80" y1="196" x2="80" y2="224"/>
+<line class="g" x1="100" y1="196" x2="100" y2="224"/>
+<line class="g" x1="120" y1="196" x2="120" y2="224"/>
+<line class="g" x1="140" y1="196" x2="140" y2="224"/>
+<line class="g" x1="160" y1="176" x2="160" y2="244"/>
+<line class="g" x1="180" y1="196" x2="180" y2="224"/>
+<line class="g" x1="200" y1="196" x2="200" y2="224"/>
+<line class="g" x1="220" y1="196" x2="220" y2="224"/>
+<line class="g" x1="240" y1="196" x2="240" y2="224"/>
+<line class="g" x1="260" y1="176" x2="260" y2="244"/>
+<line class="g" x1="280" y1="196" x2="280" y2="224"/>
+<line class="g" x1="300" y1="196" x2="300" y2="224"/>
+<line class="g" x1="320" y1="196" x2="320" y2="224"/>
+<line class="g" x1="340" y1="196" x2="340" y2="224"/>
+<line class="g" x1="360" y1="176" x2="360" y2="244"/>
+<line class="g" x1="380" y1="196" x2="380" y2="224"/>
+<line class="g" x1="400" y1="196" x2="400" y2="224"/>
+<line class="g" x1="420" y1="196" x2="420" y2="224"/>
+<line class="g" x1="440" y1="196" x2="440" y2="224"/>
+<line class="g" x1="460" y1="176" x2="460" y2="244"/>
+<line class="g" x1="480" y1="196" x2="480" y2="224"/>
+<line class="g" x1="500" y1="196" x2="500" y2="224"/>
+<line class="g" x1="520" y1="196" x2="520" y2="224"/>
+<line class="g" x1="540" y1="196" x2="540" y2="224"/>
+<circle class="h" cx="380" cy="210" r="10"/>
+</svg>

@@ -1,0 +1,74 @@
+{
+ "object": "list",
+ "count": 3,
+ "letter": "G",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/G.json",
+ "data": [
+  {
+   "id": "d0001-9",
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "Of the Seven Wonders of the Ancient World, just one still stands, and it was also the oldest of them. Which?",
+   "answer": "Great Pyramid of Giza",
+   "explanation": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
+   "answer_full": "The Great Pyramid of Giza. The oldest wonder outlasting the rest is the giveaway.",
+   "clues": {
+    "shape": "_____ _______ __ ____",
+    "initials": "G____ P______ o_ G___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-17",
+   "object": "question",
+   "batch": 1,
+   "type": "Science & Nature",
+   "type_slug": "science-and-nature",
+   "question": "The chemical symbol Au comes from a Latin word that also gives us 'aurora' and 'aureate', meaning golden. Which element is it?",
+   "answer": "Gold",
+   "explanation": "Gold, from the Latin aurum.",
+   "answer_full": "Gold, from the Latin aurum.",
+   "clues": {
+    "shape": "____",
+    "initials": "G___"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-18",
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "Kindergarten, angst, wanderlust and doppelgänger were all borrowed into English from the same language. Which one?",
+   "answer": "German",
+   "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "clues": {
+    "shape": "______",
+    "initials": "G_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

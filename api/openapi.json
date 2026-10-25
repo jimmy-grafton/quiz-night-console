@@ -1,0 +1,667 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Hot Quesadillas API",
+  "version": "1.0.0",
+  "summary": "Twenty-five questions you can work out, every Friday.",
+  "description": "Read-only JSON for every released batch of Hot Quesadillas trivia. Static files on GitHub Pages: no key, no auth, CORS open to any origin. A new batch is published every Friday at 00:00 Europe/London.",
+  "contact": {
+   "url": "https://jimmy-grafton.github.io/quiz-night-console/docs/"
+  },
+  "license": {
+   "name": "Questions \u00a9 Hot Quesadillas. Free for personal and non-commercial use with a link back."
+  }
+ },
+ "servers": [
+  {
+   "url": "https://jimmy-grafton.github.io/quiz-night-console"
+  }
+ ],
+ "tags": [
+  {
+   "name": "Batches"
+  },
+  {
+   "name": "Questions"
+  },
+  {
+   "name": "Extras"
+  }
+ ],
+ "paths": {
+  "/api/latest.json": {
+   "get": {
+    "operationId": "getLatestBatch",
+    "summary": "This week's batch",
+    "description": "The current batch with all 25 questions.",
+    "tags": [
+     "Batches"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Batch"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  },
+  "/api/batches.json": {
+   "get": {
+    "operationId": "listBatches",
+    "summary": "List batches",
+    "description": "Every released batch, newest first, without questions.",
+    "tags": [
+     "Batches"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/BatchSummary"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  },
+  "/api/batches/{number}.json": {
+   "get": {
+    "operationId": "getBatch",
+    "summary": "Retrieve a batch",
+    "description": "One batch in full.",
+    "tags": [
+     "Batches"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Batch"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    },
+    "parameters": [
+     {
+      "name": "number",
+      "in": "path",
+      "required": true,
+      "description": "Batch number, zero-padded to four digits (0001).",
+      "schema": {
+       "type": "string",
+       "pattern": "^[0-9]{4}$"
+      }
+     }
+    ]
+   }
+  },
+  "/api/questions.json": {
+   "get": {
+    "operationId": "listQuestions",
+    "summary": "List all questions",
+    "description": "Every released question across every batch, oldest first.",
+    "tags": [
+     "Questions"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Question"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  },
+  "/api/types.json": {
+   "get": {
+    "operationId": "listTypes",
+    "summary": "List question types",
+    "description": "The twelve question types with counts and links.",
+    "tags": [
+     "Questions"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Type"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  },
+  "/api/types/{slug}.json": {
+   "get": {
+    "operationId": "listQuestionsByType",
+    "summary": "Questions of one type",
+    "description": "Every released question of one type.",
+    "tags": [
+     "Questions"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Question"
+           }
+          },
+          "type": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    },
+    "parameters": [
+     {
+      "name": "slug",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "enum": [
+        "geography",
+        "ancient-history",
+        "history",
+        "science-and-nature",
+        "words-and-language",
+        "film-and-tv",
+        "music",
+        "sport",
+        "food-and-drink",
+        "art-and-books",
+        "people-and-politics",
+        "business-and-money"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "/api/letters/{letter}.json": {
+   "get": {
+    "operationId": "listQuestionsByLetter",
+    "summary": "Questions by answer letter",
+    "description": "Every released question whose answer starts with this letter. Good for alphabet rounds.",
+    "tags": [
+     "Questions"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Question"
+           }
+          },
+          "letter": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    },
+    "parameters": [
+     {
+      "name": "letter",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "pattern": "^[A-Z]$"
+      }
+     }
+    ]
+   }
+  },
+  "/api/daily.json": {
+   "get": {
+    "operationId": "listDaily",
+    "summary": "Question of the day",
+    "description": "The next fourteen days, one question per UTC day, the same for everyone.",
+    "tags": [
+     "Extras"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "required": [
+          "object",
+          "count",
+          "data"
+         ],
+         "properties": {
+          "object": {
+           "type": "string",
+           "const": "list"
+          },
+          "count": {
+           "type": "integer"
+          },
+          "url": {
+           "type": "string",
+           "format": "uri"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Daily"
+           }
+          },
+          "note": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  },
+  "/api/stats.json": {
+   "get": {
+    "operationId": "getStats",
+    "summary": "Stats",
+    "description": "Counts by type and answer letter.",
+    "tags": [
+     "Extras"
+    ],
+    "responses": {
+     "200": {
+      "description": "OK",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Stats"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": "Not found. Static hosting returns an HTML 404 page."
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "Question": {
+    "type": "object",
+    "required": [
+     "id",
+     "object",
+     "batch",
+     "type",
+     "question",
+     "answer",
+     "clues"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Stable unique ID.",
+      "examples": [
+       "d0001-1"
+      ]
+     },
+     "object": {
+      "type": "string",
+      "const": "question"
+     },
+     "batch": {
+      "type": "integer",
+      "description": "Batch number this question belongs to."
+     },
+     "type": {
+      "type": "string",
+      "description": "One of the twelve question types."
+     },
+     "type_slug": {
+      "type": "string"
+     },
+     "question": {
+      "type": "string",
+      "description": "The question, with its deductive clue built in."
+     },
+     "answer": {
+      "type": "string",
+      "description": "The short answer."
+     },
+     "explanation": {
+      "type": "string",
+      "description": "The answer with a hint showing how to reach it."
+     },
+     "answer_full": {
+      "type": "string"
+     },
+     "clues": {
+      "type": "object",
+      "properties": {
+       "shape": {
+        "type": "string",
+        "description": "Answer with every letter blanked."
+       },
+       "initials": {
+        "type": "string",
+        "description": "Answer with only first letters showing."
+       }
+      }
+     },
+     "heat": {
+      "type": "object",
+      "description": "Points available: 3 at full heat, 2 after the shape clue, 1 after the initials clue.",
+      "properties": {
+       "max": {
+        "type": "integer"
+       },
+       "with_shape_clue": {
+        "type": "integer"
+       },
+       "with_initials_clue": {
+        "type": "integer"
+       }
+      }
+     },
+     "letter": {
+      "type": "string",
+      "description": "First letter of the answer."
+     },
+     "released_at": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   },
+   "BatchSummary": {
+    "type": "object",
+    "properties": {
+     "object": {
+      "type": "string",
+      "const": "batch"
+     },
+     "number": {
+      "type": "integer"
+     },
+     "id": {
+      "type": "string"
+     },
+     "released_at": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "question_count": {
+      "type": "integer"
+     },
+     "types": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "max_heat": {
+      "type": "integer"
+     },
+     "url": {
+      "type": "string",
+      "format": "uri"
+     }
+    }
+   },
+   "Batch": {
+    "allOf": [
+     {
+      "$ref": "#/components/schemas/BatchSummary"
+     },
+     {
+      "type": "object",
+      "properties": {
+       "questions": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Question"
+        }
+       }
+      }
+     }
+    ]
+   },
+   "Type": {
+    "type": "object",
+    "properties": {
+     "object": {
+      "type": "string",
+      "const": "type"
+     },
+     "name": {
+      "type": "string"
+     },
+     "slug": {
+      "type": "string"
+     },
+     "count": {
+      "type": "integer"
+     },
+     "url": {
+      "type": "string",
+      "format": "uri"
+     }
+    }
+   },
+   "Daily": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string",
+      "format": "date"
+     },
+     "question": {
+      "$ref": "#/components/schemas/Question"
+     }
+    }
+   },
+   "Stats": {
+    "type": "object",
+    "properties": {
+     "object": {
+      "type": "string",
+      "const": "stats"
+     },
+     "batches": {
+      "type": "integer"
+     },
+     "questions": {
+      "type": "integer"
+     },
+     "types": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "letters": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "generated_at": {
+      "type": "string",
+      "format": "date-time"
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "object": "list",
+ "count": 3,
+ "letter": "J",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/J.json",
+ "data": [
+  {
+   "id": "d0001-1",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Only three UN member countries have English names beginning with J. One is an island nation in East Asia, one is in the Caribbean, and one borders the Dead Sea. Name all three.",
+   "answer": "Japan, Jamaica, Jordan",
+   "explanation": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "answer_full": "Japan, Jamaica, Jordan. Each clue rules in one region.",
+   "clues": {
+    "shape": "_____, _______, ______",
+    "initials": "J____, J______, J_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-24",
+   "object": "question",
+   "batch": 1,
+   "type": "Art & Books",
+   "type_slug": "art-and-books",
+   "question": "Pride and Prejudice and Sense and Sensibility share a 'Something and Something' title pattern. Which Regency-era novelist wrote both?",
+   "answer": "Jane Austen",
+   "explanation": "Jane Austen.",
+   "answer_full": "Jane Austen.",
+   "clues": {
+    "shape": "____ ______",
+    "initials": "J___ A_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-25",
+   "object": "question",
+   "batch": 1,
+   "type": "People & Politics",
+   "type_slug": "people-and-politics",
+   "question": "The G7 group of major economies has only one member in Asia. Which country is it?",
+   "answer": "Japan",
+   "explanation": "Japan. The other six are in Europe and North America.",
+   "answer_full": "Japan. The other six are in Europe and North America.",
+   "clues": {
+    "shape": "_____",
+    "initials": "J____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

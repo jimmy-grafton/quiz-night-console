@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "A",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/A.json",
+ "data": [
+  {
+   "id": "d0001-10",
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "The Rosetta Stone repeats one decree in three scripts. Two are Egyptian, hieroglyphic and Demotic. Given who ruled Egypt after Alexander, what is the third?",
+   "answer": "Ancient Greek",
+   "explanation": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
+   "answer_full": "Ancient Greek. The Ptolemies, Greek-speaking successors of Alexander, ruled Egypt.",
+   "clues": {
+    "shape": "_______ _____",
+    "initials": "A______ G____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "A",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

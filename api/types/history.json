@@ -1,0 +1,52 @@
+{
+ "object": "list",
+ "count": 2,
+ "type": "History",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/history.json",
+ "data": [
+  {
+   "id": "d0001-14",
+   "object": "question",
+   "batch": 1,
+   "type": "History",
+   "type_slug": "history",
+   "question": "An empire ruled from Constantinople until 1453 is named after the city's original Greek name. What do historians call it?",
+   "answer": "Byzantine Empire",
+   "explanation": "The Byzantine Empire, from Byzantium.",
+   "answer_full": "The Byzantine Empire, from Byzantium.",
+   "clues": {
+    "shape": "_________ ______",
+    "initials": "B________ E_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "B",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-15",
+   "object": "question",
+   "batch": 1,
+   "type": "History",
+   "type_slug": "history",
+   "question": "In which decade did the Berlin Wall fall: the 1970s, 1980s or 1990s? Hint: Germany reunified the following year.",
+   "answer": "1980s",
+   "explanation": "The 1980s (November 1989). Reunification came in October 1990.",
+   "answer_full": "The 1980s (November 1989). Reunification came in October 1990.",
+   "clues": {
+    "shape": "_____",
+    "initials": "1____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

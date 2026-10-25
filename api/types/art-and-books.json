@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "type": "Art & Books",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/art-and-books.json",
+ "data": [
+  {
+   "id": "d0001-24",
+   "object": "question",
+   "batch": 1,
+   "type": "Art & Books",
+   "type_slug": "art-and-books",
+   "question": "Pride and Prejudice and Sense and Sensibility share a 'Something and Something' title pattern. Which Regency-era novelist wrote both?",
+   "answer": "Jane Austen",
+   "explanation": "Jane Austen.",
+   "answer_full": "Jane Austen.",
+   "clues": {
+    "shape": "____ ______",
+    "initials": "J___ A_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "J",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

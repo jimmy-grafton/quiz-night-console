@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "Y",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/Y.json",
+ "data": [
+  {
+   "id": "d0001-13",
+   "object": "question",
+   "batch": 1,
+   "type": "Ancient History",
+   "type_slug": "ancient-history",
+   "question": "The ancient Olympic Games were held at Olympia, with a gap between Games that gave Greeks a unit of time called an Olympiad. Was the gap 2, 4 or 5 years?",
+   "answer": "4 years",
+   "explanation": "4 years. The modern Games kept the same rhythm.",
+   "answer_full": "4 years. The modern Games kept the same rhythm.",
+   "clues": {
+    "shape": "_ _____",
+    "initials": "4 y____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "Y",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

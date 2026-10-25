@@ -1,0 +1,52 @@
+{
+ "object": "list",
+ "count": 2,
+ "type": "Words & Language",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/types/words-and-language.json",
+ "data": [
+  {
+   "id": "d0001-18",
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "Kindergarten, angst, wanderlust and doppelgänger were all borrowed into English from the same language. Which one?",
+   "answer": "German",
+   "explanation": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "answer_full": "German. Doppelgänger keeps its umlaut, which is the tell.",
+   "clues": {
+    "shape": "______",
+    "initials": "G_____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "G",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  },
+  {
+   "id": "d0001-19",
+   "object": "question",
+   "batch": 1,
+   "type": "Words & Language",
+   "type_slug": "words-and-language",
+   "question": "SCUBA is an acronym. Its letters describe kit that lets a diver breathe underwater without a surface hose. What does it stand for?",
+   "answer": "Self-Contained Underwater Breathing Apparatus",
+   "explanation": "Self-Contained Underwater Breathing Apparatus.",
+   "answer_full": "Self-Contained Underwater Breathing Apparatus.",
+   "clues": {
+    "shape": "____-_________ __________ _________ _________",
+    "initials": "S___-C________ U_________ B________ A________"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "S",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "object": "list",
+ "count": 1,
+ "letter": "M",
+ "url": "https://jimmy-grafton.github.io/quiz-night-console/api/letters/M.json",
+ "data": [
+  {
+   "id": "d0001-4",
+   "object": "question",
+   "batch": 1,
+   "type": "Geography",
+   "type_slug": "geography",
+   "question": "Of the fifty US states, only one has a name of a single syllable. It sits in the far north-east corner. Which?",
+   "answer": "Maine",
+   "explanation": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "answer_full": "Maine. Say the north-eastern states aloud and only one is a single beat.",
+   "clues": {
+    "shape": "_____",
+    "initials": "M____"
+   },
+   "heat": {
+    "max": 3,
+    "with_shape_clue": 2,
+    "with_initials_clue": 1
+   },
+   "letter": "M",
+   "released_at": "2026-10-22T23:00:00.000Z"
+  }
+ ]
+}
