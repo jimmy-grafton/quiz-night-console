@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
+</head>
+<body>
+<title>Quiz Night Console</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: weekly drops — drop header with date, type dropdown, question card centre stage, scoresheet tiles; Archive is a ledger of every drop; Settings holds generation */
+:root {
+  --bg: #eef2f1; --surface: #ffffff; --ink: #14211f; --muted: #5a6b68; --line: #d3dcda;
+  --accent: #1f6f63; --accent-ink: #ffffff; --accent-soft: #d8ebe7; --gold: #a8710a;
+  --good: #2e7d4f; --bad: #b3412e; --tile: #e2e9e7;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1716; --surface: #172220; --ink: #e6efec; --muted: #93a6a2; --line: #2a3936;
+  --accent: #4fb3a2; --accent-ink: #0b1312; --accent-soft: #1d3a35; --gold: #e8b04a; --good: #5cc488; --bad: #e57a66; --tile: #1f2c2a;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1716; --surface: #172220; --ink: #e6efec; --muted: #93a6a2; --line: #2a3936;
+  --accent: #4fb3a2; --accent-ink: #0b1312; --accent-soft: #1d3a35; --gold: #e8b04a; --good: #5cc488; --bad: #e57a66; --tile: #1f2c2a;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 40px }
+.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 18px }
+.stack { display: grid; gap: 16px }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.05; margin: 0; letter-spacing: -0.01em }
+.sub { color: var(--muted); font-size: .9rem; margin: 4px 0 0 }
+.score { font-family: var(--mono); font-variant-numeric: tabular-nums; display: flex; gap: 14px }
+.score b { font-size: 1.5rem; font-family: var(--display); font-weight: 800; color: var(--accent) }
+.score span { display: grid; justify-items: end; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em }
+
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.bar .grow { flex: 1 }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface) }
+.seg button { border: 0; border-radius: 0; padding: 9px 14px }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg) }
+.next-drop { font-family: var(--mono); font-size: .8rem; color: var(--muted) }
+.next-drop b { color: var(--gold); font-weight: 500 }
+
+.drophead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px }
+.drophead h2 { font-family: var(--display); font-weight: 800; font-size: 1.25rem; margin: 0 }
+.drophead .date { color: var(--muted); font-size: .9rem }
+.drophead .spacer { flex: 1 }
+.iconbtn { padding: 7px 11px }
+
+.filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+.typepick { display: inline-flex; gap: 8px; align-items: center; font-size: .85rem; color: var(--muted) }
+.typepick select { font: 700 .95rem var(--body); color: var(--ink); background-color: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 34px 9px 12px; max-width: 100%;
+  appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: right 16px center, right 11px center; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer }
+.typepick select:hover { border-color: var(--accent) }
+.scope { display: inline-flex; gap: 6px; align-items: center; font-size: .85rem; color: var(--muted) }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(20px, 4vw, 36px); display: grid; gap: 16px; min-height: 280px; align-content: start }
+.qnum { font-family: var(--mono); font-size: .78rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap }
+.cat { color: var(--accent) }
+.question { font-family: var(--display); font-weight: 500; font-size: clamp(1.25rem, 3vw, 1.7rem); line-height: 1.3; margin: 0; text-wrap: pretty; max-width: 40ch }
+.answer { border-top: 1px dashed var(--line); padding-top: 14px; display: grid; gap: 6px }
+.label { font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent) }
+.answer p { margin: 0; font-size: 1.08rem; max-width: 62ch }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+button { font: 700 .95rem var(--body); border-radius: 10px; padding: 11px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer }
+button:hover { border-color: var(--accent) }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent) }
+button.good { color: var(--good) } button.bad { color: var(--bad) }
+button[disabled] { opacity: .45; cursor: default }
+.controls .spacer { flex: 1 }
+kbd { font-family: var(--mono); font-size: .72rem; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; color: var(--muted) }
+
+.sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 6px }
+.tile { font: 500 .8rem var(--mono); font-variant-numeric: tabular-nums; aspect-ratio: 1; max-width: 100%; border-radius: 8px; border: 1px solid transparent; background: var(--tile); color: var(--muted); display: grid; place-items: center; padding: 0 }
+.tile.current { border-color: var(--ink); color: var(--ink) }
+.tile.ok { background: var(--good); color: var(--surface) }
+.tile.no { background: var(--bad); color: var(--surface) }
+.hint { color: var(--muted); font-size: .85rem; margin: 0 }
+
+.ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden }
+.row { display: grid; grid-template-columns: 4.5rem 1fr auto auto; gap: 12px; align-items: center; padding: 14px 18px; border: 0; border-top: 1px solid var(--line); width: 100%; background: none; border-radius: 0; text-align: left; font-weight: 400 }
+.row:first-child { border-top: 0 }
+.row:hover { background: var(--accent-soft) }
+.rno { font-family: var(--display); font-weight: 800; font-size: 1.05rem }
+.meta { min-width: 0; display: grid }
+.meta small { color: var(--muted) }
+.sc { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .85rem; color: var(--muted) }
+.pill { font: 500 .7rem var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; background: var(--tile); color: var(--muted); white-space: nowrap }
+.pill.live { background: var(--accent); color: var(--accent-ink) }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 16px }
+.panel h3 { font-family: var(--display); font-weight: 800; font-size: 1.1rem; margin: 0 }
+.setrow { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 14px }
+.setcopy { display: grid; gap: 2px; min-width: 0; flex: 1 1 280px }
+.setcopy small { color: var(--muted) }
+.btns { display: flex; flex-wrap: wrap; gap: 8px }
+.status { margin: 0; font-size: .9rem; color: var(--muted); min-height: 1.4em }
+.status.err { color: var(--bad) }
+.notice { background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; padding: 28px; display: grid; gap: 8px }
+.notice h2 { font-family: var(--display); font-weight: 800; font-size: 1.2rem; margin: 0 }
+.notice p { margin: 0; color: var(--muted); max-width: 60ch }
+@media (max-width: 520px) { .row { grid-template-columns: 3.2rem 1fr auto } .sc { display: none } }
+@media (prefers-reduced-motion: no-preference) { .answer { animation: rise .25s ease-out } @keyframes rise { from { transform: translateY(6px); opacity: .4 } } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Quiz Night Console</h1>
+      <p class="sub">A new drop of 25 freshly written questions every Friday. Scores save in this browser.</p>
+    </div>
+    <div class="score" aria-live="polite">
+      <span><b id="correct">0</b>correct</span>
+      <span><b id="marked">0</b>marked</span>
+      <span><b id="elapsed">–</b>time</span>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="View">
+      <button id="v-play" type="button" aria-pressed="true">This week</button>
+      <button id="v-archive" type="button" aria-pressed="false">Archive</button>
+    </div>
+    <span class="next-drop grow" id="nextdrop"></span>
+    
+  </div>
+
+
+  <section id="loading" class="notice"><h2>Loading drops</h2><p>Fetching this week's questions.</p></section>
+  <section id="signedout" class="notice" hidden><h2>Couldn't load the drops</h2><p>Check your connection and reload the page.</p></section>
+  <section id="nodrops" class="notice" hidden><h2>No drop yet</h2><p>The first drop hasn't been written yet. It will appear here on Friday.</p></section>
+
+  <section id="play" class="stack" hidden>
+    <div class="drophead">
+      <h2 id="dtitle">Drop 1</h2>
+      <span class="date" id="ddate"></span>
+      <span class="spacer"></span>
+      <button class="iconbtn" id="dprev" type="button" aria-label="Earlier drop">← Earlier</button>
+      <button class="iconbtn" id="dnext" type="button" aria-label="Later drop">Later →</button>
+    </div>
+    <div class="filters">
+      <label class="typepick" for="typesel">Type <select id="typesel"></select></label>
+      <label class="scope"><input type="checkbox" id="allscope"> Search every drop</label>
+    </div>
+    <section class="card" aria-live="polite">
+      <div class="qnum"><span id="pos"></span><span class="cat" id="cat"></span></div>
+      <p class="question" id="q"></p>
+      <div class="answer" id="ans" hidden><span class="label">Answer</span><p id="a"></p></div>
+    </section>
+    <div class="controls">
+      <button id="prev" type="button">← Back</button>
+      <button id="reveal" class="primary" type="button">Reveal answer</button>
+      <button id="right" class="good" type="button">Got it</button>
+      <button id="wrong" class="bad" type="button">Missed it</button>
+      <span class="spacer"></span>
+      <button id="next" type="button">Next →</button>
+    </div>
+    <div class="sheet" id="sheet" aria-label="Scoresheet"></div>
+    <p class="hint"><kbd>Space</kbd> reveal · <kbd>Y</kbd>/<kbd>N</kbd> mark · <kbd>←</kbd><kbd>→</kbd> move. Click a tile to jump. The clock starts on your first reveal or mark and stops when every question in the drop is marked.</p>
+  </section>
+
+  <section id="archive" hidden><div class="ledger" id="ledger"></div></section>
+</div>
+
+<script>
+const SIZE = 25;
+const TYPES = ["Geography", "Ancient History", "History", "Science & Nature", "Words & Language", "Film & TV", "Music", "Sport", "Food & Drink", "Art & Books", "People & Politics", "Business & Money"];
+const STYLE = `House style for every question:
+- Questions are discovered, not simply answered: a player should be able to reason to the answer, not only recall it.
+- Avoid pinpoint recall. Prefer ranges, decades, multiple choice or patterns ("Which decade...", "Is it A, B or C?").
+- Every question carries a deductive clue an ordinary person can unlock: lettering patterns, word structure, elimination or context.
+- Lean on geography (especially lettering, e.g. "Name the three countries that begin with J") and ancient history, but cover the other types too.
+- Facts must be correct and stable. No current-events questions whose answer could change.
+- Question under 45 words. Answer states the answer first, then a short hint showing how it can be deduced.`;
+const $ = id => document.getElementById(id);
+const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+const fridayOnOrBefore = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() - ((x.getDay() + 2) % 7)); return x };
+
+let db = null, user = null, sample = null, uid = null, canEdit = false;
+let drops = [], marks = {}, marksRef = null, writing = Promise.resolve();
+let runs = {}, view = 'play', dropN = null, cat = 'All', all = false, i = 0, shown = false, ctl = null, advancing = false;
+
+const released = () => drops.filter(d => new Date(d.releaseAt) <= new Date());
+const current = () => released().find(d => d.n === dropN) || released()[0];
+const pool = () => all ? released().flatMap(d => d.questions.map(q => ({ ...q, drop: d.n }))) : (current()?.questions || []).map(q => ({ ...q, drop: current().n }));
+const list = () => pool().filter(x => cat === 'All' || x.cat === cat);
+
+function show(id) { ['loading', 'signedout', 'nodrops', 'play', 'archive'].forEach(s => $(s).hidden = s !== id) }
+function stopTimer() {}
+const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return h ? `${h}h ${m}m` : `${m}:${String(x).padStart(2, '0')}` };
+function runTime(d) { const r = runs[d?.id]; if (!r?.start) return null; return (r.end || Date.now()) - r.start }
+function renderElapsed() { const d = all ? null : current(); const ms = d ? runTime(d) : null; $('elapsed').textContent = ms == null ? '–' : dur(ms) }
+function scoreOf(items) { const m = items.filter(x => marks[x.id] !== undefined); return [m.filter(x => marks[x.id] === true).length, m.length] }
+
+function renderPlay() {
+  const R = released();
+  if (!R.length) { show('nodrops'); return }
+  show('play');
+  const d = current(); dropN = d.n;
+  const idx = R.indexOf(d);
+  $('dtitle').textContent = all ? 'Every drop' : `Drop ${d.n}`;
+  $('ddate').textContent = all ? `${R.length} drops · ${pool().length} questions` : `${fmt(new Date(d.releaseAt))} · ${d.questions.length} questions`;
+  $('dprev').disabled = all || idx >= R.length - 1;
+  $('dnext').disabled = all || idx <= 0;
+  const p = pool(), counts = {};
+  p.forEach(x => counts[x.cat] = (counts[x.cat] || 0) + 1);
+  const cats = ['All', ...Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))];
+  if (!cats.includes(cat)) cat = 'All';
+  $('typesel').innerHTML = '';
+  cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = `${c === 'All' ? 'All types' : c} (${c === 'All' ? p.length : counts[c]})`; o.selected = c === cat; $('typesel').appendChild(o) });
+  const L = list();
+  if (i >= L.length) i = Math.max(0, L.length - 1);
+  const item = L[i];
+  $('sheet').innerHTML = '';
+  L.forEach((x, k) => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.className = 'tile' + (k === i ? ' current' : '') + (marks[x.id] === true ? ' ok' : marks[x.id] === false ? ' no' : '');
+    b.textContent = k + 1; b.setAttribute('aria-label', 'Question ' + (k + 1)); b.onclick = () => go(k);
+    $('sheet').appendChild(b);
+  });
+  const [c, m] = scoreOf(L); $('correct').textContent = c; $('marked').textContent = m; renderElapsed();
+  $('right').disabled = $('wrong').disabled = !item;
+  if (!item) { $('q').textContent = 'No questions of this type here yet.'; $('pos').textContent = ''; $('cat').textContent = ''; $('ans').hidden = true; return }
+  $('pos').textContent = all ? `${i + 1} of ${L.length} · drop ${item.drop}` : `Question ${i + 1} of ${L.length}`;
+  $('cat').textContent = item.cat;
+  $('q').textContent = item.q; $('a').textContent = item.a;
+  $('ans').hidden = !shown;
+  $('reveal').textContent = shown ? 'Hide answer' : 'Reveal answer';
+  $('prev').disabled = i === 0; $('next').disabled = i >= L.length - 1;
+}
+
+function renderArchive() {
+  show('archive');
+  const R = released();
+  $('ledger').innerHTML = '';
+  R.forEach((d, k) => {
+    const r = document.createElement('button'); r.type = 'button'; r.className = 'row';
+    const [got, m] = scoreOf(d.questions);
+    r.innerHTML = `<span class="rno"></span><span class="meta"><span></span><small></small></span><span class="sc"></span><span class="pill ${k === 0 ? 'live' : ''}">${k === 0 ? 'This week' : 'Released'}</span>`;
+    r.querySelector('.rno').textContent = '#' + d.n;
+    r.querySelector('.meta span').textContent = fmt(new Date(d.releaseAt));
+    const cats = [...new Set(d.questions.map(x => x.cat))];
+    r.querySelector('.meta small').textContent = `${d.questions.length} questions · ${cats.slice(0, 3).join(', ')}${cats.length > 3 ? ` +${cats.length - 3} more` : ''}`;
+    const rt = runs[d.id]?.end ? ` in ${dur(runs[d.id].end - runs[d.id].start)}` : '';
+    r.querySelector('.sc').textContent = m ? `${got}/${m} right${rt}` : 'not played';
+    r.onclick = () => { dropN = d.n; all = false; $('allscope').checked = false; cat = 'All'; i = 0; shown = false; setView('play') };
+    $('ledger').appendChild(r);
+  });
+  const allQ = R.flatMap(d => d.questions); const [c, m] = scoreOf(allQ);
+  $('correct').textContent = c; $('marked').textContent = m; $('elapsed').textContent = '–';
+}
+
+function render() { if (!db) return; view === 'play' ? renderPlay() : renderArchive(); renderNext() }
+function setView(v) { view = v; $('v-play').setAttribute('aria-pressed', v === 'play'); $('v-archive').setAttribute('aria-pressed', v === 'archive'); stopTimer(); render() }
+function go(n) { const L = list(); if (n < 0 || n >= L.length) return; i = n; shown = false; stopTimer(); renderPlay() }
+function changeDrop(step) { const R = released(); const k = R.indexOf(current()) + step; if (k < 0 || k >= R.length) return; dropN = R[k].n; cat = 'All'; i = 0; shown = false; stopTimer(); renderPlay() }
+
+function saveMarks() { try { localStorage.setItem('qnc-static', JSON.stringify({ marks, runs })) } catch (e) {} }
+function mark(v) {
+  const L = list(); const item = L[i];
+  if (!item || advancing) return;
+  advancing = true;
+  startRun();
+  marks[item.id] = v;
+  const d = drops.find(x => x.n === item.drop), r = runs[d.id];
+  if (r?.start && !r.end && d.questions.every(q => marks[q.id] !== undefined)) runs[d.id] = { ...r, end: Date.now() };
+  saveMarks();
+  if (i < L.length - 1) { i++; shown = false }
+  renderPlay();
+  advancing = false;
+}
+function startRun() { if (all) return; const d = current(); if (d && !runs[d.id]?.start) { runs[d.id] = { start: Date.now() }; saveMarks() } }
+
+function renderNext() {
+  const next = fridayOnOrBefore(new Date()); next.setDate(next.getDate() + 7);
+  const ms = next - new Date(), dd = Math.floor(ms / 864e5), hh = Math.floor(ms / 36e5) % 24, mm = Math.floor(ms / 6e4) % 60;
+  $('nextdrop').innerHTML = 'Next drop <b></b>';
+  $('nextdrop').querySelector('b').textContent = `${fmt(next)} · in ${dd}d ${hh}h ${mm}m`;
+}
+
+// ---- wiring ----
+$('v-play').onclick = () => setView('play'); $('v-archive').onclick = () => setView('archive');
+$('dprev').onclick = () => changeDrop(1); $('dnext').onclick = () => changeDrop(-1);
+$('typesel').onchange = e => { cat = e.target.value; i = 0; shown = false; stopTimer(); renderPlay() };
+$('allscope').onchange = e => { all = e.target.checked; i = 0; shown = false; stopTimer(); renderPlay() };
+$('reveal').onclick = () => { shown = !shown; if (shown) startRun(); renderPlay() };
+$('right').onclick = () => mark(true); $('wrong').onclick = () => mark(false);
+$('prev').onclick = () => go(i - 1); $('next').onclick = () => go(i + 1);
+document.addEventListener('keydown', e => {
+  if (view !== 'play' || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName) || $('play').hidden) return;
+  if (e.key === ' ') { e.preventDefault(); $('reveal').click() }
+  else if (e.key === 'ArrowRight') go(i + 1); else if (e.key === 'ArrowLeft') go(i - 1);
+  else if (e.key.toLowerCase() === 'y') mark(true); else if (e.key.toLowerCase() === 'n') mark(false);
+});
+setInterval(() => { if (db) renderNext() }, 30000);
+setInterval(() => { if (db && view === 'play') renderElapsed() }, 1000);
+
+(async () => {
+  db = true;
+  try { const s = JSON.parse(localStorage.getItem('qnc-static') || 'null'); if (s) { marks = s.marks || {}; runs = s.runs || {} } } catch (e) {}
+  try {
+    const idx = await fetch('drops/index.json', { cache: 'no-cache' }).then(r => r.json());
+    const docs = await Promise.all(idx.drops.map(f => fetch('drops/' + f, { cache: 'no-cache' }).then(r => r.json())));
+    drops = docs.filter(d => Array.isArray(d.questions)).map(d => ({ id: 'd' + String(d.n).padStart(4, '0'), ...d })).sort((a, b) => b.n - a.n);
+  } catch (e) { show('signedout'); return }
+  const h = (location.hash || '').match(/^#drop-(\d+)$/);
+  if (h) dropN = +h[1];
+  if (location.hash === '#archive') setView('archive'); else render();
+})();
+</script>
+
+</body>
+</html>
