@@ -3,327 +3,400 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
-</head>
-<body>
 <title>Hot Quesadillas</title>
 <meta name="description" content="A new drop of 25 deducible trivia questions every Friday.">
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-/* Layout: a printed quiz sheet — serif question set large on white, hairline rules, numbered answer boxes as the scoresheet; black ink only */
+/* Layout: a printed quiz sheet — one serif question at a time on white, hairline rules, a thin progress line; black ink only */
 :root {
   --bg: #ffffff; --ink: #0b0b0b; --muted: #6f6f6f; --line: #e3e3e3; --soft: #f5f5f5;
   --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark } }
 :root[data-theme="dark"] { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark }
-
+[hidden] { display: none !important }
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55;
-  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px;
-  -webkit-font-smoothing: antialiased }
-.wrap { max-width: 760px; margin: 0 auto; display: grid; gap: 28px }
-.stack { display: grid; gap: 24px }
-a { color: inherit }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px }
+a { color: inherit; text-underline-offset: 3px }
+.wrap { max-width: 720px; margin: 0 auto; display: grid; gap: 32px }
 
-header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--ink) }
-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1; margin: 0; letter-spacing: -0.01em }
-.sub { color: var(--muted); font-size: .88rem; margin: 8px 0 0 }
-.score { font-family: var(--mono); font-variant-numeric: tabular-nums; display: flex; gap: 22px }
-.score b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height: 1; color: var(--ink) }
-.score span { display: grid; justify-items: end; gap: 4px; color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .14em }
+/* masthead */
+.mast { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--ink) }
+.brand { font-family: var(--serif); font-size: 1.7rem; line-height: 1; text-decoration: none }
+.brand em { font-style: italic }
+.nav { display: flex; gap: 22px }
+.nav button, .nav a { border: 0; background: none; padding: 4px 0; font: 500 .76rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; cursor: pointer }
+.nav [aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink) }
+.nav button:hover, .nav a:hover { color: var(--ink) }
 
-.bar { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center }
-.bar .grow { flex: 1 }
-.seg { display: inline-flex; gap: 22px }
-.seg button { border: 0; padding: 4px 0; background: none; font: 500 .82rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); border-bottom: 1px solid transparent; border-radius: 0 }
-.seg button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink) }
-.seg button:hover { color: var(--ink) }
-.next-drop { font-family: var(--mono); font-size: .74rem; color: var(--muted); letter-spacing: .02em }
-.next-drop b { color: var(--ink); font-weight: 400 }
-.navlink { font: 500 .82rem var(--sans); text-transform: uppercase; letter-spacing: .14em; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px }
-.navlink:hover { border-bottom-color: var(--ink) }
-
-.drophead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px }
-.drophead h2 { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; margin: 0 }
-.drophead .date { color: var(--muted); font-size: .88rem }
-.drophead .spacer { flex: 1 }
-.iconbtn { padding: 6px 0; border: 0; background: none; font: 500 .78rem var(--sans); text-transform: uppercase; letter-spacing: .12em; color: var(--muted) }
-.iconbtn:hover:not([disabled]) { color: var(--ink) }
-
-.filters { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center }
-.typepick { display: inline-flex; gap: 10px; align-items: center; font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted) }
-.typepick select { font: 400 .95rem var(--sans); text-transform: none; letter-spacing: 0; color: var(--ink); background-color: var(--bg); border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; padding: 6px 26px 6px 0; max-width: 100%;
-  appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);
-  background-position: right 8px center, right 3px center; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer }
-.scope { display: inline-flex; gap: 8px; align-items: center; font-size: .85rem; color: var(--muted) }
-.scope input { accent-color: var(--ink) }
-
-.card { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 36px; display: grid; gap: 22px; min-height: 300px; align-content: start }
-.qnum { font-family: var(--mono); font-size: .72rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap }
-.cat { color: var(--ink) }
-.question { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 4.2vw, 2.3rem); line-height: 1.22; margin: 0; text-wrap: pretty; max-width: 30ch }
-.answer { display: grid; gap: 8px; padding-left: 18px; border-left: 2px solid var(--ink) }
-.label { font-family: var(--mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .16em; color: var(--muted) }
-.answer p { margin: 0; font-size: 1.05rem; max-width: 58ch }
-
-.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
-button { font: 500 .9rem var(--sans); border-radius: 0; padding: 12px 18px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; transition: background .15s, color .15s }
+/* shared */
+.eyebrow { font: 400 .7rem var(--mono); text-transform: uppercase; letter-spacing: .16em; color: var(--muted) }
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance }
+.muted { color: var(--muted) }
+button { font: 500 .92rem var(--sans); border-radius: 0; padding: 14px 22px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; transition: background .15s, color .15s }
 button:hover:not([disabled]) { background: var(--ink); color: var(--bg) }
-button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
-button.primary { background: var(--ink); color: var(--bg) }
-button.primary:hover:not([disabled]) { background: var(--bg); color: var(--ink) }
-button.good, button.bad { color: var(--ink) }
+button.solid { background: var(--ink); color: var(--bg) }
+button.solid:hover:not([disabled]) { background: var(--bg); color: var(--ink) }
+button.quiet { border: 0; padding: 0 0 2px; background: none; color: var(--muted); font: 500 .74rem var(--sans); text-transform: uppercase; letter-spacing: .16em; border-bottom: 1px solid var(--line) }
+button.quiet:hover:not([disabled]) { background: none; color: var(--ink); border-bottom-color: var(--ink) }
 button[disabled] { opacity: .3; cursor: default }
-.controls .spacer { flex: 1 }
-.controls .mark { flex: 1 1 0; max-width: 240px; padding-block: 16px; font-size: .95rem; letter-spacing: .02em }
-.reveal-link { justify-self: start; border: 0; padding: 0 0 2px; background: none; color: var(--muted); font: 500 .74rem var(--sans); text-transform: uppercase; letter-spacing: .16em; border-bottom: 1px solid var(--line); transition: color .15s, border-color .15s }
-.reveal-link:hover:not([disabled]) { background: none; color: var(--ink); border-bottom-color: var(--ink) }
-kbd { font-family: var(--mono); font-size: .7rem; border: 1px solid var(--line); padding: 0 5px; color: var(--muted) }
+button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+.notice { padding-block: 48px; display: grid; gap: 8px }
+.notice h2 { font-size: 2rem }
 
-.sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); gap: 6px }
-.tile { font: 400 .78rem var(--mono); font-variant-numeric: tabular-nums; aspect-ratio: 1; max-width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--muted); display: grid; place-items: center; padding: 0 }
-.tile.current { border-color: var(--ink); color: var(--ink) }
-.tile.ok { background: var(--ink); border-color: var(--ink); color: var(--bg) }
-.tile.no { color: var(--muted); background: linear-gradient(to top right, transparent calc(50% - .5px), var(--muted) 50%, transparent calc(50% + .5px)) }
-.tile.no.current, .tile.ok.current { outline: 1px solid var(--ink); outline-offset: 2px }
-.hint { color: var(--muted); font-size: .82rem; margin: 0 }
-.progress { display: flex; align-items: center; gap: 14px }
-.track { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden }
-.fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink); transition: width .3s ease }
-.ptext { font-family: var(--mono); font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+/* intro */
+.intro { display: grid; gap: 28px; padding-block: 24px 8px }
+.intro h1 { font-size: clamp(3rem, 10vw, 5.2rem); line-height: .95; letter-spacing: -.02em }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+.facts div { padding: 16px 0; display: grid; gap: 2px }
+.facts div + div { padding-left: 18px; border-left: 1px solid var(--line) }
+.facts b { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; line-height: 1 }
+.facts span { font-size: .8rem; color: var(--muted) }
+.how { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 54ch }
+.how li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 8px }
+.how li::before { content: counter(step); counter-increment: step; font-family: var(--serif); font-size: 1.2rem; line-height: 1.3 }
+.how { counter-reset: step }
+.intro .go { display: flex; flex-wrap: wrap; align-items: center; gap: 20px }
 
+/* play */
+.play { display: grid; gap: 28px }
+.progress { display: grid; gap: 10px }
+.prow { display: flex; justify-content: space-between; align-items: baseline; gap: 12px }
+.count { font-family: var(--serif); font-size: 1.4rem; line-height: 1 }
+.count small { font-family: var(--sans); font-size: .82rem; color: var(--muted) }
+.stats { font-family: var(--mono); font-size: .74rem; color: var(--muted); font-variant-numeric: tabular-nums }
+.track { height: 2px; background: var(--line); position: relative; overflow: hidden }
+.fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ink); transition: width .35s ease }
+.qcard { display: grid; gap: 22px; padding-block: 12px 4px; min-height: 260px; align-content: start }
+.question { font-family: var(--serif); font-size: clamp(1.7rem, 4.6vw, 2.4rem); line-height: 1.2; margin: 0; text-wrap: pretty; max-width: 30ch }
+.answer { display: grid; gap: 6px; padding-left: 18px; border-left: 2px solid var(--ink) }
+.answer p { margin: 0; font-size: 1.05rem; max-width: 56ch }
+.marks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.marks button { padding-block: 18px; font-size: 1rem }
+.marks .ask { grid-column: 1 / -1; font-size: .85rem; color: var(--muted); margin: 0 0 2px }
+.sheet { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); gap: 3px }
+.tile { height: 22px; border: 1px solid var(--line); background: var(--bg); padding: 0; font: 0/0 a; color: transparent }
+.tile:hover:not([disabled]) { border-color: var(--ink); background: var(--bg) }
+.tile.ok { background: var(--ink); border-color: var(--ink) }
+.tile.no { background: linear-gradient(to top right, transparent calc(50% - .5px), var(--muted) 50%, transparent calc(50% + .5px)) }
+.tile.current { outline: 1px solid var(--ink); outline-offset: 2px }
+.sheetnote { font-size: .78rem; color: var(--muted); margin: 0 }
+.keys { font-size: .78rem; color: var(--muted); margin: 0 }
+kbd { font-family: var(--mono); font-size: .7rem; border: 1px solid var(--line); padding: 0 5px }
+
+/* done */
+.done { display: grid; gap: 28px; padding-block: 16px }
+.done h1 { font-size: clamp(3rem, 11vw, 5.6rem); line-height: .9 }
+.done h1 small { font-size: .4em; color: var(--muted) }
+.grid { font-family: var(--mono); font-size: 1.15rem; line-height: 1.2; letter-spacing: .12em; margin: 0; white-space: pre }
+.done .go { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.next { border-top: 1px solid var(--line); padding-top: 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px }
+.review { display: grid; border-top: 1px solid var(--ink) }
+.review details { border-bottom: 1px solid var(--line); padding: 14px 0 }
+.review summary { cursor: pointer; display: grid; grid-template-columns: 1.4rem 2rem 1fr; gap: 10px; align-items: baseline; list-style: none }
+.review summary::-webkit-details-marker { display: none }
+.review .n { font-family: var(--mono); font-size: .74rem; color: var(--muted) }
+.review .r { font-family: var(--mono) }
+.review p { margin: 10px 0 0 3.4rem; color: var(--muted); max-width: 58ch }
+
+/* archive */
+.archive { display: grid; gap: 36px }
+.archive h2 { font-size: 2.2rem }
 .ledger { border-top: 1px solid var(--ink) }
-.row { display: grid; grid-template-columns: 4rem 1fr auto auto; gap: 16px; align-items: center; padding: 18px 0; border: 0; border-bottom: 1px solid var(--line); width: 100%; background: none; text-align: left; font-weight: 400; color: var(--ink) }
+.row { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 16px; align-items: center; width: 100%; padding: 16px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; font-weight: 400; color: var(--ink) }
 .row:hover:not([disabled]) { background: none; color: var(--ink) }
 .row:hover .rno { text-decoration: underline; text-underline-offset: 4px }
 .rno { font-family: var(--serif); font-size: 1.5rem }
-.meta { min-width: 0; display: grid }
-.meta small { color: var(--muted) }
-.sc { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .8rem; color: var(--muted) }
-.pill { font: 400 .66rem var(--mono); text-transform: uppercase; letter-spacing: .14em; padding: 3px 8px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap }
-.pill.live { border-color: var(--ink); color: var(--ink) }
+.rmeta { display: grid; min-width: 0 }
+.rmeta small { color: var(--muted) }
+.state { font: 400 .7rem var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
+.state.on { color: var(--ink) }
+.practice { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px }
+.practice .pick { display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+select { font: 400 1rem var(--sans); color: var(--ink); background-color: var(--bg); border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; padding: 8px 28px 8px 0; max-width: 100%;
+  appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: right 8px center, right 3px center; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer }
+.ctx { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap }
+footer { color: var(--muted); font-size: .8rem; display: flex; gap: 18px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px }
 
-.notice { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 40px; display: grid; gap: 8px }
-.notice h2 { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; margin: 0 }
-.notice p { margin: 0; color: var(--muted); max-width: 56ch }
-footer { color: var(--muted); font-size: .8rem; display: flex; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 18px }
-@media (max-width: 560px) { .row { grid-template-columns: 3rem 1fr auto } .sc { display: none } .score { gap: 16px } }
-@media (prefers-reduced-motion: no-preference) { .answer { animation: rise .3s ease-out } @keyframes rise { from { transform: translateY(4px); opacity: 0 } } }
+@media (max-width: 560px) {
+  .facts { grid-template-columns: 1fr } .facts div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line) }
+  .sheet { grid-template-columns: repeat(13, minmax(0, 1fr)) }
+}
+@media (prefers-reduced-motion: no-preference) { .answer, .qcard { animation: rise .3s ease-out } @keyframes rise { from { transform: translateY(4px); opacity: 0 } } }
 </style>
-
+</head>
+<body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>Hot Quesadillas</h1>
-      <p class="sub">A new drop of 25 freshly written questions every Friday. Scores save in this browser.</p>
-    </div>
-    <div class="score" aria-live="polite">
-      <span><b id="correct">0</b>correct</span>
-      <span><b id="marked">0</b>done</span>
-      <span><b id="elapsed">–</b>time</span>
-    </div>
+  <header class="mast">
+    <a class="brand" href="./">Hot <em>Quesadillas</em></a>
+    <nav class="nav" aria-label="Main">
+      <button type="button" id="nav-play" aria-current="page">This week</button>
+      <button type="button" id="nav-archive">Past drops</button>
+      <a href="docs/">API</a>
+    </nav>
   </header>
 
-  <div class="bar">
-    <div class="seg" role="group" aria-label="View">
-      <button id="v-play" type="button" aria-pressed="true">This week</button>
-      <button id="v-archive" type="button" aria-pressed="false">Archive</button>
-    </div>
-    <span class="next-drop grow" id="nextdrop"></span>
-    <a class="navlink" href="docs/">API</a>
-    
-  </div>
+  <section id="loading" class="notice"><span class="eyebrow">Loading</span><h2>Fetching this week's drop</h2></section>
+  <section id="error" class="notice" hidden><span class="eyebrow">Offline</span><h2>Couldn't load the drops</h2><p class="muted">Check your connection and reload the page.</p></section>
 
-
-  <section id="loading" class="notice"><h2>Loading drops</h2><p>Fetching this week's questions.</p></section>
-  <section id="signedout" class="notice" hidden><h2>Couldn't load the drops</h2><p>Check your connection and reload the page.</p></section>
-  <section id="nodrops" class="notice" hidden><h2>No drop yet</h2><p>The first drop hasn't been written yet. It will appear here on Friday.</p></section>
-
-  <section id="play" class="stack" hidden>
-    <div class="drophead">
-      <h2 id="dtitle">Drop 1</h2>
-      <span class="date" id="ddate"></span>
-      <span class="spacer"></span>
-      <button class="iconbtn" id="dprev" type="button" aria-label="Earlier drop">← Earlier</button>
-      <button class="iconbtn" id="dnext" type="button" aria-label="Later drop">Later →</button>
+  <!-- first visit to a drop -->
+  <section id="intro" class="intro" hidden>
+    <span class="eyebrow" id="i-eyebrow">Drop 1 · Friday 23 October</span>
+    <h1>Twenty-five questions you can work out.</h1>
+    <div class="facts">
+      <div><b id="i-count">25</b><span>questions</span></div>
+      <div><b>~10</b><span>minutes</span></div>
+      <div><b id="i-types">9</b><span>types</span></div>
     </div>
-    <div class="progress" aria-live="polite">
-      <div class="track"><div class="fill" id="pfill"></div></div>
-      <span class="ptext" id="ptext">0 of 25 done</span>
-    </div>
-    <div class="filters">
-      <label class="typepick" for="typesel">Type <select id="typesel"></select></label>
-      <label class="scope"><input type="checkbox" id="allscope"> Search every drop</label>
-    </div>
-    <section class="card" aria-live="polite">
-      <div class="qnum"><span id="pos"></span><span class="cat" id="cat"></span></div>
-      <p class="question" id="q"></p>
-      <button id="reveal" class="reveal-link" type="button">Show answer</button>
-      <div class="answer" id="ans" hidden><span class="label">Answer</span><p id="a"></p></div>
-    </section>
-    <div class="controls">
-      <button id="right" class="primary mark" type="button">Got it</button>
-      <button id="wrong" class="mark" type="button">Missed it</button>
-    </div>
-    <div class="sheet" id="sheet" aria-label="Scoresheet"></div>
-    <p class="hint"><kbd>Y</kbd> got it · <kbd>N</kbd> missed it · <kbd>Space</kbd> show answer · <kbd>←</kbd><kbd>→</kbd> move. Marking moves you on; click a tile to jump back. The clock starts on your first reveal or mark and stops when every question in the drop is marked.</p>
+    <ol class="how">
+      <li>Every question has a clue in it. Reason your way there; you don't need to know the answer.</li>
+      <li>Say your answer out loud, then mark yourself honestly. You can check the answer first.</li>
+      <li>Your score and time come at the end, ready to share. A new drop lands every Friday.</li>
+    </ol>
+    <div class="go"><button class="solid" type="button" id="start">Start drop</button><span class="muted" id="i-note"></span></div>
   </section>
 
-  <section id="archive" hidden><div class="ledger" id="ledger"></div></section>
-  <footer><span>New drop every Friday, 00:00 London</span><a href="docs/">API documentation</a><a href="api/latest.json">latest.json</a></footer>
+  <!-- playing -->
+  <section id="play" class="play" hidden>
+    <div class="ctx" id="ctx" hidden><span class="eyebrow" id="ctx-label"></span><button class="quiet" type="button" id="ctx-exit">Back to this week</button></div>
+    <div class="progress" aria-live="polite">
+      <div class="prow"><span class="count" id="count">1 <small>of 25</small></span><span class="stats" id="stats">0 right · 0:00</span></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+    </div>
+    <article class="qcard" id="qcard" aria-live="polite">
+      <span class="eyebrow" id="cat">Geography</span>
+      <p class="question" id="q"></p>
+      <div class="answer" id="ans" hidden><span class="eyebrow">Answer</span><p id="a"></p></div>
+      <div><button class="quiet" type="button" id="reveal">Check the answer</button></div>
+    </article>
+    <div class="marks">
+      <p class="ask" id="ask">Did you get it?</p>
+      <button class="solid" type="button" id="right">Got it</button>
+      <button type="button" id="wrong">Missed it</button>
+    </div>
+    <div style="display:grid;gap:8px">
+      <div class="sheet" id="sheet" aria-label="Your answers so far"></div>
+      <p class="sheetnote">Filled squares are right, struck squares are missed. Tap one to go back to it.</p>
+    </div>
+    <p class="keys"><kbd>Y</kbd> got it · <kbd>N</kbd> missed it · <kbd>Space</kbd> check the answer</p>
+  </section>
+
+  <!-- finished -->
+  <section id="done" class="done" hidden>
+    <span class="eyebrow" id="d-eyebrow">Drop 1 complete</span>
+    <h1 id="d-score">18<small>/25</small></h1>
+    <p class="muted" id="d-line"></p>
+    <pre class="grid" id="d-grid" aria-label="Your results grid"></pre>
+    <div class="go">
+      <button class="solid" type="button" id="share">Copy result</button>
+      <button type="button" id="review-toggle">Review answers</button>
+      <span class="muted" id="share-msg" aria-live="polite"></span>
+    </div>
+    <div class="review" id="review" hidden></div>
+    <div class="next"><span class="muted">Next drop</span><span class="stats" id="d-next"></span></div>
+  </section>
+
+  <!-- archive -->
+  <section id="archive" class="archive" hidden>
+    <div style="display:grid;gap:14px">
+      <h2>Past drops</h2>
+      <div class="ledger" id="ledger"></div>
+    </div>
+    <div class="practice">
+      <span class="eyebrow">Practice by type</span>
+      <p class="muted" style="margin:0">Play every released question of one type, across all drops. Practice doesn't change your drop scores.</p>
+      <div class="pick"><select id="typesel" aria-label="Question type"></select><button type="button" id="practice-go">Practise</button></div>
+    </div>
+  </section>
+
+  <footer><span>A new drop every Friday at 00:00 London.</span><a href="docs/">API documentation</a></footer>
 </div>
 
 <script>
-const SIZE = 25;
-const TYPES = ["Geography", "Ancient History", "History", "Science & Nature", "Words & Language", "Film & TV", "Music", "Sport", "Food & Drink", "Art & Books", "People & Politics", "Business & Money"];
-const STYLE = `House style for every question:
-- Questions are discovered, not simply answered: a player should be able to reason to the answer, not only recall it.
-- Avoid pinpoint recall. Prefer ranges, decades, multiple choice or patterns ("Which decade...", "Is it A, B or C?").
-- Every question carries a deductive clue an ordinary person can unlock: lettering patterns, word structure, elimination or context.
-- Lean on geography (especially lettering, e.g. "Name the three countries that begin with J") and ancient history, but cover the other types too.
-- Facts must be correct and stable. No current-events questions whose answer could change.
-- Question under 45 words. Answer states the answer first, then a short hint showing how it can be deduced.`;
 const $ = id => document.getElementById(id);
-const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
-const fridayOnOrBefore = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() - ((x.getDay() + 2) % 7)); return x };
+const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+const short = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return h ? `${h}h ${m}m` : `${m}:${String(x).padStart(2, '0')}` };
+const SITE = 'jimmy-grafton.github.io/quiz-night-console';
 
-let db = null, user = null, sample = null, uid = null, canEdit = false;
-let drops = [], marks = {}, marksRef = null, writing = Promise.resolve();
-let runs = {}, view = 'play', dropN = null, cat = 'All', all = false, i = 0, shown = false, ctl = null, advancing = false;
+let drops = [], marks = {}, runs = {};
+let view = 'play';            // play | archive
+let dropN = null;             // drop being played
+let practice = null;          // type name when practising
+let i = 0, shown = false, reviewOpen = false, busy = false;
+
+try { const s = JSON.parse(localStorage.getItem('hq') || localStorage.getItem('qnc-static') || 'null'); if (s) { marks = s.marks || {}; runs = s.runs || {} } } catch (e) {}
+const save = () => { try { localStorage.setItem('hq', JSON.stringify({ marks, runs })) } catch (e) {} };
 
 const released = () => drops.filter(d => new Date(d.releaseAt) <= new Date());
-const current = () => released().find(d => d.n === dropN) || released()[0];
-const pool = () => all ? released().flatMap(d => d.questions.map(q => ({ ...q, drop: d.n }))) : (current()?.questions || []).map(q => ({ ...q, drop: current().n }));
-const list = () => pool().filter(x => cat === 'All' || x.cat === cat);
+const latest = () => released()[0];
+const drop = () => released().find(d => d.n === dropN) || latest();
+const list = () => practice ? released().flatMap(d => d.questions.filter(q => q.cat === practice)) : drop().questions;
+const marked = L => L.filter(q => marks[q.id] !== undefined);
+const right = L => L.filter(q => marks[q.id] === true);
+const firstOpen = L => { const k = L.findIndex(q => marks[q.id] === undefined); return k < 0 ? 0 : k };
 
-function show(id) { ['loading', 'signedout', 'nodrops', 'play', 'archive'].forEach(s => $(s).hidden = s !== id) }
-function stopTimer() {}
-const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = s % 60; return h ? `${h}h ${m}m` : `${m}:${String(x).padStart(2, '0')}` };
-function runTime(d) { const r = runs[d?.id]; if (!r?.start) return null; return (r.end || Date.now()) - r.start }
-function renderElapsed() { const d = all ? null : current(); const ms = d ? runTime(d) : null; $('elapsed').textContent = ms == null ? '–' : dur(ms) }
-function scoreOf(items) { const m = items.filter(x => marks[x.id] !== undefined); return [m.filter(x => marks[x.id] === true).length, m.length] }
+function nextFriday() { const x = new Date(); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() + ((5 - x.getDay() + 7) % 7 || 7)); return x }
+function untilNext() { const ms = nextFriday() - new Date(); const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60; return `${fmt(nextFriday())} · in ${d}d ${h}h ${m}m` }
 
-function renderPlay() {
-  const R = released();
-  if (!R.length) { show('nodrops'); return }
+function show(id) { ['loading', 'error', 'intro', 'play', 'done', 'archive'].forEach(s => $(s).hidden = s !== id) }
+function setNav() { $('nav-play').setAttribute('aria-current', view === 'play' && !practice && dropN === latest()?.n ? 'page' : 'false'); $('nav-archive').setAttribute('aria-current', view === 'archive' ? 'page' : 'false') }
+
+function render() {
+  setNav();
+  if (!released().length) { show('error'); $('error').querySelector('h2').textContent = 'The first drop lands on Friday'; return }
+  if (view === 'archive') return renderArchive();
+  const d = drop(), L = list();
+  if (!practice && !runs[d.id]?.start && !marked(L).length) return renderIntro(d);
+  if (!practice && marked(L).length === L.length && !reviewOpen) return renderDone(d);
+  renderPlay(L);
+}
+
+function renderIntro(d) {
+  show('intro');
+  const isLatest = d.n === latest().n;
+  $('i-eyebrow').textContent = `${isLatest ? 'This week' : 'Past drop'} · Drop ${d.n} · ${fmt(new Date(d.releaseAt))}`;
+  $('i-count').textContent = d.questions.length;
+  $('i-types').textContent = new Set(d.questions.map(q => q.cat)).size;
+  $('i-note').textContent = 'The clock starts when you do.';
+}
+
+function renderPlay(L) {
   show('play');
-  const d = current(); dropN = d.n;
-  const idx = R.indexOf(d);
-  $('dtitle').textContent = all ? 'Every drop' : `Drop ${d.n}`;
-  $('ddate').textContent = all ? `${R.length} drops · ${pool().length} questions` : `${fmt(new Date(d.releaseAt))} · ${d.questions.length} questions`;
-  $('dprev').disabled = all || idx >= R.length - 1;
-  $('dnext').disabled = all || idx <= 0;
-  const p = pool(), counts = {};
-  p.forEach(x => counts[x.cat] = (counts[x.cat] || 0) + 1);
-  const cats = ['All', ...Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))];
-  if (!cats.includes(cat)) cat = 'All';
-  $('typesel').innerHTML = '';
-  cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = `${c === 'All' ? 'All types' : c} (${c === 'All' ? p.length : counts[c]})`; o.selected = c === cat; $('typesel').appendChild(o) });
-  const L = list();
-  if (i >= L.length) i = Math.max(0, L.length - 1);
-  const item = L[i];
-  $('sheet').innerHTML = '';
-  L.forEach((x, k) => {
-    const b = document.createElement('button'); b.type = 'button';
-    b.className = 'tile' + (k === i ? ' current' : '') + (marks[x.id] === true ? ' ok' : marks[x.id] === false ? ' no' : '');
-    b.textContent = k + 1; b.setAttribute('aria-label', 'Question ' + (k + 1)); b.onclick = () => go(k);
-    $('sheet').appendChild(b);
-  });
-  const [c, m] = scoreOf(L); $('correct').textContent = c; $('marked').textContent = `${m}/${L.length}`; renderElapsed();
-  $('pfill').style.width = L.length ? `${(m / L.length) * 100}%` : '0';
-  $('ptext').textContent = m === L.length && L.length ? `All ${L.length} done · ${c} right` : `${m} of ${L.length} done · ${c} right`;
-  $('right').disabled = $('wrong').disabled = !item;
-  if (!item) { $('q').textContent = 'No questions of this type here yet.'; $('pos').textContent = ''; $('cat').textContent = ''; $('ans').hidden = true; return }
-  $('pos').textContent = all ? `${i + 1} of ${L.length} · drop ${item.drop}` : `Question ${i + 1} of ${L.length}`;
+  if (i >= L.length) i = L.length - 1;
+  const item = L[i], m = marked(L).length, r = right(L).length;
+  const d = drop(), isLatest = !practice && d.n === latest().n;
+  $('ctx').hidden = isLatest;
+  $('ctx-label').textContent = practice ? `Practice · ${practice} · ${L.length} questions` : `Drop ${d.n} · ${short(new Date(d.releaseAt))}`;
+  $('count').innerHTML = `${i + 1} <small>of ${L.length}</small>`;
+  $('stats').textContent = practice ? `${r} right of ${m}` : `${r} right · ${dur(runTime(d) || 0)}`;
+  $('fill').style.width = `${(m / L.length) * 100}%`;
   $('cat').textContent = item.cat;
   $('q').textContent = item.q; $('a').textContent = item.a;
   $('ans').hidden = !shown;
-  $('reveal').textContent = shown ? 'Hide answer' : 'Show answer';
+  $('reveal').textContent = shown ? 'Hide the answer' : 'Check the answer';
+  const prev = marks[item.id];
+  $('ask').textContent = prev === undefined ? 'Did you get it?' : `You marked this ${prev ? 'right' : 'missed'}. Change it?`;
+  const sheet = $('sheet'); sheet.innerHTML = '';
+  sheet.style.gridTemplateColumns = `repeat(${Math.min(L.length, window.innerWidth < 560 ? 13 : 25)}, minmax(0, 1fr))`;
+  L.forEach((q, k) => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.className = 'tile' + (marks[q.id] === true ? ' ok' : marks[q.id] === false ? ' no' : '') + (k === i ? ' current' : '');
+    b.setAttribute('aria-label', `Question ${k + 1}${marks[q.id] === true ? ', right' : marks[q.id] === false ? ', missed' : ''}`);
+    b.onclick = () => { i = k; shown = false; render() };
+    sheet.appendChild(b);
+  });
 }
+
+function gridText(L) { const rows = []; for (let k = 0; k < L.length; k += 5) rows.push(L.slice(k, k + 5).map(q => marks[q.id] ? '■' : '□').join('')); return rows.join('\n') }
+function renderDone(d) {
+  show('done');
+  const L = d.questions, r = right(L).length, t = runTime(d);
+  $('d-eyebrow').textContent = `Drop ${d.n} complete`;
+  $('d-score').innerHTML = `${r}<small>/${L.length}</small>`;
+  const verdict = r >= 22 ? 'Outstanding.' : r >= 18 ? 'Very good.' : r >= 13 ? 'Solid.' : r >= 8 ? 'A start.' : 'Tough week.';
+  $('d-line').textContent = `${verdict} ${t ? `Finished in ${dur(t)}.` : ''}`;
+  $('d-grid').textContent = gridText(L);
+  $('d-next').textContent = untilNext();
+  const rv = $('review'); rv.innerHTML = '';
+  L.forEach((q, k) => {
+    const el = document.createElement('details');
+    el.innerHTML = `<summary><span class="r"></span><span class="n"></span><span class="t"></span></summary><p></p>`;
+    el.querySelector('.r').textContent = marks[q.id] ? '■' : '□';
+    el.querySelector('.n').textContent = String(k + 1).padStart(2, '0');
+    el.querySelector('.t').textContent = q.q;
+    el.querySelector('p').textContent = q.a;
+    rv.appendChild(el);
+  });
+  rv.hidden = !reviewOpenDone;
+  $('review-toggle').textContent = reviewOpenDone ? 'Hide answers' : 'Review answers';
+}
+let reviewOpenDone = false;
 
 function renderArchive() {
   show('archive');
-  const R = released();
-  $('ledger').innerHTML = '';
-  R.forEach((d, k) => {
-    const r = document.createElement('button'); r.type = 'button'; r.className = 'row';
-    const [got, m] = scoreOf(d.questions);
-    r.innerHTML = `<span class="rno"></span><span class="meta"><span></span><small></small></span><span class="sc"></span><span class="pill ${k === 0 ? 'live' : ''}">${k === 0 ? 'This week' : 'Released'}</span>`;
-    r.querySelector('.rno').textContent = '#' + d.n;
-    r.querySelector('.meta span').textContent = fmt(new Date(d.releaseAt));
-    const cats = [...new Set(d.questions.map(x => x.cat))];
-    r.querySelector('.meta small').textContent = `${d.questions.length} questions · ${cats.slice(0, 3).join(', ')}${cats.length > 3 ? ` +${cats.length - 3} more` : ''}`;
-    const rt = runs[d.id]?.end ? ` in ${dur(runs[d.id].end - runs[d.id].start)}` : '';
-    r.querySelector('.sc').textContent = m ? `${got}/${m} right${rt}` : 'not played';
-    r.onclick = () => { dropN = d.n; all = false; $('allscope').checked = false; cat = 'All'; i = 0; shown = false; setView('play') };
-    $('ledger').appendChild(r);
+  const led = $('ledger'); led.innerHTML = '';
+  released().forEach((d, k) => {
+    const L = d.questions, m = marked(L).length, r = right(L).length, done = m === L.length;
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'row';
+    b.innerHTML = `<span class="rno"></span><span class="rmeta"><span></span><small></small></span><span class="state"></span>`;
+    b.querySelector('.rno').textContent = d.n;
+    b.querySelector('.rmeta span').textContent = fmt(new Date(d.releaseAt)) + (k === 0 ? ' · this week' : '');
+    const cats = [...new Set(L.map(q => q.cat))];
+    b.querySelector('.rmeta small').textContent = cats.slice(0, 3).join(', ') + (cats.length > 3 ? ` and ${cats.length - 3} more` : '');
+    const st = b.querySelector('.state');
+    st.textContent = done ? `${r}/${L.length}${runs[d.id]?.end ? ' · ' + dur(runs[d.id].end - runs[d.id].start) : ''}` : m ? `${m}/${L.length} played` : 'Not played';
+    st.classList.toggle('on', done || m > 0);
+    b.onclick = () => { practice = null; dropN = d.n; i = firstOpen(L); shown = false; reviewOpen = false; reviewOpenDone = false; view = 'play'; render() };
+    led.appendChild(b);
   });
-  const allQ = R.flatMap(d => d.questions); const [c, m] = scoreOf(allQ);
-  $('correct').textContent = c; $('marked').textContent = m; $('elapsed').textContent = '–';
+  const counts = {}; released().forEach(d => d.questions.forEach(q => counts[q.cat] = (counts[q.cat] || 0) + 1));
+  const sel = $('typesel'), keep = sel.value; sel.innerHTML = '';
+  Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b)).forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = `${c} (${counts[c]})`; sel.appendChild(o) });
+  if (keep && counts[keep]) sel.value = keep;
 }
 
-function render() { if (!db) return; view === 'play' ? renderPlay() : renderArchive(); renderNext() }
-function setView(v) { view = v; $('v-play').setAttribute('aria-pressed', v === 'play'); $('v-archive').setAttribute('aria-pressed', v === 'archive'); stopTimer(); render() }
-function go(n) { const L = list(); if (n < 0 || n >= L.length) return; i = n; shown = false; stopTimer(); renderPlay() }
-function changeDrop(step) { const R = released(); const k = R.indexOf(current()) + step; if (k < 0 || k >= R.length) return; dropN = R[k].n; cat = 'All'; i = 0; shown = false; stopTimer(); renderPlay() }
+function runTime(d) { const r = runs[d?.id]; return r?.start ? (r.end || Date.now()) - r.start : null }
+function startRun(d) { if (!practice && d && !runs[d.id]?.start) { runs[d.id] = { start: Date.now() }; save() } }
 
-function saveMarks() { try { localStorage.setItem('qnc-static', JSON.stringify({ marks, runs })) } catch (e) {} }
 function mark(v) {
-  const L = list(); const item = L[i];
-  if (!item || advancing) return;
-  advancing = true;
-  startRun();
+  if (view !== 'play' || $('play').hidden || busy) return;
+  busy = true;
+  const L = list(), item = L[i], d = drop();
+  startRun(d);
   marks[item.id] = v;
-  const d = drops.find(x => x.n === item.drop), r = runs[d.id];
-  if (r?.start && !r.end && d.questions.every(q => marks[q.id] !== undefined)) runs[d.id] = { ...r, end: Date.now() };
-  saveMarks();
-  if (i < L.length - 1) { i++; shown = false }
-  renderPlay();
-  advancing = false;
-}
-function startRun() { if (all) return; const d = current(); if (d && !runs[d.id]?.start) { runs[d.id] = { start: Date.now() }; saveMarks() } }
-
-function renderNext() {
-  const next = fridayOnOrBefore(new Date()); next.setDate(next.getDate() + 7);
-  const ms = next - new Date(), dd = Math.floor(ms / 864e5), hh = Math.floor(ms / 36e5) % 24, mm = Math.floor(ms / 6e4) % 60;
-  $('nextdrop').innerHTML = 'Next drop <b></b>';
-  $('nextdrop').querySelector('b').textContent = `${fmt(next)} · in ${dd}d ${hh}h ${mm}m`;
+  if (!practice && marked(d.questions).length === d.questions.length && !runs[d.id].end) runs[d.id] = { ...runs[d.id], end: Date.now() };
+  save();
+  const allDone = marked(L).length === L.length;
+  if (allDone && !practice) { reviewOpen = false; }
+  else { const nxt = L.findIndex((q, k) => k > i && marks[q.id] === undefined); i = nxt >= 0 ? nxt : Math.min(i + 1, L.length - 1) }
+  shown = false;
+  render();
+  busy = false;
 }
 
-// ---- wiring ----
-$('v-play').onclick = () => setView('play'); $('v-archive').onclick = () => setView('archive');
-$('dprev').onclick = () => changeDrop(1); $('dnext').onclick = () => changeDrop(-1);
-$('typesel').onchange = e => { cat = e.target.value; i = 0; shown = false; stopTimer(); renderPlay() };
-$('allscope').onchange = e => { all = e.target.checked; i = 0; shown = false; stopTimer(); renderPlay() };
-$('reveal').onclick = () => { shown = !shown; if (shown) startRun(); renderPlay() };
+$('start').onclick = () => { startRun(drop()); i = 0; shown = false; renderPlay(list()) };
+$('reveal').onclick = () => { shown = !shown; startRun(drop()); render() };
 $('right').onclick = () => mark(true); $('wrong').onclick = () => mark(false);
+$('nav-play').onclick = () => { view = 'play'; practice = null; dropN = latest()?.n; i = firstOpen(list()); shown = false; render() };
+$('nav-archive').onclick = () => { view = 'archive'; render() };
+$('ctx-exit').onclick = () => $('nav-play').click();
+$('practice-go').onclick = () => { practice = $('typesel').value; view = 'play'; i = firstOpen(list()); shown = false; render() };
+$('review-toggle').onclick = () => { reviewOpenDone = !reviewOpenDone; renderDone(drop()) };
+$('share').onclick = () => {
+  const d = drop(), L = d.questions, t = runTime(d);
+  const text = `Hot Quesadillas · Drop ${d.n}\n${right(L).length}/${L.length}${t ? ' · ' + dur(t) : ''}\n${gridText(L)}\n${SITE}`;
+  const ok = () => $('share-msg').textContent = 'Copied. Paste it anywhere.';
+  const fail = () => { const r = document.createRange(); r.selectNodeContents($('d-grid')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('share-msg').textContent = 'Grid selected. Press Cmd+C to copy.' };
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(ok).catch(fail) : fail();
+};
 document.addEventListener('keydown', e => {
-  if (view !== 'play' || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName) || $('play').hidden) return;
-  if (e.key === ' ') { e.preventDefault(); $('reveal').click() }
-  else if (e.key === 'ArrowRight') go(i + 1); else if (e.key === 'ArrowLeft') go(i - 1);
-  else if (e.key.toLowerCase() === 'y') mark(true); else if (e.key.toLowerCase() === 'n') mark(false);
+  if ($('play').hidden || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName) || e.metaKey || e.ctrlKey) return;
+  const k = e.key.toLowerCase();
+  if (k === 'y') mark(true); else if (k === 'n') mark(false);
+  else if (e.key === ' ') { e.preventDefault(); $('reveal').click() }
 });
-setInterval(() => { if (db) renderNext() }, 30000);
-setInterval(() => { if (db && view === 'play') renderElapsed() }, 1000);
+setInterval(() => { if (!$('play').hidden && !practice) $('stats').textContent = `${right(list()).length} right · ${dur(runTime(drop()) || 0)}`; if (!$('done').hidden) $('d-next').textContent = untilNext() }, 1000);
+window.addEventListener('resize', () => { if (!$('play').hidden) renderPlay(list()) });
 
 (async () => {
-  db = true;
-  try { const s = JSON.parse(localStorage.getItem('qnc-static') || 'null'); if (s) { marks = s.marks || {}; runs = s.runs || {} } } catch (e) {}
   try {
     const idx = await fetch('drops/index.json', { cache: 'no-cache' }).then(r => r.json());
     const docs = await Promise.all(idx.drops.map(f => fetch('drops/' + f, { cache: 'no-cache' }).then(r => r.json())));
     drops = docs.filter(d => Array.isArray(d.questions)).map(d => ({ id: 'd' + String(d.n).padStart(4, '0'), ...d })).sort((a, b) => b.n - a.n);
-  } catch (e) { show('signedout'); return }
-  const h = (location.hash || '').match(/^#drop-(\d+)$/);
-  if (h) dropN = +h[1];
-  if (location.hash === '#archive') setView('archive'); else render();
+  } catch (e) { show('error'); return }
+  dropN = latest()?.n;
+  if (location.hash === '#archive') view = 'archive';
+  const h = (location.hash || '').match(/^#drop-(\d+)$/); if (h && released().some(d => d.n === +h[1])) dropN = +h[1];
+  if (dropN) i = firstOpen(drop().questions);
+  render();
 })();
 </script>
-
 </body>
 </html>
