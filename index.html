@@ -246,6 +246,7 @@ footer { color: var(--muted); font-size: .8rem; display: flex; gap: 18px; flex-w
     <div class="go">
       <button class="solid" type="button" id="share">Copy my heat card</button>
       <button type="button" id="review-toggle">Review answers</button>
+      <button type="button" id="again">Play again</button>
       <span class="muted" id="share-msg" aria-live="polite"></span>
     </div>
     <div class="review" id="review" hidden></div>
@@ -281,12 +282,8 @@ const RATINGS = [[0, 'Mild'], [26, 'Medium'], [46, 'Hot'], [61, 'Extra hot'], [7
 let batches = [], marks = {}, heat = {}, runs = {};
 let view = 'play', batchN = null, practice = null, i = 0, shown = false, reviewOpen = false, busy = false, lastMarked = null;
 
-try {
-  const s = JSON.parse(localStorage.getItem('hq2') || 'null');
-  if (s) { marks = s.marks || {}; heat = s.heat || {}; runs = s.runs || {} }
-  else { const o = JSON.parse(localStorage.getItem('hq') || 'null'); if (o) { marks = o.marks || {}; runs = o.runs || {} } }
-} catch (e) {}
-const save = () => { try { localStorage.setItem('hq2', JSON.stringify({ marks, heat, runs })) } catch (e) {} };
+try { const s = JSON.parse(localStorage.getItem('hq3') || 'null'); if (s) { marks = s.marks || {}; heat = s.heat || {}; runs = s.runs || {} } } catch (e) {}
+const save = () => { try { localStorage.setItem('hq3', JSON.stringify({ marks, heat, runs })) } catch (e) {} };
 
 // The short answer drives the clues; older questions without one fall back to the first sentence.
 const shortAns = q => (q.ans || q.a.split(/\.(?:\s|$)/)[0]).trim();
@@ -321,7 +318,6 @@ function render() {
   if (!released().length) { show('error'); $('error').querySelector('h2').textContent = 'The first batch lands on Friday'; return }
   if (view === 'archive') return renderArchive();
   const d = batch(), L = list();
-  if (!practice && !runs[d.id]?.start && !marked(L).length) return renderIntro(d);
   if (!practice && marked(L).length === L.length) return renderDone(d);
   renderPlay(L);
 }
@@ -350,7 +346,7 @@ function renderPlay(L) {
   if (lastMarked) {
     last.append(document.createTextNode(marks[lastMarked.id] ? `+${points(lastMarked)} heat. It was ` : 'It was '));
     const b = document.createElement('b'); b.textContent = shortAns(lastMarked); last.append(b);
-  } else last.textContent = i === 0 && !marked(L).length ? 'First one. Take your time.' : 'Welcome back.';
+  } else last.textContent = i === 0 && !marked(L).length ? 'Work it out, then tap Got it or Missed it. Stuck? Turn down the heat for a clue, and it\'s worth less.' : 'Welcome back.';
   $('cat').textContent = q.cat;
   $('qart').src = art(q.cat);
   paintHeat($('heat'), h);
@@ -464,6 +460,7 @@ $('right').onclick = () => mark(true); $('wrong').onclick = () => mark(false);
 $('nav-play').onclick = () => { view = 'play'; practice = null; batchN = latest()?.n; i = firstOpen(list()); shown = false; lastMarked = null; render() };
 $('nav-archive').onclick = () => { view = 'archive'; render() };
 $('ctx-exit').onclick = () => $('nav-play').click();
+$('again').onclick = () => { const d = batch(); d.questions.forEach(q => { delete marks[q.id]; delete heat[q.id] }); delete runs[d.id]; save(); i = 0; shown = false; lastMarked = null; reviewOpen = false; render() };
 $('review-toggle').onclick = () => { reviewOpen = !reviewOpen; renderDone(batch()) };
 $('share').onclick = () => {
   const d = batch(), L = d.questions, n = total(L), t = runTime(d);
