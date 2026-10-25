@@ -40,6 +40,7 @@ aside { position: sticky; top: 0; height: 100vh; overflow-y: auto; border-right:
 .logo b { font: 400 1.35rem/1 var(--serif) }
 .logo b em { font-style: italic }
 .logo span { font: 400 .64rem var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); display: block; margin-top: 4px }
+aside .nav { display: grid; gap: 2px }
 aside .h { font: 400 .64rem var(--mono); text-transform: uppercase; letter-spacing: .16em; color: var(--muted); margin: 20px 0 6px }
 aside a.link { text-decoration: none; color: var(--muted); padding: 4px 0; font-size: .9rem; display: flex; justify-content: space-between; gap: 8px }
 aside a.link:hover, aside a.link.on { color: var(--ink) }
@@ -113,7 +114,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--hot); outline-o
   <aside id="aside">
     <a class="logo" href="../"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 40a28 28 0 0 1 56 0z" fill="currentColor"/><circle cx="22" cy="30" r="3.2" fill="var(--hot)"/><circle cx="34" cy="24" r="2.6" fill="var(--hot)"/><circle cx="44" cy="32" r="3" fill="var(--hot)"/><circle cx="30" cy="35" r="2" fill="var(--hot)"/><rect x="4" y="44" width="56" height="4" fill="currentColor"/></svg><div><b>Hot <em>Quesadillas</em></b><span>API reference · v1</span></div></a>
     <button class="menu" type="button" id="menu" aria-expanded="false">Contents</button>
-    <nav class="nav" aria-label="Contents" style="display:grid;gap:2px">
+    <nav class="nav" aria-label="Contents">
       <span class="h">Get started</span>
       <a class="link" href="#intro">Questions on tap</a>
       <a class="link" href="#basics">Basics</a>
