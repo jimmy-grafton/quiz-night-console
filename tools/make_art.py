@@ -55,7 +55,7 @@ im.resize((W, H), Image.LANCZOS).save(os.path.join(ROOT, "img", "social.png"))
 # ---------- one artwork per type: line-drawn motifs on paper, 600x400 ----------
 def art(t, rnd):
     w, h = 600, 400
-    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" role="img" aria-label="{t}">',
+    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" role="img" aria-label="{t.replace("&", "&amp;")}">',
              '<style>.g{fill:none;stroke:#0b0b0b;stroke-width:1.4}.f{fill:#0b0b0b}.h{fill:#e8461e}.bg{fill:#ffffff}'
              '@media (prefers-color-scheme:dark){.g{stroke:#f4f4f4}.f{fill:#f4f4f4}.bg{fill:#0b0b0b}}</style>',
              f'<rect class="bg" width="{w}" height="{h}"/>']
