@@ -1,4 +1,4 @@
-# Quiz Night Console
+# Hot Quesadillas
 
 Weekly drops of 25 trivia questions, written in a deducible house style. Live at https://jimbogif.github.io/quiz-night-console/
 

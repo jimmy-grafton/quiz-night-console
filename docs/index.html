@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Quiz Night Console API</title>
-<meta name="description" content="Read-only JSON API for Quiz Night Console: weekly drops of 25 trivia questions.">
+<title>Hot Quesadillas API</title>
+<meta name="description" content="Read-only JSON API for Hot Quesadillas: weekly drops of 25 trivia questions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -74,7 +74,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
 <div class="page">
   <header class="top">
     <div>
-      <h1>Quiz Night Console API</h1>
+      <h1>Hot Quesadillas API</h1>
       <p>Read-only JSON for every released drop. No key, no sign-up.</p>
     </div>
     <a class="back" href="../">Play the quiz</a>
@@ -100,7 +100,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
   <main>
     <section id="overview">
       <h2>Overview</h2>
-      <p>Quiz Night Console publishes a drop of 25 trivia questions every week. Each question is written to be reasoned out rather than simply recalled, with a clue built in. The API serves the same data the quiz uses, as static JSON files, over plain <code>GET</code>.</p>
+      <p>Hot Quesadillas publishes a drop of 25 trivia questions every week. Each question is written to be reasoned out rather than simply recalled, with a clue built in. The API serves the same data the quiz uses, as static JSON files, over plain <code>GET</code>.</p>
       <div class="base"><code id="baseurl">https://jimmy-grafton.github.io/quiz-night-console/</code><button class="copy" style="position:static" type="button" data-copy="#baseurl">Copy</button></div>
       <p class="muted">Every path below is relative to this base URL.</p>
     </section>
@@ -241,7 +241,7 @@ pick = random.sample(geo, min(10, len(geo)))</pre>
     </section>
   </main>
 
-  <footer>Quiz Night Console · <a href="../">Play</a> · <a href="https://github.com/jimmy-grafton/quiz-night-console">Source on GitHub</a></footer>
+  <footer>Hot Quesadillas · <a href="../">Play</a> · <a href="https://github.com/jimmy-grafton/quiz-night-console">Source on GitHub</a></footer>
 </div>
 
 <script>
