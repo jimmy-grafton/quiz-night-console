@@ -33,12 +33,12 @@
    "type": "Geography",
    "type_slug": "geography",
    "question": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
-   "answer": "Oman, inside Romania",
+   "answer": "Oman, Romania",
    "explanation": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
    "answer_full": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
    "clues": {
-    "shape": "____, ______ _______",
-    "initials": "O___, i_____ R______"
+    "shape": "____, _______",
+    "initials": "O___, R______"
    },
    "heat": {
     "max": 3,

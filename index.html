@@ -43,6 +43,8 @@ h1, h2, h3 { margin: 0; text-wrap: balance }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 900 1.35rem/1 var(--display); font-stretch: 75%; text-transform: uppercase; letter-spacing: .01em }
 .brand svg { width: 30px; height: 30px; color: var(--ink) }
 .tabs { display: flex; gap: 22px }
+.top .in { } .wallet { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; border: 3px solid var(--rule); padding: 4px 10px; font: 800 1rem var(--text); box-shadow: 3px 3px 0 var(--ink) }
+.wallet .chilli { width: 12px; height: 17px }
 .tabs button { border: 0; background: none; color: var(--ink); font: 700 .95rem var(--text); padding: 4px 0; cursor: pointer; border-bottom: 3px solid transparent }
 .tabs button:hover { border-bottom-color: var(--hair) }
 .tabs button[aria-current="page"] { border-bottom-color: var(--chilli) }
@@ -111,8 +113,14 @@ button:focus-visible, a:focus-visible, tr:focus-visible { outline: 3px solid var
 .helpers { display: flex; gap: 26px; flex-wrap: wrap; margin: 0 0 26px }
 .answerbar { border-top: 3px solid var(--rule); padding-top: 20px; display: grid; gap: 14px }
 .answerbar p { margin: 0; font-size: .92rem; color: var(--grey) }
-.answerbar .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
-.feedback { margin: 0 0 18px; padding: 10px 14px; font-size: .92rem; display: flex; gap: 8px; align-items: baseline; border-left: 6px solid var(--ink); background: var(--wash) }
+.answerbar .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px }
+.answerbar input { font: 600 1.1rem var(--text); padding: 14px 16px; border: 3px solid var(--rule); border-radius: 0; background: var(--paper); color: var(--ink); min-width: 0 }
+.answerbar input:focus { outline: 3px solid var(--chilli); outline-offset: 2px }
+.answerbar .after { display: flex; gap: 22px; flex-wrap: wrap }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+.yours { font-size: .9rem; color: var(--grey); margin: 6px 0 0 }
+.feedback b.big { font: 900 1.6rem/1 var(--display); font-stretch: 75%; color: var(--chilli) }
+.feedback { flex-wrap: wrap; margin: 0 0 14px; padding: 10px 14px; font-size: .92rem; display: flex; gap: 8px; align-items: baseline; border-left: 6px solid var(--ink); background: var(--wash) }
 .feedback.ok { border-left-color: var(--chilli) }
 .feedback b { font-weight: 800 }
 
@@ -204,6 +212,7 @@ footer a { color: var(--ink) }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="chilli" viewBox="0 0 14 20"><path d="M8.6 1.2c.2 1-.1 1.8-.9 2.4 2.3.4 3.6 2.2 3.4 4.8-.3 4.2-3.4 8.5-7.8 10.4-.9.4-1.5-.6-.9-1.2 2.4-2.6 3.4-5.6 3.3-9-.1-2.1 1-3.6 2.6-4.3.3-.9.2-1.7-.3-2.4z"/></symbol></svg>
 <header class="top"><div class="in">
   <a class="brand" href="./" id="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 40a28 28 0 0 1 56 0z" fill="currentColor"/><circle cx="22" cy="30" r="3.2" fill="var(--chilli)"/><circle cx="34" cy="24" r="2.6" fill="var(--chilli)"/><circle cx="44" cy="32" r="3" fill="var(--chilli)"/><circle cx="30" cy="35" r="2" fill="var(--chilli)"/><rect x="4" y="44" width="56" height="4" fill="currentColor"/></svg>Hot Quesadillas</a>
+  <span class="wallet" id="wallet" title="Your chillies, all time"><svg class="chilli"><use href="#chilli"/></svg><b id="w-total">0</b></span>
   <nav class="tabs" aria-label="Main">
     <button type="button" id="nav-play" aria-current="page">This week</button>
     <button type="button" id="nav-past">Archive</button>
@@ -244,20 +253,23 @@ footer a { color: var(--ink) }
       <section class="card pad" aria-live="polite">
         <div class="qtop"><span class="pill" id="cat">Geography</span><span class="heat" id="heat"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><em id="heat-label">3 chillies up for grabs</em></span><span class="steps" id="steps">Question 1 of 25</span></div>
         <div class="bar" aria-hidden="true"><span id="bar"></span></div>
-        <div class="feedback" id="feedback" hidden></div>
         <h1 class="question" id="q"></h1>
         <div class="hint" id="hint" hidden><span class="label" id="hint-label">Hint</span><code id="hint-text"></code></div>
+        <div class="feedback" id="feedback" hidden></div>
         <div class="reveal" id="reveal" hidden><span class="label">Answer</span><b id="ans"></b><p id="why"></p></div>
         <div class="helpers">
           <button class="link heat-btn" type="button" id="hint-btn">Turn down the heat</button>
           <button class="link" type="button" id="reveal-btn">Reveal the answer</button>
         </div>
         <div class="answerbar">
-          <p id="ask">Got an answer? Reveal it to check, then mark yourself.</p>
-          <div class="row">
-            <button class="btn good" type="button" id="right">I got it right</button>
-            <button class="btn" type="button" id="wrong">I got it wrong</button>
-          </div>
+          <p id="ask">Type your answer and lock it in.</p>
+          <form class="row" id="markrow" autocomplete="off">
+            <label class="sr" for="guess">Your answer</label>
+            <input id="guess" name="guess" type="text" placeholder="Type your answer" autocomplete="off" spellcheck="false">
+            <button class="btn primary" type="submit" id="right">Lock it in</button>
+          </form>
+          <div class="after" id="markextra"><button class="link" type="button" id="wrong">Pass, I don't know</button><button class="link" type="button" id="override" hidden>Actually, I had it</button></div>
+          <button class="btn hot" type="button" id="next" hidden>Next question →</button>
         </div>
       </section>
 
@@ -268,7 +280,8 @@ footer a { color: var(--ink) }
           <div><span>Answered</span><b id="s-done">0 of 25</b></div>
           <div><span>Correct</span><b id="s-correct">0</b></div>
           <div><span>Time</span><b id="s-time">0:00</b></div>
-          <div class="total"><span>Total</span><b class="stat-chilli"><span id="s-heat">0</span><svg class="chilli"><use href="#chilli"/></svg></b></div>
+          <div class="total"><span>This quiz</span><b class="stat-chilli"><span id="s-heat">0</span><svg class="chilli"><use href="#chilli"/></svg></b></div>
+          <div><span>All time</span><b class="stat-chilli"><span id="s-life">0</span><svg class="chilli"><use href="#chilli"/></svg></b></div>
         </div>
         <div class="foot">No hints 3 · one hint 2 · two hints 1<br>Thank you, come again Friday</div>
       </aside>
@@ -324,12 +337,47 @@ const art = cat => `img/types/${slug(cat)}.svg?v=2`;
 const SITE = 'jimmy-grafton.github.io/quiz-night-console';
 
 let quizzes = [], marks = {}, hints = {}, runs = {};
-let view = 'home', quizN = null, topic = null, i = 0, revealed = false, last = null, busy = false;
+let guesses = {};
+let view = 'home', quizN = null, topic = null, i = 0, revealed = false, last = null, busy = false, judged = false;
 try { const s = JSON.parse(localStorage.getItem('hq4') || 'null'); if (s) { marks = s.marks || {}; hints = s.hints || {}; runs = s.runs || {} } } catch (e) {}
-const save = () => { try { localStorage.setItem('hq4', JSON.stringify({ marks, hints, runs })) } catch (e) {} };
+let practiceStash = null;
+const save = () => { try { const src = practiceStash || { marks, hints }; localStorage.setItem('hq4', JSON.stringify({ marks: src.marks, hints: src.hints, runs })) } catch (e) {} };
+function enterPractice() { if (!practiceStash) { practiceStash = { marks, hints, guesses }; marks = {}; hints = {}; guesses = {} } }
+function exitPractice() { if (practiceStash) { ({ marks, hints, guesses } = practiceStash); practiceStash = null } }
+
+// The player: one permanent ID per person. Chillies stack across every quiz on this object.
+// Stored on the device for now; synced to Firebase (keyed by the same ID) once that is wired up.
+let player = null;
+try { player = JSON.parse(localStorage.getItem('hq-player') || 'null') } catch (e) {}
+if (!player || !player.id) player = { object: 'player', id: 'plr_' + (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)), created_at: new Date().toISOString(), chillies: 0, quizzes: {} };
+function savePlayer() {
+  const src = practiceStash || { marks, hints };
+  const pts = q => src.marks[q.id] === true ? 3 - (src.hints[q.id] || 0) : 0;
+  let total = 0; const qz = {};
+  quizzes.forEach(d => {
+    const L = d.questions, a = L.filter(q => src.marks[q.id] !== undefined).length; if (!a) return;
+    const c = L.reduce((n, q) => n + pts(q), 0); total += c;
+    qz['quiz_' + String(d.n).padStart(4, '0')] = { chillies: c, correct: L.filter(q => src.marks[q.id] === true).length, answered: a, finished: a === L.length };
+  });
+  player.chillies = total; player.quizzes = qz; player.updated_at = new Date().toISOString();
+  try { localStorage.setItem('hq-player', JSON.stringify(player)) } catch (e) {}
+  const w = document.getElementById('w-total'); if (w) w.textContent = total;
+}
 
 const shortAns = q => (q.ans || q.a.split(/\.(?:\s|$)/)[0]).trim();
 const hintText = (q, level) => shortAns(q).slice(0, 60).replace(/[A-Za-z0-9À-ɏ]+/g, w => level === 2 ? w[0] + '_'.repeat(w.length - 1) : '_'.repeat(w.length)).split('').join(' ');
+const NUMW = { one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '9', ten: '10', eleven: '11', twelve: '12', first: '1st', second: '2nd', third: '3rd', fourth: '4th', fifth: '5th' };
+const norm = t => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9 ]+/g, ' ').replace(/\b(the|a|an|of|and)\b/g, ' ').replace(/\s+/g, ' ').trim().split(' ').map(w => NUMW[w] || w).join(' ');
+function lev(a, b) { const m = a.length, n = b.length, d = Array.from({ length: m + 1 }, (_, k) => [k]); for (let j = 1; j <= n; j++) d[0][j] = j; for (let x = 1; x <= m; x++) for (let j = 1; j <= n; j++) d[x][j] = Math.min(d[x - 1][j] + 1, d[x][j - 1] + 1, d[x - 1][j - 1] + (a[x - 1] === b[j - 1] ? 0 : 1)); return d[m][n] }
+function close(part, guess) { if (!part) return true; if (guess.includes(part)) return true; const gw = guess.split(' '), pw = part.split(' '); return pw.every(w => gw.some(g => g === w || (w.length > 3 && lev(g, w) <= (w.length > 7 ? 2 : 1)))) }
+function isRight(guess, q) {
+  const g = norm(guess), raw = shortAns(q);
+  if (q.any && Array.isArray(q.any.of)) return q.any.of.map(norm).filter(p => close(p, g)).length >= (q.any.n || 1);
+  const alts = /^any /i.test(raw) ? [raw.replace(/^any [a-z0-9]+ of:?\s*/i, '')] : [raw];
+  const parts = alts[0].split(/,|\bor\b|\//).map(norm).filter(Boolean);
+  if (/^any /i.test(raw) || /\bor\b/i.test(raw)) { const need = /^any (\w+)/i.exec(raw); const n = need ? ({ one: 1, two: 2, three: 3 }[need[1].toLowerCase()] || 1) : 1; return parts.filter(p => close(p, g)).length >= n }
+  return parts.every(p => close(p, g));
+}
 const released = () => quizzes.filter(d => new Date(d.releaseAt) <= new Date());
 const latest = () => released()[0];
 const quiz = () => released().find(d => d.n === quizN) || latest();
@@ -376,26 +424,39 @@ function renderPlay(L) {
   $('cat').textContent = q.cat;
   $('steps').textContent = `Question ${i + 1} of ${L.length}`;
   $('bar').style.width = `${(answered(L).length / L.length) * 100}%`;
-  const fb = $('feedback');
-  if (last) {
-    fb.hidden = false; fb.className = 'feedback ' + (marks[last.id] ? 'ok' : 'no'); fb.textContent = '';
-    fb.append(document.createTextNode(marks[last.id] ? `Correct, +${heatOf(last)} chillies. It was ` : 'Not this time. It was '));
-    const b = document.createElement('b'); b.textContent = shortAns(last); fb.append(b);
+  const fb = $('feedback'), m = marks[q.id];
+  if (judged && m !== undefined) {
+    fb.hidden = false; fb.className = 'feedback ' + (m ? 'ok' : 'no'); fb.textContent = '';
+    if (m) { const b = document.createElement('b'); b.className = 'big'; b.textContent = `+${heatOf(q)}`; fb.append(b); fb.append(document.createTextNode(` ${heatOf(q) === 1 ? 'chilli' : 'chillies'} in the bag.`)) }
+    else fb.append(document.createTextNode('No chillies this time.'));
+    const yours = (guesses[q.id] || '').trim();
+    if (yours) { const y = document.createElement('p'); y.className = 'yours'; y.textContent = `You said: ${yours}`; fb.append(y) }
   } else fb.hidden = true;
   $('q').textContent = q.q;
-  $('hint').hidden = !h || revealed;
+  $('hint').hidden = !h || revealed || judged;
   $('hint-label').textContent = h === 1 ? 'Hint: how the answer is shaped' : 'Hint: the first letters';
   [...$('heat').querySelectorAll('.chilli')].forEach((c, k) => c.classList.toggle('off', k >= 3 - h));
   $('heat-label').textContent = `${3 - h} ${3 - h === 1 ? 'chilli' : 'chillies'} up for grabs`;
   $('hint-text').textContent = h ? hintText(q, h) : '';
-  $('reveal').hidden = !revealed;
+  const showAns = revealed || judged;
+  $('reveal').hidden = !showAns;
   $('ans').textContent = shortAns(q);
   $('why').textContent = q.a; $('why').hidden = q.a.trim() === shortAns(q);
-  $('hint-btn').hidden = revealed || h >= 2;
+  $('hint-btn').hidden = revealed || judged || h >= 2;
+  $('reveal-btn').hidden = judged;
+  $('markrow').hidden = judged;
+  $('next').hidden = !judged;
+  const remaining = L.filter(x => marks[x.id] === undefined).length;
+  $('next').textContent = remaining ? 'Next question →' : (topic ? 'Back to the archive →' : 'See my receipt →');
   $('hint-btn').textContent = h === 0 ? 'Turn down the heat' : 'Turn it down again';
   $('reveal-btn').textContent = revealed ? 'Hide the answer' : 'Reveal the answer';
   const prev = marks[q.id];
-  $('ask').textContent = prev === undefined ? 'Got an answer? Reveal it to check, then mark yourself.' : `You marked this one ${prev ? 'right' : 'wrong'}. You can change it.`;
+  $('ask').textContent = judged ? '' : prev === undefined ? 'Type your answer and lock it in.' : `Already answered: ${prev ? 'right' : 'missed'}. Answer again to change it.`;
+  $('ask').hidden = judged;
+  $('markextra').hidden = false;
+  $('wrong').hidden = judged;
+  $('override').hidden = !(judged && marks[q.id] === false && (guesses[q.id] || '').trim());
+  if (!judged) { $('guess').value = ''; if (document.activeElement === document.body || document.activeElement?.id === 'next') setTimeout(() => $('guess').focus({ preventScroll: true }), 30) } else setTimeout(() => $('next').focus({ preventScroll: true }), 30);
 
   // summary panel
   const S = topic ? L : d.questions;
@@ -404,6 +465,7 @@ function renderPlay(L) {
   $('s-correct').textContent = correct(S).length;
   $('s-done').textContent = `${answered(S).length} of ${S.length}`;
   $('s-heat').textContent = heatEarned(S);
+  $('s-life').textContent = player.chillies;
   $('s-time').textContent = topic ? '–' : dur(runTime(d));
   const ol = $('qlist'); ol.innerHTML = '';
   L.forEach((x, k) => {
@@ -416,7 +478,7 @@ function renderPlay(L) {
     const hh = b.querySelector('.h'); hh.className = 'h' + (m === true ? ' ok' : m === false ? ' no' : '');
     hh.textContent = m === true ? `+${heatOf(x)}` : m === false ? '0' : '·';
     b.setAttribute('aria-label', `Question ${k + 1}${m === true ? ', right' : m === false ? ', wrong' : ''}`);
-    b.onclick = () => { i = k; revealed = false; last = null; renderPlay(list()) };
+    b.onclick = () => { i = k; revealed = false; judged = false; renderPlay(list()) };
     li.appendChild(b); ol.appendChild(li);
   });
 }
@@ -460,7 +522,7 @@ function renderPast() {
     const cats = [...new Set(L.map(q => q.cat))];
     tr.querySelector('td:last-child').textContent = cats.slice(0, 3).join(', ') + (cats.length > 3 ? ` +${cats.length - 3}` : '');
     tr.tabIndex = 0;
-    const open = () => { topic = null; quizN = d.n; i = firstOpen(L); revealed = false; last = null; view = 'play'; render() };
+    const open = () => { exitPractice(); topic = null; quizN = d.n; i = firstOpen(L); revealed = false; judged = false; view = 'play'; render() };
     tr.onclick = open; tr.onkeydown = e => { if (e.key === 'Enter') open() };
     tb.appendChild(tr);
   });
@@ -471,7 +533,7 @@ function renderPast() {
     b.innerHTML = '<img alt=""><span></span><small></small>';
     b.querySelector('img').src = art(c); b.querySelector('span').textContent = c;
     b.querySelector('small').textContent = `${counts[c]} question${counts[c] === 1 ? '' : 's'}`;
-    b.onclick = () => { topic = c; view = 'play'; i = firstOpen(list()); revealed = false; last = null; render() };
+    b.onclick = () => { enterPractice(); topic = c; view = 'play'; i = firstOpen(list()); revealed = false; judged = false; render() };
     box.appendChild(b);
   });
 }
@@ -484,25 +546,35 @@ function mark(v) {
   marks[q.id] = v;
   if (!topic && answered(d.questions).length === d.questions.length && !runs[d.id].end) runs[d.id] = { ...runs[d.id], end: Date.now() };
   save();
-  last = q;
-  const nxt = L.findIndex((x, k) => k > i && marks[x.id] === undefined), any = L.findIndex(x => marks[x.id] === undefined);
-  i = nxt >= 0 ? nxt : any >= 0 ? any : i;
-  revealed = false;
-  render();
+  judged = true;
+  savePlayer();
+  renderPlay(L);
   busy = false;
+}
+function next() {
+  const L = list();
+  judged = false; revealed = false;
+  const nxt = L.findIndex((x, k) => k > i && marks[x.id] === undefined), any = L.findIndex(x => marks[x.id] === undefined);
+  if (any < 0) { if (topic) { exitPractice(); view = 'past'; topic = null } render(); return }
+  i = nxt >= 0 ? nxt : any;
+  renderPlay(L);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function hint() { const q = list()[i]; if (!q || revealed) return; const h = hints[q.id] || 0; if (h >= 2) return; startRun(quiz()); hints[q.id] = h + 1; save(); renderPlay(list()) }
 function toggleReveal() { revealed = !revealed; startRun(quiz()); renderPlay(list()) }
 
-$('right').onclick = () => mark(true); $('wrong').onclick = () => mark(false);
+$('markrow').onsubmit = e => { e.preventDefault(); const g = $('guess').value.trim(); if (!g) { $('guess').focus(); return } guesses[list()[i].id] = g; mark(isRight(g, list()[i])) };
+$('wrong').onclick = () => { guesses[list()[i].id] = ''; mark(false) };
+$('override').onclick = () => mark(true);
+$('next').onclick = next;
 $('hint-btn').onclick = hint; $('reveal-btn').onclick = toggleReveal;
-$('start').onclick = () => { view = 'play'; topic = null; quizN = latest()?.n; i = firstOpen(list()); revealed = false; last = null; startRun(quiz()); render() };
+$('start').onclick = () => { view = 'play'; topic = null; quizN = latest()?.n; i = firstOpen(list()); revealed = false; judged = false; startRun(quiz()); render() };
 $('brand').onclick = e => { e.preventDefault(); $('nav-play').click() };
 $('see-archive').onclick = () => { view = 'past'; render() };
-$('nav-play').onclick = () => { view = 'home'; topic = null; quizN = latest()?.n; i = firstOpen(list()); revealed = false; last = null; render() };
-$('nav-past').onclick = $('to-past').onclick = () => { view = 'past'; render() };
+$('nav-play').onclick = () => { exitPractice(); view = 'home'; topic = null; quizN = latest()?.n; i = firstOpen(list()); revealed = false; judged = false; render() };
+$('nav-past').onclick = $('to-past').onclick = () => { exitPractice(); topic = null; view = 'past'; render() };
 $('ctx-exit').onclick = () => $('nav-play').click();
-$('again').onclick = () => { const d = quiz(); d.questions.forEach(q => { delete marks[q.id]; delete hints[q.id] }); delete runs[d.id]; save(); i = 0; revealed = false; last = null; render() };
+$('again').onclick = () => { const d = quiz(); d.questions.forEach(q => { delete marks[q.id]; delete hints[q.id] }); delete runs[d.id]; save(); savePlayer(); i = 0; revealed = false; judged = false; render() };
 $('share').onclick = () => {
   const d = quiz(), L = d.questions, t = runTime(d);
   const text = `Hot Quesadillas, quiz Nº${d.n}: ${correct(L).length}/${L.length} and ${heatEarned(L)} chillies${t ? ' in ' + dur(t) : ''}. ${SITE}`;
@@ -513,7 +585,7 @@ $('share').onclick = () => {
 document.addEventListener('keydown', e => {
   if ($('play').hidden || e.metaKey || e.ctrlKey || e.altKey || ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
   const k = e.key.toLowerCase();
-  if (k === 'y') mark(true); else if (k === 'n') mark(false); else if (k === 'h') hint(); else if (k === 'a') toggleReveal();
+  if (k === 'h') hint(); else if (k === 'enter' && judged) next();
 });
 setInterval(() => { if (!$('play').hidden && !topic) $('s-time').textContent = dur(runTime(quiz())) }, 1000);
 
@@ -527,6 +599,7 @@ setInterval(() => { if (!$('play').hidden && !topic) $('s-time').textContent = d
   if (location.hash === '#past' || location.hash === '#archive') view = 'past';
   const h = (location.hash || '').match(/^#quiz-(\d+)$/); if (h && released().some(d => d.n === +h[1])) { quizN = +h[1]; view = 'play' }
   if (quizN) i = firstOpen(quiz().questions);
+  savePlayer();
   render();
 })();
 </script>

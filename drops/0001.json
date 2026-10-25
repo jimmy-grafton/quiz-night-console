@@ -16,7 +16,7 @@
    "cat": "Geography",
    "q": "A Middle Eastern country is hiding, letter for letter, inside the name of a European one. Find both.",
    "a": "Oman, inside ROMANIA. Scan European names for a four-letter run.",
-   "ans": "Oman, inside Romania"
+   "ans": "Oman, Romania"
   },
   {
    "id": "d0001-3",
@@ -51,7 +51,22 @@
    "cat": "Geography",
    "q": "Name three countries whose capital is named the same as the country itself, or the country's name plus 'City'.",
    "a": "Any three of: Singapore, Monaco, Vatican City, San Marino, Luxembourg, Kuwait, Djibouti, Mexico, Guatemala, Panama. Think city-states first.",
-   "ans": "Singapore, Monaco, Vatican City"
+   "ans": "Singapore, Monaco, Vatican City",
+   "any": {
+    "n": 3,
+    "of": [
+     "Singapore",
+     "Monaco",
+     "Vatican City",
+     "San Marino",
+     "Luxembourg",
+     "Kuwait",
+     "Djibouti",
+     "Mexico",
+     "Guatemala",
+     "Panama"
+    ]
+   }
   },
   {
    "id": "d0001-8",
