@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quiz Night Console API</title>
+<meta name="description" content="Read-only JSON API for Quiz Night Console: weekly drops of 25 trivia questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a reference manual — sticky contents rail on the left, endpoint entries down the right like a printed spec; black ink only */
+:root {
+  --bg: #ffffff; --ink: #0b0b0b; --muted: #6f6f6f; --line: #e3e3e3; --soft: #f5f5f5;
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #0b0b0b; --ink: #f4f4f4; --muted: #8c8c8c; --line: #262626; --soft: #151515; color-scheme: dark }
+* { box-sizing: border-box }
+html { scroll-padding-top: 24px }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 40px 80px }
+a { color: inherit; text-underline-offset: 3px }
+.page { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 56px }
+header.top { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--ink) }
+header.top h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1; margin: 0 }
+header.top p { margin: 8px 0 0; color: var(--muted); font-size: .9rem }
+.back { font: 500 .8rem var(--sans); text-transform: uppercase; letter-spacing: .14em; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px }
+.back:hover { border-bottom-color: var(--ink) }
+nav { position: sticky; top: 24px; align-self: start; display: grid; gap: 4px; font-size: .9rem }
+nav .h { font: 400 .68rem var(--mono); text-transform: uppercase; letter-spacing: .16em; color: var(--muted); margin: 18px 0 6px }
+nav .h:first-child { margin-top: 0 }
+nav a { text-decoration: none; color: var(--muted); padding: 2px 0 }
+nav a:hover { color: var(--ink) }
+nav code { font-family: var(--mono); font-size: .8rem }
+main { min-width: 0; display: grid; gap: 64px }
+section { display: grid; gap: 16px; min-width: 0 }
+h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.1; margin: 0 }
+h3 { font-family: var(--sans); font-weight: 600; font-size: 1rem; margin: 8px 0 0 }
+p { margin: 0; max-width: 64ch }
+.muted { color: var(--muted) }
+code { font-family: var(--mono); font-size: .86em }
+p code, td code, li code { background: var(--soft); padding: 1px 5px }
+.base { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1px solid var(--ink); padding: 14px 16px; min-width: 0 }
+.base code { font-size: .92rem; overflow-wrap: anywhere; flex: 1 1 260px }
+.endpoint { border-top: 1px solid var(--ink); padding-top: 22px; display: grid; gap: 14px; min-width: 0 }
+.sig { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; font-family: var(--mono); font-size: 1rem; min-width: 0 }
+.verb { font-size: .72rem; letter-spacing: .14em; border: 1px solid var(--ink); padding: 2px 7px }
+.sig .path { overflow-wrap: anywhere }
+.tablewrap { overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; min-width: 520px }
+th { text-align: left; font: 400 .68rem var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); padding: 0 16px 8px 0; border-bottom: 1px solid var(--ink) }
+td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top }
+td:first-child { white-space: nowrap }
+.code { position: relative; border: 1px solid var(--line); background: var(--soft); min-width: 0 }
+.code .tabs { display: flex; gap: 18px; padding: 10px 14px 0; border-bottom: 1px solid var(--line) }
+.code .tabs button { border: 0; background: none; padding: 0 0 8px; font: 500 .72rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); cursor: pointer; border-bottom: 1px solid transparent; margin-bottom: -1px }
+.code .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink) }
+pre { margin: 0; padding: 16px 14px; overflow-x: auto; font: 400 .82rem/1.6 var(--mono); max-height: 420px }
+.copy { position: absolute; top: 6px; right: 6px; font: 500 .68rem var(--sans); text-transform: uppercase; letter-spacing: .12em; padding: 6px 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer }
+.copy:hover { border-color: var(--ink) }
+.try { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.try button { font: 500 .8rem var(--sans); padding: 9px 14px; border: 1px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer }
+.try button:hover { background: var(--ink); color: var(--bg) }
+.try .meta { font-family: var(--mono); font-size: .76rem; color: var(--muted) }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 64ch }
+footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: .8rem }
+@media (max-width: 820px) { .page { grid-template-columns: minmax(0, 1fr); gap: 36px } nav { position: static; grid-auto-flow: row; border-bottom: 1px solid var(--line); padding-bottom: 18px } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div>
+      <h1>Quiz Night Console API</h1>
+      <p>Read-only JSON for every released drop. No key, no sign-up.</p>
+    </div>
+    <a class="back" href="../">Play the quiz</a>
+  </header>
+
+  <nav aria-label="Contents">
+    <span class="h">Start</span>
+    <a href="#overview">Overview</a>
+    <a href="#schedule">Release schedule</a>
+    <span class="h">Endpoints</span>
+    <a href="#latest"><code>/api/latest.json</code></a>
+    <a href="#drops"><code>/api/drops.json</code></a>
+    <a href="#drop"><code>/drops/{n}.json</code></a>
+    <a href="#questions"><code>/api/questions.json</code></a>
+    <a href="#types"><code>/api/types.json</code></a>
+    <span class="h">Reference</span>
+    <a href="#objects">Objects</a>
+    <a href="#types-list">Question types</a>
+    <a href="#behaviour">Caching, CORS, errors</a>
+    <a href="#stability">Stability</a>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>Quiz Night Console publishes a drop of 25 trivia questions every week. Each question is written to be reasoned out rather than simply recalled, with a clue built in. The API serves the same data the quiz uses, as static JSON files, over plain <code>GET</code>.</p>
+      <div class="base"><code id="baseurl">https://jimmy-grafton.github.io/quiz-night-console/</code><button class="copy" style="position:static" type="button" data-copy="#baseurl">Copy</button></div>
+      <p class="muted">Every path below is relative to this base URL.</p>
+    </section>
+
+    <section id="schedule">
+      <h2>Release schedule</h2>
+      <ul class="plain">
+        <li>A new drop is published every <b>Friday at 00:00 London time</b>, usually live within ten minutes.</li>
+        <li>Drops are numbered from 1 and never renumbered. A drop's <code>releaseAt</code> is the Friday midnight it belongs to, in UTC.</li>
+        <li>Only released drops appear in the <code>api/</code> files. Nothing is published ahead of its release.</li>
+      </ul>
+    </section>
+
+    <section id="latest" class="endpoint">
+      <div class="sig"><span class="verb">GET</span><span class="path">/api/latest.json</span></div>
+      <p>This week's drop in full: one <a href="#obj-drop">Drop</a> object.</p>
+      <div class="try"><button type="button" data-try="api/latest.json" data-target="out-latest">Fetch live</button><span class="meta" id="meta-latest"></span></div>
+      <div class="code"><pre id="out-latest">{
+  "n": 1,
+  "releaseAt": "2026-10-22T23:00:00.000Z",
+  "questions": [
+    { "id": "d0001-1", "cat": "Geography", "q": "Only three UN member countries…", "a": "Japan, Jamaica, Jordan…" },
+    …
+  ]
+}</pre><button class="copy" type="button" data-copy="#out-latest">Copy</button></div>
+    </section>
+
+    <section id="drops" class="endpoint">
+      <div class="sig"><span class="verb">GET</span><span class="path">/api/drops.json</span></div>
+      <p>An index of every released drop, oldest first, without the questions. Use it to page through the archive.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>n</code></td><td>integer</td><td>Drop number, starting at 1.</td></tr>
+          <tr><td><code>releaseAt</code></td><td>string</td><td>Release time, ISO 8601 in UTC.</td></tr>
+          <tr><td><code>count</code></td><td>integer</td><td>Number of questions in the drop (25).</td></tr>
+          <tr><td><code>url</code></td><td>string</td><td>Path to the full drop, relative to the base URL.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="try"><button type="button" data-try="api/drops.json" data-target="out-drops">Fetch live</button><span class="meta" id="meta-drops"></span></div>
+      <div class="code"><pre id="out-drops">[
+  { "n": 1, "releaseAt": "2026-10-22T23:00:00.000Z", "count": 25, "url": "drops/0001.json" }
+]</pre><button class="copy" type="button" data-copy="#out-drops">Copy</button></div>
+    </section>
+
+    <section id="drop" class="endpoint">
+      <div class="sig"><span class="verb">GET</span><span class="path">/drops/{n}.json</span></div>
+      <p>One drop in full. <code>{n}</code> is the drop number padded to four digits, so drop 1 is <code>drops/0001.json</code> and drop 12 is <code>drops/0012.json</code>. Returns a <a href="#obj-drop">Drop</a> object, or <code>404</code> for a drop that doesn't exist yet.</p>
+      <div class="try"><button type="button" data-try="drops/0001.json" data-target="out-drop">Fetch drop 1</button><span class="meta" id="meta-drop"></span></div>
+      <div class="code"><pre id="out-drop">GET drops/0001.json</pre><button class="copy" type="button" data-copy="#out-drop">Copy</button></div>
+    </section>
+
+    <section id="questions" class="endpoint">
+      <div class="sig"><span class="verb">GET</span><span class="path">/api/questions.json</span></div>
+      <p>Every released question in one flat array, oldest drop first. Each item is a <a href="#obj-question">Question</a> with two extra fields, <code>drop</code> and <code>releaseAt</code>, saying where it came from. Filter it on your side by <code>cat</code> or <code>drop</code>.</p>
+      <div class="code" data-tabs>
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" aria-selected="true" data-tab="js">JavaScript</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="py">Python</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="sh">curl</button>
+        </div>
+<pre data-pane="js" id="ex-js">const BASE = "https://jimmy-grafton.github.io/quiz-night-console/";
+const questions = await fetch(BASE + "api/questions.json").then(r => r.json());
+
+// Ten random Geography questions
+const geo = questions.filter(q => q.cat === "Geography");
+const pick = geo.sort(() => Math.random() - 0.5).slice(0, 10);</pre>
+<pre data-pane="py" id="ex-py" hidden>import json, random, urllib.request
+
+BASE = "https://jimmy-grafton.github.io/quiz-night-console/"
+with urllib.request.urlopen(BASE + "api/questions.json") as r:
+    questions = json.load(r)
+
+# Ten random Geography questions
+geo = [q for q in questions if q["cat"] == "Geography"]
+pick = random.sample(geo, min(10, len(geo)))</pre>
+<pre data-pane="sh" id="ex-sh" hidden>curl -s https://jimmy-grafton.github.io/quiz-night-console/api/questions.json \
+  | jq '[.[] | select(.cat == "Geography")] | length'</pre>
+        <button class="copy" type="button" data-copy-active>Copy</button>
+      </div>
+    </section>
+
+    <section id="types" class="endpoint">
+      <div class="sig"><span class="verb">GET</span><span class="path">/api/types.json</span></div>
+      <p>How many released questions there are of each type, as an object of type name to count.</p>
+      <div class="try"><button type="button" data-try="api/types.json" data-target="out-types">Fetch live</button><span class="meta" id="meta-types"></span></div>
+      <div class="code"><pre id="out-types">{ "Geography": 8, "Ancient History": 5, "History": 2, … }</pre><button class="copy" type="button" data-copy="#out-types">Copy</button></div>
+    </section>
+
+    <section id="objects">
+      <h2>Objects</h2>
+      <h3 id="obj-drop">Drop</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>n</code></td><td>integer</td><td>Drop number.</td></tr>
+          <tr><td><code>releaseAt</code></td><td>string</td><td>Friday 00:00 London, as ISO 8601 UTC. <code>2026-10-22T23:00:00.000Z</code> during British Summer Time, <code>2026-10-30T00:00:00.000Z</code> in winter.</td></tr>
+          <tr><td><code>generatedAt</code></td><td>string</td><td>When the drop was written, ISO 8601 UTC.</td></tr>
+          <tr><td><code>source</code></td><td>string</td><td><code>scheduled</code> for the weekly run, <code>seed</code> or <code>manual</code> otherwise.</td></tr>
+          <tr><td><code>questions</code></td><td>Question[]</td><td>The drop's 25 questions, in play order.</td></tr>
+        </tbody>
+      </table></div>
+      <h3 id="obj-question">Question</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>string</td><td>Unique and stable, e.g. <code>d0001-7</code>. Safe to store.</td></tr>
+          <tr><td><code>cat</code></td><td>string</td><td>One of the <a href="#types-list">question types</a>.</td></tr>
+          <tr><td><code>q</code></td><td>string</td><td>The question, under 45 words, with its deductive clue.</td></tr>
+          <tr><td><code>a</code></td><td>string</td><td>The answer first, then a short hint showing how to reach it.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="types-list">
+      <h2>Question types</h2>
+      <p>Every question carries exactly one of these, spelled exactly as shown. Each drop has at least six Geography and three Ancient History questions.</p>
+      <p><code>Geography</code> <code>Ancient History</code> <code>History</code> <code>Science &amp; Nature</code> <code>Words &amp; Language</code> <code>Film &amp; TV</code> <code>Music</code> <code>Sport</code> <code>Food &amp; Drink</code> <code>Art &amp; Books</code> <code>People &amp; Politics</code> <code>Business &amp; Money</code></p>
+    </section>
+
+    <section id="behaviour">
+      <h2>Caching, CORS, errors</h2>
+      <ul class="plain">
+        <li><b>Hosting:</b> files are served by GitHub Pages over HTTPS, cached at the edge for about ten minutes. A new drop can take that long to appear everywhere.</li>
+        <li><b>CORS:</b> responses allow any origin, so you can call the API straight from a browser.</li>
+        <li><b>Errors:</b> a path that doesn't exist returns <code>404</code> with an HTML body. There are no other error shapes.</li>
+        <li><b>Limits:</b> no keys and no rate limit of our own, but GitHub Pages has a soft bandwidth limit. Cache what you fetch and poll at most hourly.</li>
+      </ul>
+    </section>
+
+    <section id="stability">
+      <h2>Stability</h2>
+      <ul class="plain">
+        <li>Fields listed here won't be renamed or removed. New fields may be added, so ignore ones you don't recognise.</li>
+        <li>A released drop can occasionally be corrected if a question turns out to be wrong. Its <code>id</code>s stay the same unless the question itself is replaced.</li>
+        <li>Questions are original and freshly written each week.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Quiz Night Console · <a href="../">Play</a> · <a href="https://github.com/jimmy-grafton/quiz-night-console">Source on GitHub</a></footer>
+</div>
+
+<script>
+const BASE = new URL('../', location.href).href;
+document.getElementById('baseurl').textContent = BASE;
+
+function copyText(text, btn) {
+  const done = () => { const t = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => btn.textContent = t, 1200) };
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done).catch(() => select(text));
+  else select(text);
+}
+function select(text) { const r = document.createRange(); const n = [...document.querySelectorAll('pre, code')].find(e => e.textContent === text); if (n) { r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r) } }
+
+document.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => copyText(document.querySelector(b.dataset.copy).textContent, b));
+document.querySelectorAll('[data-copy-active]').forEach(b => b.onclick = () => copyText(b.closest('.code').querySelector('pre:not([hidden])').textContent, b));
+document.querySelectorAll('[data-tabs]').forEach(box => box.querySelectorAll('[data-tab]').forEach(tab => tab.onclick = () => {
+  box.querySelectorAll('[data-tab]').forEach(t => t.setAttribute('aria-selected', t === tab));
+  box.querySelectorAll('[data-pane]').forEach(p => p.hidden = p.dataset.pane !== tab.dataset.tab);
+}));
+document.querySelectorAll('[data-try]').forEach(b => b.onclick = async () => {
+  const out = document.getElementById(b.dataset.target), meta = document.getElementById('meta-' + b.dataset.target.replace('out-', ''));
+  const t0 = performance.now();
+  meta.textContent = 'Fetching…';
+  try {
+    const r = await fetch(BASE + b.dataset.try, { cache: 'no-cache' });
+    const body = await r.text();
+    let text = body; try { text = JSON.stringify(JSON.parse(body), null, 2) } catch (e) {}
+    out.textContent = text;
+    meta.textContent = `${r.status} · ${(body.length / 1024).toFixed(1)} KB · ${Math.round(performance.now() - t0)} ms`;
+  } catch (e) { meta.textContent = 'Couldn\'t reach the API. Check your connection.' }
+});
+</script>
+</body>
+</html>

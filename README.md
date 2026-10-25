@@ -9,7 +9,7 @@ Weekly drops of 25 trivia questions, written in a deducible house style. Live at
 
 ## API
 
-Read-only JSON, served from the same site:
+Read-only JSON, served from the same site. Full docs: https://jimmy-grafton.github.io/quiz-night-console/docs/
 
 | Endpoint | Returns |
 |---|---|
