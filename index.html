@@ -13,184 +13,197 @@
 <meta property="og:image" content="https://jimmy-grafton.github.io/quiz-night-console/img/social.png">
 <meta property="og:url" content="https://jimmy-grafton.github.io/quiz-night-console/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6f8fb">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: product-style app shell — top bar, main question card, sticky summary panel on the right (stacks below on phones) */
+/* Layout: a hot sauce label meets a taqueria till receipt — black ink on white paper, thick rules, hard shadows, chilli red as the only colour */
 :root {
-  --bg: #f6f8fb; --surface: #ffffff; --ink: #0d1b2e; --body: #3c4a5c; --muted: #6b7889; --line: #e3e8ef; --line-strong: #cdd5df;
-  --brand: #e8461e; --brand-ink: #ffffff; --brand-soft: #fff1ec;
-  --good: #1a7f4b; --good-soft: #e7f6ee; --bad: #c0392b; --bad-soft: #fdecea;
-  --shadow: none;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
-  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --paper: #ffffff; --ink: #0a0a0a; --grey: #6e6e6e; --rule: #0a0a0a; --hair: #d9d9d9; --wash: #f2f2f2;
+  --chilli: #e3241b; --chilli-ink: #ffffff;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --text: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --hard: 4px 4px 0 var(--ink);
   padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0b1220; --surface: #121a2b; --ink: #eef2f7; --body: #c3ccd8; --muted: #8b97a8; --line: #222d40; --line-strong: #2f3b51;
-  --brand: #ff6a3d; --brand-ink: #1a0b05; --brand-soft: #2a1710; --good: #4cc787; --good-soft: #10291c; --bad: #ff7a6b; --bad-soft: #2d1513;
-  --shadow: none; color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: #0b1220; --surface: #121a2b; --ink: #eef2f7; --body: #c3ccd8; --muted: #8b97a8; --line: #222d40; --line-strong: #2f3b51;
-  --brand: #ff6a3d; --brand-ink: #1a0b05; --brand-soft: #2a1710; --good: #4cc787; --good-soft: #10291c; --bad: #ff7a6b; --bad-soft: #2d1513;
-  --shadow: none; color-scheme: dark }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #0a0a0a; --ink: #f5f5f5; --grey: #9a9a9a; --rule: #f5f5f5; --hair: #2c2c2c; --wash: #161616; --chilli: #ff3b2f; --chilli-ink: #0a0a0a; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #0a0a0a; --ink: #f5f5f5; --grey: #9a9a9a; --rule: #f5f5f5; --hair: #2c2c2c; --wash: #161616; --chilli: #ff3b2f; --chilli-ink: #0a0a0a; color-scheme: dark }
 [hidden] { display: none !important }
 * { box-sizing: border-box }
-body { margin: 0; background: var(--bg); color: var(--body); font: 15px/1.55 var(--font); -webkit-font-smoothing: antialiased }
-a { color: var(--brand); text-decoration: none } a:hover { text-decoration: underline }
-h1, h2, h3 { color: var(--ink); margin: 0; letter-spacing: -.01em; text-wrap: balance }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--text); -webkit-font-smoothing: antialiased }
+a { color: inherit }
+h1, h2, h3 { margin: 0; text-wrap: balance }
+.chilli { width: 14px; height: 20px; display: block; fill: var(--chilli); stroke: var(--chilli); stroke-width: 1 }
+.chilli.off { fill: none; stroke: var(--grey) }
 
-.top { background: var(--surface); border-bottom: 1px solid var(--line) }
-.top .in { max-width: 1080px; margin: 0 auto; padding: 14px max(20px, env(safe-area-inset-right, 0px)) 14px max(20px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap }
-.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; font-size: 1.02rem }
-.brand:hover { text-decoration: none }
-.brand svg { width: 26px; height: 26px; color: var(--ink) }
-.tabs { display: flex; gap: 4px }
-.tabs button { border: 0; background: none; color: var(--muted); font: 500 .9rem var(--font); padding: 8px 12px; border-radius: 8px; cursor: pointer }
-.tabs button:hover { color: var(--ink); background: var(--bg) }
-.tabs button[aria-current="page"] { color: var(--ink); background: var(--bg) }
+/* masthead: a label band */
+.top { border-bottom: 3px solid var(--rule) }
+.top .in { max-width: 1100px; margin: 0 auto; padding: 14px max(20px, env(safe-area-inset-right, 0px)) 14px max(20px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 900 1.35rem/1 var(--display); font-stretch: 75%; text-transform: uppercase; letter-spacing: .01em }
+.brand svg { width: 30px; height: 30px; color: var(--ink) }
+.tabs { display: flex; gap: 22px }
+.tabs button { border: 0; background: none; color: var(--ink); font: 700 .95rem var(--text); padding: 4px 0; cursor: pointer; border-bottom: 3px solid transparent }
+.tabs button:hover { border-bottom-color: var(--hair) }
+.tabs button[aria-current="page"] { border-bottom-color: var(--chilli) }
 
-.page { max-width: 1080px; margin: 0 auto; padding: 32px max(20px, env(safe-area-inset-right, 0px)) 64px max(20px, env(safe-area-inset-left, 0px)) }
-.grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px }
+.page { max-width: 1100px; margin: 0 auto; padding: 32px max(20px, env(safe-area-inset-right, 0px)) 72px max(20px, env(safe-area-inset-left, 0px)) }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 32px; align-items: start }
+.card { background: var(--paper); border: 3px solid var(--rule); box-shadow: var(--hard) }
 .pad { padding: 28px }
-.label { font-size: .88rem; font-weight: 500; color: var(--muted) }
+.label { font: 500 .78rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--grey) }
+.muted, .steps { color: var(--grey) }
+.steps { font: 500 .8rem var(--mono); letter-spacing: .04em }
 
-button.btn { font: 600 .95rem var(--font); border-radius: 10px; padding: 12px 18px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; transition: background .15s, border-color .15s, box-shadow .15s }
-button.btn:hover:not([disabled]) { border-color: var(--muted) }
-button.primary { background: var(--brand); border-color: var(--brand); color: var(--brand-ink) }
-button.primary:hover:not([disabled]) { filter: brightness(1.05); border-color: var(--brand) }
-button.good { background: var(--good); border-color: var(--good); color: #fff }
-button.good:hover:not([disabled]) { filter: brightness(1.07); border-color: var(--good) }
-button.link { border: 0; background: none; padding: 0; color: var(--brand); font: 600 .9rem var(--font); cursor: pointer }
-button.link:hover { text-decoration: underline }
-button[disabled] { opacity: .45; cursor: default }
-button:focus-visible, a:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 40%, transparent); outline-offset: 2px }
+/* buttons: stamped */
+button.btn { font: 800 1rem var(--text); border-radius: 0; padding: 14px 20px; border: 3px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; box-shadow: var(--hard); transition: transform .08s, box-shadow .08s }
+button.btn:hover:not([disabled]) { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink) }
+button.btn:active:not([disabled]) { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink) }
+button.primary, button.good { background: var(--ink); color: var(--paper) }
+button.hot { background: var(--chilli); border-color: var(--rule); color: var(--chilli-ink) }
+button.link { border: 0; background: none; padding: 0 0 2px; color: var(--ink); font: 700 .95rem var(--text); cursor: pointer; border-bottom: 2px solid var(--ink) }
+button.link:hover { color: var(--chilli); border-bottom-color: var(--chilli) }
+button.link.heat-btn { display: inline-flex; align-items: center; gap: 8px; border-bottom-color: var(--chilli) }
+button.link.heat-btn::before { content: ""; width: 10px; height: 10px; background: var(--chilli); border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--chilli) 25%, transparent) }
+button[disabled] { opacity: .35; cursor: default }
+button:focus-visible, a:focus-visible, tr:focus-visible { outline: 3px solid var(--chilli); outline-offset: 3px }
 
-/* home */
-.home { max-width: 760px; margin: 0 auto; display: grid; gap: 20px }
-.home .hero-card { padding: 40px 36px; display: grid; gap: 14px }
-.home h1 { font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1 }
-.home .lede { font-size: 1.08rem; margin: 0; max-width: 48ch }
-.home .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px }
-.home .cta .btn { padding: 14px 22px; font-size: 1rem }
-.home .art { width: 100%; max-width: 100%; aspect-ratio: 3 / 1; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); display: block }
-.facts3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) }
-.facts3 div { padding: 18px; display: grid; gap: 2px }
-.facts3 div + div { border-left: 1px solid var(--line) }
-.facts3 b { color: var(--ink); font-size: 1.05rem }
-.facts3 span { font-size: .85rem; color: var(--muted) }
-@media (max-width: 560px) { .facts3 { grid-template-columns: 1fr } .facts3 div + div { border-left: 0; border-top: 1px solid var(--line) } .home .hero-card { padding: 28px 22px } }
+/* home: the label */
+.home { max-width: 820px; margin: 0 auto; display: grid; gap: 28px }
+.label-card { position: relative; padding: 0; overflow: hidden }
+.label-card .band { background: var(--ink); color: var(--paper); padding: 10px 26px; font: 500 .8rem var(--mono); text-transform: uppercase; letter-spacing: .14em; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap }
+.label-card .body { padding: 34px 30px 34px; display: grid; gap: 18px; position: relative;
+  background-image: radial-gradient(var(--hair) 1.1px, transparent 1.3px); background-size: 9px 9px; background-position: right top; background-repeat: no-repeat }
+.label-card .body::after { content: ""; position: absolute; right: 0; top: 0; width: 46%; height: 100%; background: radial-gradient(var(--ink) 1.2px, transparent 1.4px) 0 0 / 9px 9px; -webkit-mask: linear-gradient(to left, rgba(0,0,0,.35), transparent 85%); mask: linear-gradient(to left, rgba(0,0,0,.35), transparent 85%); pointer-events: none }
+.home h1 { font: 900 clamp(3.2rem, 11vw, 6.4rem)/.86 var(--display); font-stretch: 70%; text-transform: uppercase; letter-spacing: -.01em; position: relative; z-index: 1 }
+.home h1 span { color: var(--chilli) }
+.home .lede { font-size: 1.12rem; max-width: 44ch; margin: 0; position: relative; z-index: 1 }
+.home .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; position: relative; z-index: 1 }
+.sticker { position: absolute; z-index: 2; right: 26px; top: 58px; width: 112px; height: 112px; border-radius: 50%; background: var(--chilli); color: var(--chilli-ink); display: grid; place-items: center; text-align: center; transform: rotate(-12deg); border: 3px solid var(--rule); box-shadow: var(--hard) }
+.sticker b { display: block; font: 900 2.6rem/.9 var(--display); font-stretch: 70% }
+.sticker small { display: block; font: 600 .62rem var(--mono); text-transform: uppercase; letter-spacing: .12em }
+.scale { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 3px solid var(--rule) }
+.scale div { padding: 16px 20px; display: grid; gap: 6px; align-content: start }
+.scale div + div { border-left: 3px solid var(--rule) }
+.scale .chillies { display: flex; gap: 2px }
+.scale b { font: 800 .98rem var(--text) }
+.scale span { font-size: .85rem; color: var(--grey) }
+.homefoot { text-align: center; margin: 0 }
 
-/* question card */
+/* play: the order ticket */
+.ctx { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap }
+.pill { display: inline-block; font: 700 .76rem var(--mono); text-transform: uppercase; letter-spacing: .1em; padding: 5px 10px; border: 2px solid var(--rule) }
 .qtop { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap }
-.pill { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--bg); color: var(--body); border: 1px solid var(--line) }
-.steps { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums }
-.bar { height: 6px; background: var(--bg); border-radius: 999px; overflow: hidden; margin: 14px 0 26px; border: 1px solid var(--line) }
-.bar span { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 999px; transition: width .3s ease }
-.question { font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.35; color: var(--ink); font-weight: 600; margin: 0 0 22px; max-width: 34ch }
-.hint, .reveal { border-radius: 10px; padding: 14px 16px; margin: 0 0 16px }
-.hint { background: var(--bg); border: 1px dashed var(--line-strong) }
-.hint .label { display: block; margin-bottom: 4px }
-.hint code { font: 500 1.05rem/1.5 var(--mono); letter-spacing: .12em; color: var(--ink); overflow-wrap: anywhere }
-.reveal { background: var(--brand-soft); border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent) }
-.reveal .label { color: var(--brand); display: block; margin-bottom: 4px }
-.reveal b { color: var(--ink); font-size: 1.1rem; display: block }
-.reveal p { margin: 6px 0 0; font-size: .92rem }
-.heat { display: inline-flex; gap: 2px; align-items: center; font-size: .85rem; color: var(--muted) }
-.chilli { width: 14px; height: 20px; display: block; fill: var(--brand); stroke: var(--brand); stroke-width: 1.2 }
-.chilli.off { fill: none; stroke: var(--line-strong) }
+.heat { display: inline-flex; gap: 2px; align-items: center; font: 600 .85rem var(--text) }
+.heat .chilli { width: 16px; height: 23px }
 .heat em { font-style: normal; margin-left: 8px }
-.stat-chilli { display: inline-flex; align-items: center; gap: 4px; justify-content: center }
-.stat-chilli .chilli { width: 12px; height: 17px }
-.stats .stat-chilli span, .breakdown .stat-chilli span { font-size: inherit; color: inherit }
-.helpers { display: flex; gap: 20px; flex-wrap: wrap; margin: 0 0 24px }
-.answerbar { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 12px }
-.answerbar p { margin: 0; font-size: .9rem; color: var(--muted) }
-.answerbar .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
-.answerbar .row .btn { padding-block: 14px }
-.feedback { margin: 0 0 18px; padding: 10px 14px; border-radius: 10px; font-size: .9rem; display: flex; gap: 8px; align-items: baseline }
-.feedback.ok { background: var(--good-soft); color: var(--good) }
-.feedback.no { background: var(--bad-soft); color: var(--bad) }
-.feedback b { color: var(--ink); font-weight: 600 }
-kbd { font: 500 .72rem var(--mono); border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px; background: var(--surface) }
+.bar { height: 8px; border: 2px solid var(--rule); margin: 18px 0 26px; background: repeating-linear-gradient(90deg, transparent 0 calc(4% - 2px), var(--hair) calc(4% - 2px) 4%) }
+.bar span { display: block; height: 100%; width: 0; background: var(--ink); transition: width .3s ease }
+.question { font: 800 clamp(1.5rem, 3.4vw, 2.1rem)/1.2 var(--display); font-stretch: 88%; margin: 0 0 24px; max-width: 30ch }
+.hint, .reveal { padding: 14px 16px; margin: 0 0 18px }
+.hint { border: 2px dashed var(--rule) }
+.hint .label { display: block; margin-bottom: 6px }
+.hint code { font: 500 1.1rem/1.5 var(--mono); letter-spacing: .14em; overflow-wrap: anywhere }
+.reveal { background: var(--ink); color: var(--paper) }
+.reveal .label { color: var(--paper); opacity: .7; display: block; margin-bottom: 4px }
+.reveal b { font: 800 1.25rem/1.25 var(--display); font-stretch: 88%; display: block }
+.reveal p { margin: 6px 0 0; font-size: .92rem; opacity: .85 }
+.helpers { display: flex; gap: 26px; flex-wrap: wrap; margin: 0 0 26px }
+.answerbar { border-top: 3px solid var(--rule); padding-top: 20px; display: grid; gap: 14px }
+.answerbar p { margin: 0; font-size: .92rem; color: var(--grey) }
+.answerbar .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
+.feedback { margin: 0 0 18px; padding: 10px 14px; font-size: .92rem; display: flex; gap: 8px; align-items: baseline; border-left: 6px solid var(--ink); background: var(--wash) }
+.feedback.ok { border-left-color: var(--chilli) }
+.feedback b { font-weight: 800 }
 
-/* summary panel */
-.summary { position: sticky; top: 20px; display: grid }
-.summary .head { padding: 20px 22px; border-bottom: 1px solid var(--line); display: grid; gap: 4px }
-.summary .head h2 { font-size: 1.05rem }
-.summary .head small { color: var(--muted) }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line) }
-.stats div { padding: 16px 12px; text-align: center; display: grid; gap: 2px }
-.stats div + div { border-left: 1px solid var(--line) }
-.stats b { font-size: 1.35rem; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.2 }
-.stats span { font-size: .75rem; color: var(--muted) }
-.qlist { list-style: none; margin: 0; padding: 8px; max-height: 420px; overflow-y: auto }
-.qlist li button { width: 100%; display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; text-align: left; border: 0; background: none; padding: 8px 10px; border-radius: 8px; font: 400 .85rem var(--font); color: var(--body); cursor: pointer }
-.qlist li button:hover { background: var(--bg) }
-.qlist li button.cur { background: var(--bg); color: var(--ink); font-weight: 600 }
-.qlist .dot { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; font-weight: 700; border: 1.5px solid var(--line-strong); color: var(--muted) }
-.qlist .dot.ok { background: var(--good); border-color: var(--good); color: #fff }
-.qlist .dot.no { background: var(--bad-soft); border-color: var(--bad); color: var(--bad) }
+/* the receipt */
+.summary { position: sticky; top: 20px; display: grid; background: var(--paper); border: 2px solid var(--rule); font-family: var(--mono); font-size: .82rem;
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%; padding-bottom: 10px }
+.summary .head { padding: 20px 20px 12px; text-align: center; display: grid; gap: 2px; border-bottom: 2px dashed var(--rule) }
+.summary .head h2 { font: 900 1.25rem/1 var(--display); font-stretch: 70%; text-transform: uppercase; letter-spacing: .02em }
+.summary .head small { color: var(--grey); text-transform: uppercase; letter-spacing: .06em }
+.qlist { list-style: none; margin: 0; padding: 10px 12px; max-height: 380px; overflow-y: auto }
+.qlist li button { width: 100%; display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; text-align: left; border: 0; background: none; padding: 4px 8px; font: 400 .82rem var(--mono); color: var(--ink); cursor: pointer }
+.qlist li button:hover { background: var(--wash) }
+.qlist li button.cur { background: var(--ink); color: var(--paper) }
+.qlist .dot { font-weight: 600 }
 .qlist .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
-.qlist .h { font-size: .72rem; color: var(--muted) }
-.summary .foot { padding: 14px 22px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted) }
+.qlist .t::after { content: " ........................................"; color: var(--grey) }
+.qlist .h { white-space: nowrap }
+.qlist .h.ok { color: var(--chilli); font-weight: 600 }
+.qlist .h.no { color: var(--grey) }
+.qlist li button.cur .h, .qlist li button.cur .t::after { color: var(--paper) }
+.stats { display: grid; border-top: 2px dashed var(--rule); padding: 12px 20px; gap: 4px }
+.stats div { display: flex; justify-content: space-between; gap: 10px }
+.stats div span { color: var(--grey); text-transform: uppercase; letter-spacing: .06em }
+.stats b { font-weight: 600; font-variant-numeric: tabular-nums }
+.stats .total { border-top: 2px solid var(--rule); margin-top: 6px; padding-top: 8px; font-size: 1rem }
+.stats .total span { color: var(--ink); font-weight: 600 }
+.stats .total b { color: var(--chilli); display: inline-flex; align-items: center; gap: 4px }
+.stat-chilli { display: inline-flex; align-items: center; gap: 4px }
+.stat-chilli .chilli { width: 11px; height: 16px }
+.summary .foot { padding: 12px 20px 8px; text-align: center; color: var(--grey); border-top: 2px dashed var(--rule); font-size: .74rem }
 
 /* results */
-.results { display: grid; gap: 24px; max-width: 760px; margin: 0 auto }
-.hero { text-align: center; padding: 40px 28px; display: grid; gap: 10px; justify-items: center }
-.hero .big { font-size: clamp(3rem, 10vw, 4.4rem); font-weight: 700; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums }
-.hero .big small { font-size: .45em; color: var(--muted); font-weight: 600 }
-.hero p { margin: 0; max-width: 46ch }
-.hero .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px }
-.share { font: 500 1rem/1.3 var(--mono); letter-spacing: .15em; white-space: pre; color: var(--ink); margin: 6px 0 0 }
-.breakdown { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.results { display: grid; gap: 28px; max-width: 760px; margin: 0 auto }
+.hero { text-align: center; padding: 44px 28px; display: grid; gap: 12px; justify-items: center; position: relative }
+.hero .big { font: 900 clamp(4rem, 15vw, 7rem)/.85 var(--display); font-stretch: 70%; font-variant-numeric: tabular-nums }
+.hero .big small { font-size: .4em; color: var(--grey) }
+.hero p { margin: 0; max-width: 46ch; font-size: 1.05rem }
+.hero .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 12px }
+.breakdown { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) }
 .breakdown div { padding: 18px; display: grid; gap: 2px; text-align: center }
-.breakdown div + div { border-left: 1px solid var(--line) }
-.breakdown b { font-size: 1.3rem; color: var(--ink) }
-.breakdown span { font-size: .8rem; color: var(--muted) }
+.breakdown div + div { border-left: 3px solid var(--rule) }
+.breakdown b { font: 900 1.7rem/1 var(--display); font-stretch: 75% }
+.breakdown span { font-size: .82rem; color: var(--grey) }
+.breakdown .stat-chilli { justify-content: center; color: var(--chilli) }
+.breakdown .stat-chilli span { font-size: inherit; color: inherit }
 .review { margin: 0; padding: 0; list-style: none }
-.review li { padding: 16px 22px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 22px 1fr; gap: 12px }
+.review li { padding: 16px 24px; border-top: 2px solid var(--hair); display: grid; grid-template-columns: 26px 1fr; gap: 12px }
 .review li:first-child { border-top: 0 }
 .review p { margin: 0 }
-.review .q { color: var(--ink); font-weight: 500 }
-.review .a { font-size: .9rem; color: var(--muted); margin-top: 4px }
+.review .q { font-weight: 600 }
+.review .a { font-size: .9rem; color: var(--grey); margin-top: 4px }
 
-/* past quizzes */
-.section-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; margin-bottom: 16px }
-.section-head h1 { font-size: 1.6rem }
+/* archive */
+.section-head { display: grid; gap: 4px; margin-bottom: 18px }
+.section-head h1 { font: 900 clamp(2.2rem, 6vw, 3.2rem)/.9 var(--display); font-stretch: 70%; text-transform: uppercase }
+.tablewrap { overflow-x: auto }
 .table { width: 100%; border-collapse: collapse }
-.table th { text-align: left; font-size: .75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; padding: 12px 22px; border-bottom: 1px solid var(--line) }
-.table td { padding: 16px 22px; border-bottom: 1px solid var(--line); vertical-align: middle }
+.table th { text-align: left; font: 600 .74rem var(--mono); text-transform: uppercase; letter-spacing: .1em; padding: 12px 20px; border-bottom: 3px solid var(--rule); background: var(--ink); color: var(--paper) }
+.table td { padding: 16px 20px; border-bottom: 2px solid var(--hair); vertical-align: middle }
 .table tr:last-child td { border-bottom: 0 }
 .table tbody tr { cursor: pointer }
-.table tbody tr:hover td { background: var(--bg) }
-.table .name { color: var(--ink); font-weight: 600 }
-.table .sub { color: var(--muted); font-size: .85rem }
-.badge { display: inline-block; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--body); white-space: nowrap }
-.badge.done { background: var(--good-soft); border-color: transparent; color: var(--good) }
-.badge.prog { background: var(--brand-soft); border-color: transparent; color: var(--brand) }
-.tablewrap { overflow-x: auto }
-.types { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 16px }
-.type { text-align: left; padding: 0; overflow: hidden; cursor: pointer; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; box-shadow: var(--shadow); font: inherit; color: inherit; display: grid }
-.type:hover { border-color: var(--line-strong) }
-.type img { width: 100%; max-width: 100%; aspect-ratio: 3 / 2; display: block; border-bottom: 1px solid var(--line) }
-.type span { padding: 12px 14px 2px; color: var(--ink); font-weight: 600 }
-.type small { padding: 0 14px 12px; color: var(--muted) }
-.notice { text-align: center; padding: 64px 20px; color: var(--muted) }
-.notice h2 { margin-bottom: 6px }
-.ctx { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap }
-footer { max-width: 1080px; margin: 0 auto; padding: 0 20px 40px; color: var(--muted); font-size: .82rem; display: flex; gap: 18px; flex-wrap: wrap }
-footer a { color: var(--muted) }
+.table tbody tr:hover td { background: var(--wash) }
+.table .name { font: 800 1.15rem var(--display); font-stretch: 85% }
+.table .sub { color: var(--grey); font-size: .88rem }
+.badge { display: inline-block; font: 600 .74rem var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 4px 9px; border: 2px solid var(--rule); white-space: nowrap }
+.badge.done { background: var(--ink); color: var(--paper) }
+.badge.prog { border-color: var(--chilli); color: var(--chilli) }
+.types { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px }
+.type { text-align: left; padding: 0; overflow: hidden; cursor: pointer; border: 3px solid var(--rule); background: var(--paper); box-shadow: var(--hard); font: inherit; color: inherit; display: grid; transition: transform .08s, box-shadow .08s }
+.type:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink) }
+.type img { width: 100%; max-width: 100%; aspect-ratio: 3 / 2; display: block; border-bottom: 3px solid var(--rule); filter: grayscale(1) contrast(1.1) }
+.type span { padding: 12px 14px 2px; font: 800 1.05rem var(--display); font-stretch: 85% }
+.type small { padding: 0 14px 12px; color: var(--grey) }
+.notice { text-align: center; padding: 64px 20px }
+.notice h2 { font: 900 2rem var(--display); font-stretch: 75%; text-transform: uppercase; margin-bottom: 6px }
+footer { max-width: 1100px; margin: 0 auto; padding: 18px 20px 40px; border-top: 3px solid var(--rule); color: var(--grey); font: 500 .8rem var(--mono); display: flex; gap: 18px; flex-wrap: wrap }
+footer a { color: var(--ink) }
 
-@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr) } .summary { position: static } .qlist { max-height: none } }
-@media (max-width: 520px) { .pad { padding: 20px } .answerbar .row { grid-template-columns: 1fr } .table th:nth-child(3), .table td:nth-child(3) { display: none } }
-@media (prefers-reduced-motion: no-preference) { .question, .hint, .reveal, .feedback { animation: in .25s ease-out } @keyframes in { from { opacity: 0; transform: translateY(3px) } } }
+@media (max-width: 880px) { .grid { grid-template-columns: minmax(0, 1fr) } .summary { position: static } .qlist { max-height: none } }
+@media (max-width: 560px) {
+  .pad { padding: 20px } .answerbar .row { grid-template-columns: 1fr } .table th:nth-child(3), .table td:nth-child(3) { display: none }
+  .sticker { width: 84px; height: 84px; right: 14px; top: 48px } .sticker b { font-size: 1.9rem } .label-card .body { padding: 26px 20px; padding-right: 96px }
+  .scale { grid-template-columns: 1fr } .scale div + div { border-left: 0; border-top: 3px solid var(--rule) }
+}
+@media (prefers-reduced-motion: no-preference) { .question, .hint, .reveal, .feedback { animation: in .22s ease-out } @keyframes in { from { opacity: 0; transform: translateY(3px) } } .sticker { animation: wob 6s ease-in-out infinite } @keyframes wob { 50% { transform: rotate(-6deg) } } }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="chilli" viewBox="0 0 14 20"><path d="M8.6 1.2c.2 1-.1 1.8-.9 2.4 2.3.4 3.6 2.2 3.4 4.8-.3 4.2-3.4 8.5-7.8 10.4-.9.4-1.5-.6-.9-1.2 2.4-2.6 3.4-5.6 3.3-9-.1-2.1 1-3.6 2.6-4.3.3-.9.2-1.7-.3-2.4z"/></symbol></svg>
 <header class="top"><div class="in">
-  <a class="brand" href="./" id="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 40a28 28 0 0 1 56 0z" fill="currentColor"/><circle cx="22" cy="30" r="3.2" fill="#e8461e"/><circle cx="34" cy="24" r="2.6" fill="#e8461e"/><circle cx="44" cy="32" r="3" fill="#e8461e"/><circle cx="30" cy="35" r="2" fill="#e8461e"/><rect x="4" y="44" width="56" height="4" fill="currentColor"/></svg>Hot Quesadillas</a>
+  <a class="brand" href="./" id="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 40a28 28 0 0 1 56 0z" fill="currentColor"/><circle cx="22" cy="30" r="3.2" fill="var(--chilli)"/><circle cx="34" cy="24" r="2.6" fill="var(--chilli)"/><circle cx="44" cy="32" r="3" fill="var(--chilli)"/><circle cx="30" cy="35" r="2" fill="var(--chilli)"/><rect x="4" y="44" width="56" height="4" fill="currentColor"/></svg>Hot Quesadillas</a>
   <nav class="tabs" aria-label="Main">
     <button type="button" id="nav-play" aria-current="page">This week</button>
     <button type="button" id="nav-past">Archive</button>
@@ -203,17 +216,25 @@ footer a { color: var(--muted) }
 
   <!-- HOME -->
   <div id="home" class="home" hidden>
-    <section class="card hero-card">
-      <span class="label" id="h-eyebrow">Quiz #1 · 23 October 2026</span>
-      <h1 id="h-title">This week's quiz</h1>
-      <p class="lede">25 questions, about ten minutes. Each one has a clue hidden in it, so you can work the answer out. Get it right to collect chillies. Stuck? Turn down the heat for a hint, and you'll collect fewer.</p>
-      <div class="cta">
-        <button class="btn primary" type="button" id="start">Start quiz</button>
-        <button class="btn" type="button" id="see-archive">See archive</button>
+    <section class="card label-card">
+      <div class="band"><span id="h-eyebrow">Quiz Nº1 · 23 October 2026</span><span>25 questions · ~10 min</span></div>
+      <div class="body">
+        <div class="sticker" aria-hidden="true"><div><small>Quiz</small><b id="h-num">Nº1</b><small>this week</small></div></div>
+        <h1 id="h-title">This week's<br><span>quiz</span></h1>
+        <p class="lede">Every question has a clue hidden in it, so you can work the answer out. Get it right to collect chillies. Stuck? Turn down the heat for a hint.</p>
+        <div class="cta">
+          <button class="btn primary" type="button" id="start">Start quiz</button>
+          <button class="btn" type="button" id="see-archive">See archive</button>
+        </div>
+        <span class="steps" id="h-status"></span>
       </div>
-      <span class="steps" id="h-status"></span>
+      <div class="scale">
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg></span><b>No hints</b><span>Right answer: 3 chillies</span></div>
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>Heat turned down once</b><span>Right answer: 2 chillies</span></div>
+        <div><span class="chillies"><svg class="chilli"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg><svg class="chilli off"><use href="#chilli"/></svg></span><b>Turned down twice</b><span>Right answer: 1 chilli</span></div>
+      </div>
     </section>
-    <p class="steps" style="text-align:center;margin:0" id="h-next">A new quiz goes up every Friday.</p>
+    <p class="steps homefoot" id="h-next">A new quiz goes up every Friday.</p>
   </div>
 
   <!-- PLAY -->
@@ -228,7 +249,7 @@ footer a { color: var(--muted) }
         <div class="hint" id="hint" hidden><span class="label" id="hint-label">Hint</span><code id="hint-text"></code></div>
         <div class="reveal" id="reveal" hidden><span class="label">Answer</span><b id="ans"></b><p id="why"></p></div>
         <div class="helpers">
-          <button class="link" type="button" id="hint-btn">Turn down the heat</button>
+          <button class="link heat-btn" type="button" id="hint-btn">Turn down the heat</button>
           <button class="link" type="button" id="reveal-btn">Reveal the answer</button>
         </div>
         <div class="answerbar">
@@ -240,15 +261,16 @@ footer a { color: var(--muted) }
         </div>
       </section>
 
-      <aside class="card summary" aria-label="Your progress">
-        <div class="head"><h2 id="s-title">This week's quiz</h2><small id="s-date"></small><small id="s-done">0 of 25 answered</small></div>
-        <div class="stats">
-          <div><b id="s-correct">0</b><span>correct</span></div>
-          <div><b class="stat-chilli"><span id="s-heat">0</span><svg class="chilli"><use href="#chilli"/></svg></b><span>chillies</span></div>
-          <div><b id="s-time">0:00</b><span>time</span></div>
-        </div>
+      <aside class="summary" aria-label="Your receipt">
+        <div class="head"><h2>Hot Quesadillas</h2><small id="s-title">This week's quiz</small><small id="s-date"></small></div>
         <ol class="qlist" id="qlist"></ol>
-        <div class="foot">Right with no hints: 3 chillies. One hint: 2. Two hints: 1. Your progress is saved in this browser.</div>
+        <div class="stats">
+          <div><span>Answered</span><b id="s-done">0 of 25</b></div>
+          <div><span>Correct</span><b id="s-correct">0</b></div>
+          <div><span>Time</span><b id="s-time">0:00</b></div>
+          <div class="total"><span>Total</span><b class="stat-chilli"><span id="s-heat">0</span><svg class="chilli"><use href="#chilli"/></svg></b></div>
+        </div>
+        <div class="foot">No hints 3 · one hint 2 · two hints 1<br>Thank you, come again Friday</div>
       </aside>
     </div>
   </div>
@@ -256,11 +278,11 @@ footer a { color: var(--muted) }
   <!-- RESULTS -->
   <div id="done" class="results" hidden>
     <section class="card hero">
-      <span class="label" id="r-label">Quiz #1 complete</span>
+      <span class="label" id="r-label">Quiz Nº1 complete</span>
       <div class="big" id="r-score">18<small> / 25</small></div>
       <p id="r-line"></p>
       <div class="actions">
-        <button class="btn primary" type="button" id="share">Copy results</button>
+        <button class="btn hot" type="button" id="share">Copy results</button>
         <button class="btn" type="button" id="again">Play again</button>
         <button class="btn" type="button" id="to-past">See archive</button>
       </div>
@@ -338,7 +360,8 @@ function render() {
 function renderHome() {
   show('home');
   const d = latest(), L = d.questions, a = answered(L).length;
-  $('h-eyebrow').textContent = `Quiz #${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
+  $('h-eyebrow').textContent = `Quiz Nº${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
+  $('h-num').textContent = `Nº${d.n}`;
   $('start').textContent = a === L.length ? 'See results' : a ? 'Continue quiz' : 'Start quiz';
   $('h-status').textContent = a === L.length ? `You scored ${correct(L).length} out of ${L.length}.` : a ? `${a} of ${L.length} answered so far.` : '';
   $('h-next').textContent = 'A new quiz goes up every Friday. Next one: ' + nextFriday().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + '.';
@@ -349,7 +372,7 @@ function renderPlay(L) {
   if (i >= L.length) i = L.length - 1;
   const q = L[i], d = quiz(), h = hints[q.id] || 0, isLatest = !topic && d.n === latest().n;
   $('ctx').hidden = isLatest;
-  $('ctx-label').textContent = topic ? `Practice: ${topic}` : `Quiz #${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
+  $('ctx-label').textContent = topic ? `Practice: ${topic}` : `Quiz Nº${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
   $('cat').textContent = q.cat;
   $('steps').textContent = `Question ${i + 1} of ${L.length}`;
   $('bar').style.width = `${(answered(L).length / L.length) * 100}%`;
@@ -376,10 +399,10 @@ function renderPlay(L) {
 
   // summary panel
   const S = topic ? L : d.questions;
-  $('s-title').textContent = topic ? `Practice: ${topic}` : (isLatest ? "This week's quiz" : `Quiz #${d.n}`);
-  $('s-date').textContent = topic ? `${L.length} questions from every quiz` : `Quiz #${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
+  $('s-title').textContent = topic ? `Practice: ${topic}` : (isLatest ? "This week's quiz" : `Quiz Nº${d.n}`);
+  $('s-date').textContent = topic ? `${L.length} questions` : `Nº${d.n} · ${fmtDate(new Date(d.releaseAt))}`;
   $('s-correct').textContent = correct(S).length;
-  $('s-done').textContent = `${answered(S).length} of ${S.length} answered`;
+  $('s-done').textContent = `${answered(S).length} of ${S.length}`;
   $('s-heat').textContent = heatEarned(S);
   $('s-time').textContent = topic ? '–' : dur(runTime(d));
   const ol = $('qlist'); ol.innerHTML = '';
@@ -388,9 +411,10 @@ function renderPlay(L) {
     b.className = k === i ? 'cur' : '';
     const m = marks[x.id];
     b.innerHTML = '<span class="dot"></span><span class="t"></span><span class="h"></span>';
-    const dot = b.querySelector('.dot'); dot.className = 'dot' + (m === true ? ' ok' : m === false ? ' no' : ''); dot.textContent = m === true ? '✓' : m === false ? '✕' : k + 1;
-    b.querySelector('.t').textContent = x.q;
-    b.querySelector('.h').textContent = m === true ? `+${heatOf(x)}` : '';
+    const dot = b.querySelector('.dot'); dot.textContent = String(k + 1).padStart(2, '0');
+    b.querySelector('.t').textContent = x.cat;
+    const hh = b.querySelector('.h'); hh.className = 'h' + (m === true ? ' ok' : m === false ? ' no' : '');
+    hh.textContent = m === true ? `+${heatOf(x)}` : m === false ? '0' : '·';
     b.setAttribute('aria-label', `Question ${k + 1}${m === true ? ', right' : m === false ? ', wrong' : ''}`);
     b.onclick = () => { i = k; revealed = false; last = null; renderPlay(list()) };
     li.appendChild(b); ol.appendChild(li);
@@ -401,7 +425,7 @@ function shareGrid(L) { const r = []; for (let k = 0; k < L.length; k += 5) r.pu
 function renderDone(d) {
   show('done');
   const L = d.questions, c = correct(L).length, t = runTime(d);
-  $('r-label').textContent = `Quiz #${d.n} complete`;
+  $('r-label').textContent = `Quiz Nº${d.n} complete`;
   $('r-score').innerHTML = `${c}<small> / ${L.length}</small>`;
   $('r-line').textContent = `You got ${c} right and collected ${heatEarned(L)} of a possible ${L.length * 3} chillies.`;
   $('r-heat').textContent = heatEarned(L);
@@ -412,7 +436,7 @@ function renderDone(d) {
     const li = document.createElement('li');
     li.innerHTML = '<span class="dot"></span><div><p class="q"></p><p class="a"></p></div>';
     const m = marks[q.id], dot = li.querySelector('.dot');
-    dot.style.cssText = 'width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:700;margin-top:2px;' + (m ? 'background:var(--good);color:#fff' : 'background:var(--bad-soft);color:var(--bad);border:1.5px solid var(--bad)');
+    dot.style.cssText = 'width:22px;height:22px;display:grid;place-items:center;font:700 .72rem var(--mono);margin-top:1px;' + (m ? 'background:var(--chilli);color:var(--chilli-ink)' : 'border:2px solid var(--rule);color:var(--grey)');
     dot.textContent = m ? '✓' : '✕';
     li.querySelector('.q').textContent = q.q;
     li.querySelector('.a').textContent = q.a + (hints[q.id] ? ` (${hints[q.id] === 1 ? 'one hint' : 'two hints'})` : '');
@@ -427,7 +451,7 @@ function renderPast() {
     const L = d.questions, a = answered(L).length, c = correct(L).length;
     const tr = document.createElement('tr');
     tr.innerHTML = '<td><div class="name"></div><div class="sub"></div></td><td><span class="badge"></span></td><td class="sub"></td>';
-    tr.querySelector('.name').textContent = `Quiz #${d.n}` + (k === 0 ? ' · this week' : '');
+    tr.querySelector('.name').textContent = `Quiz Nº${d.n}` + (k === 0 ? ' · this week' : '');
     tr.querySelector('.sub').textContent = fmtDate(new Date(d.releaseAt));
     const bd = tr.querySelector('.badge');
     if (a === L.length) { bd.textContent = `${c} / ${L.length} correct`; bd.classList.add('done') }
@@ -481,7 +505,7 @@ $('ctx-exit').onclick = () => $('nav-play').click();
 $('again').onclick = () => { const d = quiz(); d.questions.forEach(q => { delete marks[q.id]; delete hints[q.id] }); delete runs[d.id]; save(); i = 0; revealed = false; last = null; render() };
 $('share').onclick = () => {
   const d = quiz(), L = d.questions, t = runTime(d);
-  const text = `Hot Quesadillas, quiz #${d.n}: ${correct(L).length}/${L.length} and ${heatEarned(L)} chillies${t ? ' in ' + dur(t) : ''}. ${SITE}`;
+  const text = `Hot Quesadillas, quiz Nº${d.n}: ${correct(L).length}/${L.length} and ${heatEarned(L)} chillies${t ? ' in ' + dur(t) : ''}. ${SITE}`;
   const ok = () => $('share-msg').textContent = 'Copied to your clipboard.';
   const fail = () => { $('share-msg').textContent = text };
   navigator.clipboard ? navigator.clipboard.writeText(text).then(ok).catch(fail) : fail();
